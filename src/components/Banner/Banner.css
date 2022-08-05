@@ -1,0 +1,14 @@
+.banner {
+  height: 30%;
+  background-color: var(--global-primary-color);
+}
+
+.banner > .banner-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em;
+  font-size: 1.5em;
+  color: var(--global-secondary-color);
+}

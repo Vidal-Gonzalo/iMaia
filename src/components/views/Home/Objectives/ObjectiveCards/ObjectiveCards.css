@@ -1,0 +1,31 @@
+.card {
+  margin: 0 2em 0 2em;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  width: 10em;
+  margin-bottom: 2em;
+  border-radius: 10%;
+  transition: 300ms all;
+}
+
+.card:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.card > .card-icon > svg {
+  height: 50px;
+  width: 50px;
+  margin-top: 50px;
+}
+
+.card > .card-text {
+  padding: 0 0.5em 1em 0.5em;
+}
+
+.card > .card-text > .card-title {
+  color: var(--global-primary-color);
+  font-size: 1em;
+}
+
+.card > .card-text p {
+  font-size: 0.7em;
+}
