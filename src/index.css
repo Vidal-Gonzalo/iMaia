@@ -1,9 +1,17 @@
 :root {
-  --global-primary-font: "Roboto Condensed", sans-serif;
-  --global-secondary-font: "Roboto";
-  --global-primary-color: #f14755;
+  --global-primary-font: "Montserrat", sans-serif;
+  --global-secondary-font: "Open Sans", sans-serif;
+  --global-primary-color: #641fcc;
   --global-secondary-color: #fff;
+  --global-tertiary-color: #f35f1c;
+  --global-border-radius: 5%;
+  --global-title-font-size: 2.3em;
+  --global-title-font-weight: bold;
 }
+
+/*
+Color: #f6a942
+*/
 
 body {
   margin: 0;

@@ -1,5 +1,5 @@
 .banner {
-  height: 30%;
+  font-family: var(--global-primary-font);
   background-color: var(--global-primary-color);
 }
 
@@ -11,4 +11,8 @@
   padding: 1em;
   font-size: 1.5em;
   color: var(--global-secondary-color);
+}
+
+.banner > .banner-content > .banner-title > p {
+  margin-top: 5px;
 }

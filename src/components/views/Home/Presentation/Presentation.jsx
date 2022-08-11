@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import journal from "../../../../assets/images/journal3.jpg";
+import intro from "../../../../assets/images/intro.png";
 import Button from "../../../Button/Button";
 import "./Presentation.css";
 
@@ -9,7 +9,7 @@ export default function Presentation({ title, subtitle }) {
     <div
       className="presentation-container"
       style={{
-        backgroundImage: `url(${journal})`,
+        backgroundImage: `url(${intro})`,
       }}
     >
       <div className="presentation-text">

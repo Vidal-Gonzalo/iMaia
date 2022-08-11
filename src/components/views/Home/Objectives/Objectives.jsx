@@ -1,22 +1,12 @@
 import React, { useState } from "react";
 import "./Objectives.css";
 import { objectives } from "./Objectives";
-import ObjectiveCards from "./ObjectiveCards/ObjectiveCards";
+import ObjectivesCarousel from "./ObjectivesCarousel/ObjectivesCarousel";
 
-export default function Objectives({ title, subtitle }) {
-  const [objectiveCards] = useState(objectives);
-
+export default function Objectives() {
   return (
     <div className="objectives-container">
-      <div className="objectives-text">
-        <h3>{title}</h3>
-        <h4>{subtitle}</h4>
-      </div>
-      <div className="objectives-card-container">
-        {objectiveCards?.map((card, index) => {
-          return <ObjectiveCards card={card} key={index} />;
-        })}
-      </div>
+      <ObjectivesCarousel objectives={objectives} />
     </div>
   );
 }

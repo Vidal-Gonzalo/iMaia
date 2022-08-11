@@ -53,14 +53,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       width: "20ch",
     },
   },
-  fontFamily: "Roboto Condensed, sans-serif",
+  fontFamily: "var(--global-secondary-font)",
 }));
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: "black",
-  fontFamily: "Roboto Condensed, sans-serif",
+  fontFamily: "var(--global-secondary-font)",
   position: "fixed",
   zIndex: 10,
+  fontSize: "0.9em",
 }));
 
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -74,14 +75,14 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   cursor: "pointer",
   fontSize: "1.2em",
   color: "#fff",
-  fontFamily: "Roboto Condensed, sans-serif",
+  fontFamily: "var(--global-secondary-font)",
 }));
 
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [searchedItem, setSearchedItem] = useState("");
-  const [isLoggedIn] = useState(true);
+  const [isLoggedIn] = useState(false);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 

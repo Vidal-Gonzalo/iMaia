@@ -4,7 +4,7 @@
   align-items: center;
   flex-direction: row;
   height: 100vh;
-  background-position: top;
+  background-position: center;
   background-size: cover;
   background-attachment: fixed;
   padding-left: 6em;
@@ -16,12 +16,20 @@
   font-family: var(--global-primary-font);
   font-size: 1.6em;
   width: 35%;
-  height: 45%;
+  height: 40%;
+}
+
+.presentation-container > .presentation-text h1 {
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 5px;
 }
 
 .presentation-container > .presentation-text h2 {
+  margin-top: 8px;
   font-size: 1em;
   line-height: 1.2em;
   color: var(--global-secondary-color);
   font-weight: 400;
+  font-family: var(--global-secondary-font);
 }
