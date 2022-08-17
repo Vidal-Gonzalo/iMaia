@@ -26,7 +26,7 @@ export const texts = [
     title: "Ocaso",
     genre: "writing",
     picUrl:
-      "https://lh4.googleusercontent.com/QVS9EqlgbPn7j91zn7POPj82Iwf5pHp1D_Q5V3K8yExxWzpfHWdOWMPHJvYcmNCBfpx2Cs96KnU4TaUz00hL7_UXmBqvO4qCzRq7SqTpeVmibtpD5Td6aULStgZihJ8x=w307",
+      "https://c.wallhere.com/photos/12/ea/1534x863_px_artwork_Leonid_Afremov_painting_Sailboats_sea-514537.jpg!d",
     date: "11 may, 2020",
     category: "love",
     overview:

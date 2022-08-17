@@ -1,0 +1,36 @@
+.reasons-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reasons-card > .reasons-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reasons-card > .reasons-content > .reasons-lamp > .reasons-lamp-image {
+  width: 10em;
+  cursor: pointer;
+}
+
+.reasons-card > .reasons-content > .reasons-text > .reasons-content-title {
+  font-family: var(--global-secondary-font);
+  font-size: 1.5em;
+  margin-bottom: 0;
+}
+
+.reasons-card > .reasons-content > .reasons-text {
+  width: 30em;
+  /*
+  Esto ocasiona problemas en responsive
+  */
+}
+
+.reasons-card
+  > .reasons-content
+  > .reasons-text
+  > .reasons-content-description {
+  font-family: var(--global-primary-font);
+}

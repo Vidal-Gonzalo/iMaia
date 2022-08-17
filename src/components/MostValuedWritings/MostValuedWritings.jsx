@@ -3,13 +3,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css";
 import "./MostValuedWritings.css";
-//import { useNavigate } from "react-router-dom";
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-//import Button from "../Button/Button";
+import { useNavigate } from "react-router-dom";
+import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import { valuedWritings } from "./MostValuedWritings";
 
 export default function MostValuedWritings({ title, writings }) {
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
   const [swiper, setSwiper] = useState();
   const prevRef = useRef();
   const nextRef = useRef();
@@ -30,7 +30,7 @@ export default function MostValuedWritings({ title, writings }) {
       <h5 className="swiper-title">{title}</h5>
       <div className="swiper-container">
         <div className="swiper-button" ref={prevRef}>
-          <KeyboardDoubleArrowLeftIcon fontSize={"large"} />
+          <ArrowCircleLeftIcon fontSize={"large"} />
         </div>
         <Swiper
           navigation={{
@@ -43,112 +43,35 @@ export default function MostValuedWritings({ title, writings }) {
           className="mySwiper"
           onSwiper={setSwiper}
         >
-          <SwiperSlide
-            style={{
-              backgroundImage:
-                "url('https://huellas01.web.app/css/img/topWriting-1.jpg')",
-              backgroundSize: "cover",
-            }}
-          >
-            <div className="writing-content">
-              <h3 className="writing-title">El mundo</h3>
-              <p className="writing-fragment">
-                Un hombre del pueblo de Negua, en la costa de Colombia, pudo
-                subir al alto cielo. A la vuelta, contó. Dijo que había
-              </p>
-              <button className="btn btn-large btn-carousel">Leer más</button>
-              <span className="writing-author">@wat_ching</span>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide
-            style={{
-              backgroundImage:
-                "url(https://huellas01.web.app/css/img/topWriting-4.jpg)",
-              backgroundSize: "cover",
-            }}
-          >
-            <div className="writing-content">
-              <h3 className="writing-title">Fuego</h3>
-              <p className="writing-fragment">
-                Nadie puede salvarte sino tú mismo. te verás una y otra vez en
-                situaciones casi imposibles. intentarán una
-              </p>
-              <button className="btn btn-large btn-carousel">Leer más</button>
-              <span className="writing-author">-@justmi</span>
-            </div>
-          </SwiperSlide>
-
-          <SwiperSlide
-            style={{
-              backgroundImage:
-                "url('https://huellas01.web.app/css/img/writing-3.jpeg')",
-              backgroundSize: "cover",
-            }}
-          >
-            <div className="writing-content">
-              <h3 className="writing-title">Ocaso</h3>
-              <p className="writing-fragment">
-                ¿Cómo explican los sentimientos agradables? Afirmando que están
-                determinados por la confianza de Dios
-              </p>
-              <button className="btn btn-large btn-carousel">Leer más</button>
-              <span className="writing-author">-@outofcontext</span>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide
-            style={{
-              backgroundImage:
-                "url('https://huellas01.web.app/css/img/writing-2.jpg')",
-              backgroundSize: "cover",
-            }}
-          >
-            <div className="writing-content">
-              <h3 className="writing-title">Charles</h3>
-              <p className="writing-fragment">
-                Lorem ipsum dolor sit amet, consectetur
-              </p>
-              <button className="btn btn-large btn-carousel">Leer más</button>
-              <span className="writing-author">-@julystrash</span>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide
-            style={{
-              backgroundImage:
-                "url(https://huellas01.web.app/css/img/poem-1.jpg)",
-              backgroundSize: "cover",
-            }}
-          >
-            <div className="writing-content">
-              <h3 className="writing-title">Vos</h3>
-              <p className="writing-fragment">
-                Lorem ipsum dolor sit amet, consectetur
-              </p>
-              <button className="btn btn-large btn-carousel">Leer más</button>
-              <span className="writing-author">-@julystrash</span>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide
-            style={{
-              backgroundImage:
-                "url(https://huellas01.web.app/css/img/writing-6.jpg)",
-              backgroundSize: "cover",
-            }}
-          >
-            <div className="writing-content">
-              <h3 className="writing-title">Fe</h3>
-              <p className="writing-fragment">
-                Sin fe, no tenemos esperanza, y sin esperanza no tenemos
-                propiamente vida. No teniendo una idea del futuro, tampoco
-                tenemos una idea de hoy
-              </p>
-              <button className="btn btn-large btn-carousel">Leer más</button>
-              <span className="writing-author">-@font_sa</span>
-            </div>
-          </SwiperSlide>
+          {valuedWritings?.map((text, index) => (
+            <SwiperSlide
+              key={index}
+              style={{
+                backgroundImage: `url(${text.picUrl})`,
+                backgroundSize: "cover",
+              }}
+            >
+              <div className="writing-content">
+                <h3 className="writing-title">{text.title}</h3>
+                <p className="writing-fragment">{text.fragment}</p>
+                <button
+                  className="btn btn-large btn-carousel"
+                  onClick={() => navigate(`/text/${text.id}`)}
+                >
+                  Leer más
+                </button>
+                <span
+                  className="writing-author"
+                  onClick={() => navigate(`author/${text.author}`)}
+                >
+                  @{text.author}
+                </span>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
         <div className="swiper-button" ref={nextRef}>
-          <KeyboardDoubleArrowRightIcon fontSize={"large"} />
+          <ArrowCircleRightIcon fontSize={"large"} />
         </div>
       </div>
     </div>

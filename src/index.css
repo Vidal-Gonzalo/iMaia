@@ -1,11 +1,12 @@
 :root {
   --global-primary-font: "Montserrat", sans-serif;
-  --global-secondary-font: "Open Sans", sans-serif;
+  --global-secondary-font: "Playfair Display", serif;
   --global-primary-color: #641fcc;
   --global-secondary-color: #fff;
-  --global-tertiary-color: #f35f1c;
-  --global-border-radius: 5%;
-  --global-title-font-size: 2.3em;
+  --global-tertiary-color: #a7c5bd;
+  --global-fourth-color: #a7c5bd;
+  --global-border-radius: 10px;
+  --global-title-font-size: 2.8em;
   --global-title-font-weight: bold;
 }
 

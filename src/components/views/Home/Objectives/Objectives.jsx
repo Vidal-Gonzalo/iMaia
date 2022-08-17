@@ -5,8 +5,8 @@ import ObjectivesCarousel from "./ObjectivesCarousel/ObjectivesCarousel";
 
 export default function Objectives() {
   return (
-    <div className="objectives-container">
+    <section id="objectives" className="objectives-container">
       <ObjectivesCarousel objectives={objectives} />
-    </div>
+    </section>
   );
 }

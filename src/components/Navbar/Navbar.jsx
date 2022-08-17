@@ -14,7 +14,9 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import LoginIcon from "@mui/icons-material/Login";
 import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
   display: "flex",
@@ -58,10 +60,11 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: "black",
-  fontFamily: "var(--global-secondary-font)",
   position: "fixed",
   zIndex: 10,
   fontSize: "0.9em",
+  borderBottom: "1px solid rgb(182, 179, 179, 0.42)",
+  boxShadow: "none",
 }));
 
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -73,9 +76,10 @@ const StyledBox = styled(Box)(({ theme }) => ({
 const StyledTypography = styled(Typography)(({ theme }) => ({
   padding: "0em 1em 0em 1em",
   cursor: "pointer",
-  fontSize: "1.2em",
+  fontSize: "1.0em",
   color: "#fff",
-  fontFamily: "var(--global-secondary-font)",
+  fontFamily: "var(--global-primary-font)",
+  textTransform: "uppercase",
 }));
 
 export default function PrimarySearchAppBar() {
@@ -251,12 +255,16 @@ export default function PrimarySearchAppBar() {
               </>
             ) : (
               <>
-                <StyledTypography variant="h6" noWrap component="div">
+                <Button
+                  style={{
+                    backgroundColor: "transparent",
+                    fontFamily: "var(--global-primary-font)",
+                  }}
+                  variant="contained"
+                  endIcon={<LoginIcon />}
+                >
                   Iniciar sesión
-                </StyledTypography>
-                <StyledTypography variant="h6" noWrap component="div">
-                  Registrarse
-                </StyledTypography>
+                </Button>
               </>
             )}
           </StyledBox>

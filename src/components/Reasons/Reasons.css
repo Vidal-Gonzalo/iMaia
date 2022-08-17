@@ -1,0 +1,47 @@
+.reasons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.reasons > .reasons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 3em;
+  border-radius: var(--global-border-radius);
+  background-color: var(--global-tertiary-color);
+}
+
+.reasons > .reasons-container > .reasons-title {
+  font-family: var(--global-secondary-font);
+  font-size: var(--global-title-font-size);
+  margin-top: 0;
+}
+
+.reasons > .reasons-container > .reasons-content-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reasons
+  > .reasons-container
+  > .reasons-content-container
+  > .reasons-content-gif {
+  width: 30em;
+  /*
+  Esto ocasiona problemas en responsive
+  Lo mejor q se puede hacer es que en responsive 
+  se muestre la imagen y por debajo las tres cards en fila
+  */
+}
+
+.reasons > .reasons-container > .reasons-cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

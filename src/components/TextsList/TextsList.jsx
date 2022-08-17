@@ -4,7 +4,7 @@ import TextCard from "../TextCard/TextCard";
 import { texts } from "./Texts";
 import "./TextsList.css";
 
-const textPerRow = 6;
+const textPerRow = 3;
 
 export default function TextsList() {
   const [next, setNext] = useState(textPerRow);

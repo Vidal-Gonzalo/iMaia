@@ -1,24 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Button from "../Button/Button";
-import "./Banner.css";
 
-export default function Banner({ title }) {
+import "./Banner.css";
+import writerHand from "../../assets/images/writerHand.png";
+
+export default function Banner({ title, description }) {
+  const makeTextBold = (text, word) => {
+    return text;
+  };
+
   return (
     <div className="banner">
       <div className="banner-content">
-        <div className="banner-title">
-          <p>{title}</p>
-        </div>
-        <div className="banner-buttons">
-          <Link to="/">
-            <Button text={"Quiero leer"} />
-          </Link>
-          <Link to="/">
-            <Button text={"Quiero escribir"} />
-          </Link>
-        </div>
+        <h4>{title}</h4>
+        <p>{makeTextBold(description, "escribir.")}</p>
       </div>
+      <img src={writerHand} className="banner-image" alt={title} />
     </div>
   );
 }

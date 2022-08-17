@@ -31,15 +31,15 @@
 }
 
 .carousel-content {
-  font-family: var(--global-primary-font);
+  font-family: var(--global-secondary-font);
   position: absolute;
   left: 0;
   margin-left: 3em;
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 50%;
-  height: 70%;
+  width: 45%;
+  height: 60%;
   font-size: 36px;
 }
 

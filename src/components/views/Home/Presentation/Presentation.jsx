@@ -6,10 +6,13 @@ import "./Presentation.css";
 
 export default function Presentation({ title, subtitle }) {
   return (
-    <div
+    <section
+      id="presentation"
       className="presentation-container"
       style={{
         backgroundImage: `url(${intro})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <div className="presentation-text">
@@ -24,6 +27,6 @@ export default function Presentation({ title, subtitle }) {
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

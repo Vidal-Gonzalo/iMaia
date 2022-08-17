@@ -1,0 +1,25 @@
+.functionality-card {
+  width: 18em;
+  margin: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.functionality-card > .functionality-card-title {
+  font-family: var(--global-secondary-font);
+  font-size: 1.8em;
+  margin: 0;
+  margin-top: 0.3em;
+}
+
+.functionality-card > .functionality-card-image {
+  width: 18em;
+  height: 12em;
+}
+
+.functionality-card > .functionality-card-description {
+  font-family: var(--global-secondary-font);
+}

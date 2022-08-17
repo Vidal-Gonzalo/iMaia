@@ -31,5 +31,5 @@
   line-height: 1.2em;
   color: var(--global-secondary-color);
   font-weight: 400;
-  font-family: var(--global-secondary-font);
+  font-family: var(--global-primary-font);
 }
