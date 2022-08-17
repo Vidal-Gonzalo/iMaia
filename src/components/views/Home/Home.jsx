@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
-import About from "../../About/About.jsx";
 import Banner from "../../Banner/Banner.jsx";
 import MostValuedWritings from "../../MostValuedWritings/MostValuedWritings.jsx";
 import Reasons from "../../Reasons/Reasons.jsx";
 import Functionality from "./Functionality/Functionality.jsx";
-import Objectives from "./Objectives/Objectives.jsx";
 import Presentation from "./Presentation/Presentation";
 
 //const TextsList = lazy(() => import("../../TextsList/TextsList.jsx"));
