@@ -33,3 +33,19 @@
   font-weight: 400;
   font-family: var(--global-primary-font);
 }
+
+.presentation-container > .presentation-text > .presentation-buttons {
+  display: flex;
+}
+
+.presentation-container
+  > .presentation-text
+  > .presentation-buttons
+  > a
+  > .btn {
+  margin-right: 2em;
+}
+
+.presentation-container > .presentation-text > .presentation-buttons > a {
+  text-decoration: none;
+}

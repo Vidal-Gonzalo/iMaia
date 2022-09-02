@@ -23,7 +23,7 @@ const Search = styled("div")(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   paddingRight: "0.3em",
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: "var(--global-border-radius)",
   backgroundColor: alpha(theme.palette.common.white, 0.15),
   "&:hover": {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
@@ -55,15 +55,14 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
       width: "20ch",
     },
   },
-  fontFamily: "var(--global-secondary-font)",
+  fontFamily: "var(--global-primary-font)",
 }));
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  backgroundColor: "black",
+  backgroundColor: "#000",
   position: "fixed",
   zIndex: 10,
   fontSize: "0.9em",
-  borderBottom: "1px solid rgb(182, 179, 179, 0.42)",
   boxShadow: "none",
 }));
 
@@ -74,7 +73,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
 }));
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
-  padding: "0em 1em 0em 1em",
+  padding: "0em 2.5em 0em 2em",
   cursor: "pointer",
   fontSize: "1.0em",
   color: "#fff",
@@ -208,12 +207,6 @@ export default function PrimarySearchAppBar() {
             <Link style={{ textDecoration: "none" }} to="/poems">
               <StyledTypography variant="h6" noWrap component="div">
                 Poemas
-              </StyledTypography>
-            </Link>
-
-            <Link style={{ textDecoration: "none" }} to="/categories">
-              <StyledTypography variant="h6" noWrap component="div">
-                Categorías
               </StyledTypography>
             </Link>
             <form onSubmit={handleSubmit}>

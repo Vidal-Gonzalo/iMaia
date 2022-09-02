@@ -1,11 +1,11 @@
 :root {
-  --global-primary-font: "Montserrat", sans-serif;
-  --global-secondary-font: "Playfair Display", serif;
+  --global-primary-font: "Noto Sans", sans-serif;
+  --global-secondary-font: "Fjalla One", sans-serif;
   --global-primary-color: #641fcc;
   --global-secondary-color: #fff;
   --global-tertiary-color: #a7c5bd;
   --global-fourth-color: #a7c5bd;
-  --global-border-radius: 10px;
+  --global-border-radius: 50px;
   --global-title-font-size: 2.8em;
   --global-title-font-weight: bold;
 }

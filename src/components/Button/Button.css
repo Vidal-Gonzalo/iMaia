@@ -1,7 +1,7 @@
 .btn {
-  width: 9em;
+  width: 9.8em;
   height: 4em;
-  margin-right: 2em;
+  text-decoration: none;
   background-color: var(--global-primary-color);
   color: var(--global-secondary-color);
   border-radius: var(--global-border-radius);
@@ -11,6 +11,10 @@
   font-family: var(--global-primary-font);
   font-size: 0.6em;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .btn:hover {
@@ -29,5 +33,4 @@
 .btn-carousel {
   position: absolute;
   bottom: 5em;
-  margin-right: 0em;
 }

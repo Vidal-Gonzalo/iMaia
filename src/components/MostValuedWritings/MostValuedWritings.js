@@ -42,7 +42,7 @@ export const valuedWritings = [
     id: 29,
     title: "Fe",
     fragment:
-      "Sin fe, no tenemos esperanza, y sin esperanza no tenemos propiamente vida. No teniendo una idea del futuro, tampoco tenemos una idea de hoy",
+      "Sin fe, no tenemos esperanza, y sin esperanza no tenemos propiamente vida. No teniendo una idea del futuro",
     author: "font_sa",
     picUrl: "https://huellas01.web.app/css/img/writing-6.jpg",
   },

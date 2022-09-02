@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "../Button/Button";
-import TextCard from "../TextCard/TextCard";
-import { texts } from "./Texts";
+import TextCard from "../views/Writings/WritingsList/WritingCard/WritingCard";
+import { texts } from "../views/Writings/WritingsList/Texts";
 import "./TextsList.css";
 
 const textPerRow = 3;

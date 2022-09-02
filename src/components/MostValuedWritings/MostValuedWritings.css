@@ -82,6 +82,10 @@ En responsive se mostrará un solo slide
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 }
 
+.swiper-slide-next > .writing-content > .writing-fragment {
+  font-size: 1.2em;
+}
+
 .writing-content {
   font-family: var(--global-primary-font);
   display: flex;
@@ -99,6 +103,10 @@ En responsive se mostrará un solo slide
   position: absolute;
   top: 2.5em;
   font-size: 1.5em;
+}
+
+.writing-content > .writing-fragment {
+  margin: 0em 1em 0em 1em;
 }
 
 .writing-content > .writing-author {

@@ -13,6 +13,7 @@ export default function Reasons({ title }) {
       setGif(newGif[0].gif);
     }
   }, [isActive]);
+
   return (
     <section id="reasons" className="reasons">
       <div className="reasons-container">
