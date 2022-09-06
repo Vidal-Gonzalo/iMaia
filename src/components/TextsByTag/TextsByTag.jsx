@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Button from "../Button/Button.jsx";
 import { texts } from "../views/Writings/WritingsList/Texts.js";
-import WritingCard from "../views/Writings/WritingsList/WritingCard/WritingCard";
+import WritingCard from "../views/Writings/WritingsList/WritingCard/WritingCard.jsx";
 import "./TextsByTag.css";
 
 const textPerRow = 4;

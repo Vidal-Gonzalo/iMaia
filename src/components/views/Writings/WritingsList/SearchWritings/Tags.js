@@ -13,26 +13,26 @@ export const tags = [
   },
   {
     id: 4,
-    tag: "tristeza",
-  },
-  {
-    id: 5,
     tag: "filosofía",
   },
   {
-    id: 6,
+    id: 5,
     tag: "melancolía",
   },
   {
-    id: 7,
+    id: 6,
     tag: "familia",
   },
   {
-    id: 8,
+    id: 7,
     tag: "espiritualidad",
   },
   {
-    id: 9,
+    id: 8,
     tag: "ciencia",
+  },
+  {
+    id: 9,
+    tag: "motivacional",
   },
 ];

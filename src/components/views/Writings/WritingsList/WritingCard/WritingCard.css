@@ -1,34 +1,85 @@
-.writing-card {
-  width: 20%;
-  text-align: center;
-  margin: 1.2em;
-}
-
-.writing-card > .img-container > img {
-  border-radius: 10px;
-}
-
-.text-container {
-  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
-  padding: 120px 20px 20px 20px;
-  border-radius: 20px;
-  background: #fff;
-  margin: -120px 0px 0px 0px;
-  line-height: 19px;
-  font-size: 14px;
+.text-card {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  max-width: 45%;
+  margin: 1em;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 1em;
+}
+
+.text-card > .text-image > a > img {
+  width: 180px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.text-card > .text-content {
   font-family: var(--global-primary-font);
+  font-size: 0.7em;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 1em;
 }
 
-.text-container > .btn {
-  margin-top: 1em;
+.text-card > .text-content > a {
+  text-decoration: none;
+  width: 50%;
 }
 
-.text-container h3 {
-  margin: 20px 0px 10px 0px;
-  color: var(--global-primary-color);
-  font-size: 18px;
+.text-card > .text-content > a > .text-title {
+  color: #000;
+  font-size: 2.3em;
+  margin: 0;
+}
+
+.text-card > .text-content > a > .text-title:hover {
+  text-decoration: underline;
+}
+
+.text-card > .text-content > .text-interactions {
+  display: flex;
+  color: grey;
+}
+
+.text-card > .text-content > .text-interactions > .text-icons {
+  margin: 0;
+  font-size: 1.5em;
+  color: grey;
+  margin-right: 0.2em;
+}
+
+.text-card > .text-content > .text-interactions > .text-interactions-numbers {
+  margin-right: 1em;
+}
+
+.text-card > .text-content > .text-author > a {
+  color: #000;
+  font-weight: bold;
+}
+
+.text-card > .text-content > .text-fragment {
+  margin-top: 2%;
+  font-size: 1.2em;
+}
+
+.text-card > .text-content > .text-tags > .text-tag {
+  margin: 0.2em 1em 1em 0;
+  font-family: var(--global-primary-font);
+  background-color: #eee;
+  text-transform: capitalize;
+  border: none;
+  font-size: 1em;
+  width: calc(fit-content-width + 1em);
+  height: 2.5em;
+  font-weight: bold;
+  border-radius: 1em;
+  color: grey;
+  box-shadow: 0 0.4em #dfd9d9;
+  transition: all 500ms;
+}
+
+.text-card > .text-content > .text-tags > span {
+  font-weight: bold;
 }

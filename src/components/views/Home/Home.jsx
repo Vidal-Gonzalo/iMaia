@@ -1,20 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Banner from "../../Banner/Banner.jsx";
 import MostValuedWritings from "../../MostValuedWritings/MostValuedWritings.jsx";
 import Reasons from "../../Reasons/Reasons.jsx";
 import Functionality from "./Functionality/Functionality.jsx";
 import Presentation from "./Presentation/Presentation";
-
-//const TextsList = lazy(() => import("../../TextsList/TextsList.jsx"));
+import { executeScroll } from "../../../utils/scrollTo";
 
 export default function Home() {
+  const section = useRef(null);
   useEffect(() => {
     document.title = "iMaia - Cuenta tu verdad";
+    executeScroll(section);
   }, []);
 
   return (
     <main className="main">
       <Presentation
+        section={section}
         title={"iMaia"}
         subtitle={"La vida está compuesta de perspectivas, contanos la tuya."}
       />

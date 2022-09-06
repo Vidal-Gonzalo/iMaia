@@ -60,6 +60,10 @@
   font-size: 0.9em;
 }
 
+.swiper-pagination-bullet-active {
+  background-color: #fff !important;
+}
+
 .writings-carousel
   > .swiper-wrapper
   > .swiper-slide

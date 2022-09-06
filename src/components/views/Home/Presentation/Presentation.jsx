@@ -4,9 +4,10 @@ import intro from "../../../../assets/images/intro.png";
 import Button from "../../../Button/Button";
 import "./Presentation.css";
 
-export default function Presentation({ title, subtitle }) {
+export default function Presentation({ section, title, subtitle }) {
   return (
     <section
+      ref={section}
       id="presentation"
       className="presentation-container"
       style={{

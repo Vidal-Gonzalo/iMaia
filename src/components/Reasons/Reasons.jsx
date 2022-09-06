@@ -3,6 +3,10 @@ import "./Reasons.css";
 import ReasonsCard from "./ReasonsCard/ReasonsCard";
 import { reasonsGifs } from "./reasonsGifs";
 
+/*
+Hay que mapear las reasonsCards
+*/
+
 export default function Reasons({ title }) {
   const [isActive, setisActive] = useState([1]);
   const [gif, setGif] = useState(reasonsGifs[0].gif);

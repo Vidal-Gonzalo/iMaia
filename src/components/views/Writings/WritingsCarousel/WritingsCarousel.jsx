@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/effect-fade";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "./WritingsCarousel.css";
-import { Navigation, Pagination } from "swiper";
+import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
 import { useNavigate } from "react-router-dom";
+import { executeScroll } from "../../../../utils/scrollTo";
 
 /*
 Revisar optimización: al actualizar la página desde la sección writings se ralentiza la velocidad de carga
@@ -14,13 +17,23 @@ del Home.
 
 export default function WritingsCarousel({ writings }) {
   let navigate = useNavigate();
+  const swiper = useRef(null);
+
+  useEffect(() => {
+    executeScroll(swiper);
+    swiper.current.swiper.slideTo(0);
+  }, [swiper, writings]);
 
   return (
     <Swiper
-      pagination={true}
-      navigation={true}
+      ref={swiper}
       spaceBetween={40}
-      modules={[Pagination, Navigation]}
+      autoplay={{ delay: 5000, disableOnInteraction: false }}
+      effect={"fade"}
+      modules={[Autoplay, EffectFade, Pagination, Navigation]}
+      pagination={{ clickable: true }}
+      navigation={true}
+      speed={600}
       className="writings-carousel"
     >
       {writings?.map((element) => (
@@ -34,15 +47,20 @@ export default function WritingsCarousel({ writings }) {
         >
           <div>
             <h3 className="writing-title">{element.title}</h3>
-            <p className="writing-fragment">{element.fragment}</p>
+            <p className="writing-fragment">"{element.fragment}"</p>
             <div className="writing-info">
-              <button className="btn">Leer más</button>
+              {" "}
               <p
+                style={{
+                  margin: 0,
+                  marginBottom: "2%",
+                }}
                 className="writing-author"
                 onClick={() => navigate(`/user/${element.author}`)}
               >
                 @{element.author}
               </p>
+              <button className="btn">Leer más</button>
             </div>
           </div>
         </SwiperSlide>
