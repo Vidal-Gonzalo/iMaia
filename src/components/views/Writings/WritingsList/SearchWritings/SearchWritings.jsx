@@ -40,10 +40,24 @@ export default function SearchWritings({ section }) {
   }, [category, isActive, navigate, section]);
 
   useEffect(() => {
-    const categoryId = SearchElement.getElementId(categories, category);
-    setCategoryTags(SearchElement.getElementTags(categoryId, tags));
-    setIsActive([]);
-  }, [category, categoryTags]);
+    if (category === undefined) {
+      navigate("/");
+    } else {
+      const categoryId = SearchElement.getElementId(categories, category);
+      if (categoryId !== null) {
+        const thisCategoryTags = SearchElement.getElementTags(categoryId, tags);
+        if (categoryTags !== null) {
+          setCategoryTags(thisCategoryTags);
+        } else {
+          navigate("/"); //Error 404
+          setIsActive([]);
+        }
+      } else {
+        navigate("/"); //Error 404
+        setIsActive([]);
+      }
+    }
+  }, [category, categoryTags, navigate]);
 
   return (
     <div className="search-writings">
@@ -91,14 +105,3 @@ export default function SearchWritings({ section }) {
     </div>
   );
 }
-
-// export const getElementId = (array, title) => {
-//   const thisElement = array.filter((e) => e.title === title);
-//   return thisElement[0].id;
-// };
-
-// export const getElementTags = (id) => {
-//   const thisTags = tags.find((t) => t.categoryId === id);
-//   if (thisTags !== undefined) return thisTags.tag;
-//   else return null;
-// };

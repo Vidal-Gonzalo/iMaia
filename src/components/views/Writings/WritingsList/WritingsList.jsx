@@ -9,30 +9,39 @@ import { checkIfIncludes } from "../../../../utils/checkIfIncludes.js";
 const textPerRow = 8;
 
 export default function WritingsList() {
-  const { category, tag } = useParams();
+  const { genre, category, tag } = useParams();
   const [textsByCategory, setTextsByCategory] = useState([]);
   const [textsByTag, setTextsByTag] = useState([]);
   const [next, setNext] = useState(textPerRow);
+
   const handleMoreText = () => {
     setNext(next + textPerRow);
   };
 
   useEffect(() => {
-    if (category) {
-      const thisCategoryTexts = texts.filter((t) => t.category === category);
+    if (genre !== undefined) {
+      //Primer renderizado
+      const thisGenreTexts = texts?.filter((t) => t.genre === genre);
+      const thisCategoryTexts = thisGenreTexts.filter(
+        (t) => t.category === category
+      );
       setTextsByCategory(thisCategoryTexts);
+      //Añadido de tags
+      if (tag !== undefined) {
+        let tags = tag.split(",");
+        const newList = thisCategoryTexts?.filter((text) => {
+          return checkIfIncludes(text.tags, tags);
+        });
+        if (newList.length > 0) {
+          setTextsByTag(newList);
+        } else {
+          setTextsByTag([]);
+        }
+      }
     }
+  }, [category, genre, tag]);
 
-    if (tag) {
-      let tags = tag.split(",");
-      const newList = texts.filter((text) => {
-        return checkIfIncludes(text.tags, tags);
-      });
-      setTextsByTag(newList);
-    }
-  }, [tag, category]);
-
-  if (tag) {
+  if (tag !== undefined) {
     return (
       <div className="writings-list-container">
         <div className="writings-list">

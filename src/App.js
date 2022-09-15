@@ -11,15 +11,7 @@ function App() {
       <PrimarySearchAppBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route
-          path="writings"
-          element={<Writings clasification={"writings"} />}
-        >
-          <Route path=":category" element={<Outlet />}>
-            <Route path=":tag" element={<Outlet />} />
-          </Route>
-        </Route>
-        <Route path="poems" element={<Writings clasification={"poems"} />}>
+        <Route path="/:genre" element={<Writings />}>
           <Route path=":category" element={<Outlet />}>
             <Route path=":tag" element={<Outlet />} />
           </Route>

@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./WritingsCarousel.css";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { executeScroll } from "../../../../utils/scrollTo";
 
 /*
@@ -18,13 +18,14 @@ reutilizable para utilizarlo tanto en este componente como en el de WritingsList
 */
 
 export default function WritingsCarousel({ writings }) {
+  const { category } = useParams();
   let navigate = useNavigate();
   const swiper = useRef(null);
 
   useEffect(() => {
     executeScroll(swiper);
     swiper.current.swiper.slideTo(0);
-  }, [swiper, writings]);
+  }, [swiper, writings, category]);
 
   return (
     <Swiper

@@ -20,23 +20,7 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import "./Navbar.css";
-
-/*
-Dropdown en escritos y poemas -> Elegis una categoría y te aparece (en el lugar donde dice buscar por
-  etiqueta) la categoría colocada. Debajo de este título aparecerán las distintas categorías hijas de 
-  la categoría principal. Por ejemplo: elijo la categoría Sentimientos, las categorías hijas serían 
-  desamor amor felicidad tristeza etc. Elijo la categoría Política, las categorías hijas serían 
-  ética, moral, partidos políticos, etc.
-*/
-
-/*
-Redux para categorías. En el componente search writings tomamos la categoría elegida desde la 
-navbar y la guardamos dentro de la variable isActive. Habría que cambiar el nombre y, probablemente, 
-crear una nueva variable. Serían mucho más explicativas las variables "category y tag".
-Probablemente ni necesite redux por ahora. El hecho de que en el componente se manejen 
-dos variables distintas va a contribuir a no necesitar un estado global. La categoría va 
-a estar en la url, en base a esa categoría tomamos los tags. 
-*/
+import { useEffect } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   display: "flex",
@@ -68,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
-    paddingLeft: "0.480em",
+    paddingLeft: "1em",
     transition: theme.transitions.create("width"),
     width: "100%",
     [theme.breakpoints.up("md")]: {
@@ -76,6 +60,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
   fontFamily: "var(--global-primary-font)",
+  fontSize: "1em",
 }));
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
@@ -104,12 +89,19 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
+  const [writingsCategories, setWritingsCategories] = useState([]);
+  const [poemsCategories, setPoemsCategories] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [searchedItem, setSearchedItem] = useState("");
   const [isLoggedIn] = useState(false);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  useEffect(() => {
+    setWritingsCategories(categories.filter((c) => c.genre === "writings"));
+    setPoemsCategories(categories.filter((c) => c.genre === "poems"));
+  }, []);
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -149,26 +141,37 @@ export default function PrimarySearchAppBar() {
         marginTop: "10px",
       }}
     >
-      {categories.map((item, index) => (
-        <Link
-          to={`${
-            anchorEl?.innerText === "ESCRITOS" ? `/writings/` : `/poems/`
-          }${item.title}`}
-          key={index}
-        >
-          <MenuItem
-            onClick={handleMenuClose}
-            style={{
-              fontFamily: "var(--global-primary-font)",
-              fontSize: "0.9em",
-              padding: "0.5em 0em 0.5em 0.9em ",
-              fontWeight: "bold",
-            }}
-          >
-            {item.title}
-          </MenuItem>
-        </Link>
-      ))}
+      {anchorEl?.innerText === "ESCRITOS"
+        ? writingsCategories.map((item, index) => (
+            <Link to={`/writings/${item.title}`} key={index}>
+              <MenuItem
+                onClick={handleMenuClose}
+                style={{
+                  fontFamily: "var(--global-primary-font)",
+                  fontSize: "0.9em",
+                  padding: "0.5em 0em 0.5em 0.9em ",
+                  fontWeight: "bold",
+                }}
+              >
+                {item.title}
+              </MenuItem>
+            </Link>
+          ))
+        : poemsCategories.map((item, index) => (
+            <Link to={`/poems/${item.title}`} key={index}>
+              <MenuItem
+                onClick={handleMenuClose}
+                style={{
+                  fontFamily: "var(--global-primary-font)",
+                  fontSize: "0.9em",
+                  padding: "0.5em 0em 0.5em 0.9em ",
+                  fontWeight: "bold",
+                }}
+              >
+                {item.title}
+              </MenuItem>
+            </Link>
+          ))}
     </Menu>
   );
 
@@ -242,9 +245,13 @@ export default function PrimarySearchAppBar() {
               <ArrowDropDownIcon />
               Poemas
             </StyledTypography>
-            <StyledTypography variant="h6" component="div">
+            {/* <StyledTypography
+              variant="h6"
+              component="div"
+              style={{ marginLeft: "2.6em", marginRight: "2.8em" }}
+            >
               Desafíos
-            </StyledTypography>
+            </StyledTypography> */}
             <form onSubmit={handleSubmit}>
               <Search>
                 <StyledInputBase
