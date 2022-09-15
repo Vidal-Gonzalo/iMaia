@@ -7,22 +7,25 @@ import WritingsList from "./WritingsList/WritingsList";
 import { WritingsToCarousel } from "./WritingsToCarousel";
 
 export default function Writings({ clasification }) {
-  const [writings, setWritings] = useState(WritingsToCarousel);
-  const [poems, setPoems] = useState(PoemsToCarousel);
+  const [writings, setWritings] = useState();
+  const [poems, setPoems] = useState();
 
-  useEffect(() => {}, [clasification, writings, poems]);
+  useEffect(() => {
+    setWritings(WritingsToCarousel);
+    setPoems(PoemsToCarousel);
+  }, [clasification, writings, poems]);
   return (
     <section id="writings-section">
       {clasification === "writings" ? (
         <>
           <WritingsCarousel writings={writings} />
-          <SearchWritings />
+          <SearchWritings section={"writings"} />
           <WritingsList />
         </>
       ) : (
         <>
           <WritingsCarousel writings={poems} />
-          <SearchWritings />
+          <SearchWritings section={"poems"} />
           <WritingsList />
         </>
       )}

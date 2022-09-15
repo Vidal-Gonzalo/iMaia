@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
@@ -12,6 +12,8 @@ import { executeScroll } from "../../../../utils/scrollTo";
 /*
 Revisar optimización: al actualizar la página desde la sección writings se ralentiza la velocidad de carga
 del Home.
+Los escritos NO se van a pasar por props. Habrá que realizar una lógica de fetcheado 
+reutilizable para utilizarlo tanto en este componente como en el de WritingsList.
 
 */
 

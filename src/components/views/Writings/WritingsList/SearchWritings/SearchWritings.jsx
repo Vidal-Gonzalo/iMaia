@@ -1,40 +1,56 @@
 import React from "react";
-import "./SearchWritings.css";
 import { tags } from "./Tags.js";
+import { categories } from "./Categories";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { SearchElement } from "../../../../../utils/SearchElement.js";
+import "./SearchWritings.css";
 
-export default function SearchWritings() {
+export default function SearchWritings({ section }) {
   const navigate = useNavigate();
+  const { category } = useParams();
+  const [categoryTags, setCategoryTags] = useState([]);
   const [isActive, setIsActive] = useState([]);
-  const { tag } = useParams();
 
   const handleClick = (element) => {
-    if (isActive.id === element.id) {
-      navigate("/writings"); //X
-      setIsActive([]); //.filter();
+    //Para mostrar los escritos correspondientes
+    if (isActive.some((item) => item === element)) {
+      const newArray = isActive.filter((item) => item !== element);
+      setIsActive(newArray);
     } else {
-      navigate(`/writings/${element.tag}`); //X - window.location etc
-      setIsActive(element); //...isActive, element
+      setIsActive([...isActive, element]);
     }
   };
 
+  const checkIfIsActive = (element, arr) => {
+    let includes = false;
+    if (arr.includes(element)) includes = true;
+    return includes;
+  };
+
   useEffect(() => {
-    if (tag) {
-      const oldTag = tags.filter((element) => element.tag === tag);
-      setIsActive(oldTag[0]);
+    if (isActive.length > 0) {
+      const string = isActive.join("%2C");
+      navigate(`/${section}/${category}/${string}`);
     } else {
-      setIsActive([]);
+      navigate(`/${section}/${category}`);
     }
-  }, [tag]);
+  }, [category, isActive, navigate, section]);
+
+  useEffect(() => {
+    const categoryId = SearchElement.getElementId(categories, category);
+    setCategoryTags(SearchElement.getElementTags(categoryId, tags));
+    setIsActive([]);
+  }, [category, categoryTags]);
 
   return (
     <div className="search-writings">
       <div className="search-writings-text">
-        <h6>Buscar por etiqueta</h6>
+        <h6>
+          {section === "writings" ? "Escritos" : "Poemas"} de {category}
+        </h6>
         <p>
           ¿Te gustaría que haya más etiquetas?{" "}
           <span style={{ textDecoration: "underline", cursor: "pointer" }}>
@@ -44,25 +60,29 @@ export default function SearchWritings() {
       </div>
 
       <div className="search-tags">
-        {tags.map((element) =>
-          isActive.id === element.id ? (
+        {categoryTags?.map((element, index) =>
+          checkIfIsActive(element, isActive) ? (
             <button
               className="search-button-tag active"
-              key={element.id}
+              key={index}
               onClick={() => handleClick(element)}
             >
               <span className="button-text">
-                {element.tag} <CancelIcon style={{ fontSize: "20px" }} />{" "}
+                {element}
+                <CancelIcon style={{ marginLeft: "0.3em", fontSize: "20px" }} />
               </span>
             </button>
           ) : (
             <button
               className="search-button-tag"
-              key={element.id}
+              key={index}
               onClick={() => handleClick(element)}
             >
               <span className="button-text">
-                {element.tag} <AddCircleIcon style={{ fontSize: "20px" }} />{" "}
+                {element}{" "}
+                <AddCircleIcon
+                  style={{ marginLeft: "0.3em", fontSize: "20px" }}
+                />
               </span>
             </button>
           )
@@ -71,3 +91,14 @@ export default function SearchWritings() {
     </div>
   );
 }
+
+// export const getElementId = (array, title) => {
+//   const thisElement = array.filter((e) => e.title === title);
+//   return thisElement[0].id;
+// };
+
+// export const getElementTags = (id) => {
+//   const thisTags = tags.find((t) => t.categoryId === id);
+//   if (thisTags !== undefined) return thisTags.tag;
+//   else return null;
+// };

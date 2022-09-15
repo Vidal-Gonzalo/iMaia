@@ -15,10 +15,14 @@ function App() {
           path="writings"
           element={<Writings clasification={"writings"} />}
         >
-          <Route path=":tag" element={<Outlet />} />
+          <Route path=":category" element={<Outlet />}>
+            <Route path=":tag" element={<Outlet />} />
+          </Route>
         </Route>
         <Route path="poems" element={<Writings clasification={"poems"} />}>
-          <Route path=":tag" element={<Outlet />} />
+          <Route path=":category" element={<Outlet />}>
+            <Route path=":tag" element={<Outlet />} />
+          </Route>
         </Route>
         <Route path="/text/:id" element={<TextDetail />} />
       </Routes>

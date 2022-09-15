@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
+import { categories } from "../views/Writings/WritingsList/SearchWritings/Categories";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -15,8 +16,27 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import LoginIcon from "@mui/icons-material/Login";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
+import "./Navbar.css";
+
+/*
+Dropdown en escritos y poemas -> Elegis una categoría y te aparece (en el lugar donde dice buscar por
+  etiqueta) la categoría colocada. Debajo de este título aparecerán las distintas categorías hijas de 
+  la categoría principal. Por ejemplo: elijo la categoría Sentimientos, las categorías hijas serían 
+  desamor amor felicidad tristeza etc. Elijo la categoría Política, las categorías hijas serían 
+  ética, moral, partidos políticos, etc.
+*/
+
+/*
+Redux para categorías. En el componente search writings tomamos la categoría elegida desde la 
+navbar y la guardamos dentro de la variable isActive. Habría que cambiar el nombre y, probablemente, 
+crear una nueva variable. Serían mucho más explicativas las variables "category y tag".
+Probablemente ni necesite redux por ahora. El hecho de que en el componente se manejen 
+dos variables distintas va a contribuir a no necesitar un estado global. La categoría va 
+a estar en la url, en base a esa categoría tomamos los tags. 
+*/
 
 const Search = styled("div")(({ theme }) => ({
   display: "flex",
@@ -73,12 +93,14 @@ const StyledBox = styled(Box)(({ theme }) => ({
 }));
 
 const StyledTypography = styled(Typography)(({ theme }) => ({
-  padding: "0em 2.5em 0em 2em",
+  margin: "0.5em 2em 0.5em 2em",
   cursor: "pointer",
   fontSize: "1.0em",
   color: "#fff",
   fontFamily: "var(--global-primary-font)",
   textTransform: "uppercase",
+  display: "flex",
+  alignItems: "center",
 }));
 
 export default function PrimarySearchAppBar() {
@@ -99,6 +121,7 @@ export default function PrimarySearchAppBar() {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
+
     handleMobileMenuClose();
   };
 
@@ -116,41 +139,45 @@ export default function PrimarySearchAppBar() {
   };
 
   const menuId = "primary-search-account-menu";
-  const renderMenu = (
+  const renderThisMenu = (
     <Menu
+      id="basic-menu"
       anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      style={{
+        marginTop: "10px",
+      }}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {categories.map((item, index) => (
+        <Link
+          to={`${
+            anchorEl?.innerText === "ESCRITOS" ? `/writings/` : `/poems/`
+          }${item.title}`}
+          key={index}
+        >
+          <MenuItem
+            onClick={handleMenuClose}
+            style={{
+              fontFamily: "var(--global-primary-font)",
+              fontSize: "0.9em",
+              padding: "0.5em 0em 0.5em 0.9em ",
+              fontWeight: "bold",
+            }}
+          >
+            {item.title}
+          </MenuItem>
+        </Link>
+      ))}
     </Menu>
   );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
+      id="basic-menus"
       anchorEl={mobileMoreAnchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={mobileMenuId}
       keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
@@ -199,16 +226,25 @@ export default function PrimarySearchAppBar() {
                 iMaia
               </StyledTypography>
             </Link>
-            <Link style={{ textDecoration: "none" }} to="/writings">
-              <StyledTypography variant="h6" noWrap component="div">
-                Escritos
-              </StyledTypography>
-            </Link>
-            <Link style={{ textDecoration: "none" }} to="/poems">
-              <StyledTypography variant="h6" noWrap component="div">
-                Poemas
-              </StyledTypography>
-            </Link>
+            <StyledTypography
+              variant="h6"
+              component="div"
+              onClick={handleProfileMenuOpen}
+            >
+              <ArrowDropDownIcon />
+              Escritos
+            </StyledTypography>
+            <StyledTypography
+              variant="h6"
+              component="div"
+              onClick={handleProfileMenuOpen}
+            >
+              <ArrowDropDownIcon />
+              Poemas
+            </StyledTypography>
+            <StyledTypography variant="h6" component="div">
+              Desafíos
+            </StyledTypography>
             <form onSubmit={handleSubmit}>
               <Search>
                 <StyledInputBase
@@ -276,7 +312,7 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
       </StyledAppBar>
       {renderMobileMenu}
-      {renderMenu}
+      {renderThisMenu}
     </Box>
   );
 }

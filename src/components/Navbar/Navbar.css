@@ -1,0 +1,17 @@
+.navbar-categories {
+  margin: 0.5em 2em 0.5em 2em;
+  cursor: pointer;
+  font-size: 1em;
+  color: #fff;
+  font-family: var(--global-primary-font);
+  text-transform: uppercase;
+}
+
+.MuiMenu-list a {
+  text-transform: capitalize;
+}
+
+.MuiMenuItem-root {
+  padding: 0;
+  width: 15em;
+}

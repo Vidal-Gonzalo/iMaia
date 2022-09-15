@@ -52,7 +52,7 @@ export default function WritingCard({ writing }) {
           {writing?.tags?.length
             ? writing.tags.slice(0, tagsPerRow)?.map((tag, index) => (
                 <button className="text-tag" key={index}>
-                  {tag.title}
+                  {tag}
                 </button>
               ))
             : null}
