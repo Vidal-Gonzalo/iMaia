@@ -7,9 +7,13 @@ import "./WritingCard.css";
 
 export default function WritingCard({ writing }) {
   const tagsPerRow = 4;
-  const limitString = (str) => {
-    if (str.length > 120) return { string: str.slice(0, 220).concat("...") };
-    return str;
+  const titleMaxChars = 20;
+  const overviewMaxChars = 180;
+
+  const limitString = (str, limit) => {
+    if (str.length > limit)
+      return { string: str.slice(0, limit).concat("...") };
+    return { string: str };
   };
   const calculateMoreTags = (writing) => {
     const tags = writing.tags.length;
@@ -27,7 +31,9 @@ export default function WritingCard({ writing }) {
 
       <div className="text-content">
         <Link to={`/text/${writing.id}`}>
-          <h5 className="text-title">{writing.title}</h5>{" "}
+          <h5 className="text-title">
+            {limitString(writing.title, titleMaxChars).string}
+          </h5>{" "}
         </Link>
 
         <p className="text-author">
@@ -46,7 +52,9 @@ export default function WritingCard({ writing }) {
           <span className="text-interactions-numbers">{writing.views}</span>
         </div>
 
-        <p className="text-fragment">{limitString(writing.overview).string}</p>
+        <p className="text-fragment">
+          {limitString(writing.overview, overviewMaxChars).string}
+        </p>
 
         <div className="text-tags">
           {writing?.tags?.length

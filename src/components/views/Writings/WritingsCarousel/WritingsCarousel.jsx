@@ -12,8 +12,6 @@ import { executeScroll } from "../../../../utils/scrollTo";
 /*
 Revisar optimización: al actualizar la página desde la sección writings se ralentiza la velocidad de carga
 del Home.
-Los escritos NO se van a pasar por props. Habrá que realizar una lógica de fetcheado 
-reutilizable para utilizarlo tanto en este componente como en el de WritingsList.
 
 */
 
@@ -43,14 +41,14 @@ export default function WritingsCarousel({ writings }) {
         <SwiperSlide
           key={element.id}
           style={{
-            backgroundImage: `url(${element.image})`,
+            backgroundImage: `url(${element.picUrl})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}
         >
           <div>
             <h3 className="writing-title">{element.title}</h3>
-            <p className="writing-fragment">"{element.fragment}"</p>
+            <p className="writing-fragment">"{element.overview}"</p>
             <div className="writing-info">
               {" "}
               <p
@@ -63,7 +61,12 @@ export default function WritingsCarousel({ writings }) {
               >
                 @{element.author}
               </p>
-              <button className="btn">Leer más</button>
+              <button
+                className="btn"
+                onClick={() => navigate(`/text/${element.id}`)}
+              >
+                Leer más
+              </button>
             </div>
           </div>
         </SwiperSlide>

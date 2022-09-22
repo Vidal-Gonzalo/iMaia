@@ -1,47 +1,74 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { PoemsToCarousel } from "./PoemsToCarousel";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import "./Writings.css";
 import WritingsCarousel from "./WritingsCarousel/WritingsCarousel.jsx";
-import SearchWritings from "./WritingsList/SearchWritings/SearchWritings";
+import SearchWritings from "./SearchWritings/SearchWritings";
 import WritingsList from "./WritingsList/WritingsList";
-import { WritingsToCarousel } from "./WritingsToCarousel";
+import { SearchElements } from "../../../utils/SearchElements";
+import { iMaiaApi } from "../../../api/iMaiaApi";
+
+//Hace falta usar un useMemo para no fetchear y hacer toda la lógica de vuelta cada vez que
+//el usuario entra al componente.
 
 export default function Writings() {
-  const { genre } = useParams();
-  const [writings, setWritings] = useState();
-  const [poems, setPoems] = useState();
+  const { genre, category } = useParams();
+  const [writings, setWritings] = useState([]);
+  const [poems, setPoems] = useState([]);
+  const [mostValuedWritings, setMostValuedWritings] = useState([]);
+  const [mostValuedPoems, setMostValuedPoems] = useState([]);
 
   useEffect(() => {
-    setWritings(WritingsToCarousel);
-    setPoems(PoemsToCarousel);
+    document.title =
+      genre === "writings"
+        ? `Escritos de ${category} - iMaia`
+        : genre === "poems"
+        ? `Poemas de ${category} - iMaia`
+        : "iMaia";
+
+    const loadTextsData = async (genre, category) => {
+      const response = await iMaiaApi.getTextsByGenre(genre);
+      const textsByCategory = SearchElements.filterElementsByCategory(
+        response.data.textsByGenre,
+        category
+      );
+      if (genre === "writings") {
+        setWritings(textsByCategory);
+      } else {
+        setPoems(textsByCategory);
+      }
+    };
+    loadTextsData(genre, category);
+  }, [genre, category]);
+
+  useEffect(() => {
+    const mostLikedElements = (genre, writings, poems) => {
+      if (genre === "writings" && writings.length > 0) {
+        setMostValuedWritings(SearchElements.getMostLikedElements(writings));
+      }
+      if (genre === "poems" && poems.length > 0) {
+        setMostValuedPoems(SearchElements.getMostLikedElements(poems));
+      }
+    };
+    mostLikedElements(genre, writings, poems);
   }, [genre, writings, poems]);
 
   return (
     <section id="writings-section">
-      {genre === "writings" ? (
+      {genre === "writings" && writings ? (
         <>
-          <WritingsCarousel writings={writings} />
+          <WritingsCarousel writings={mostValuedWritings} />
           <SearchWritings section={"writings"} />
-          <WritingsList />
+          <WritingsList textsByCategory={writings} />
         </>
-      ) : genre === "poems" ? (
+      ) : genre === "poems" && poems ? (
         <>
-          <WritingsCarousel writings={poems} />
+          <WritingsCarousel writings={mostValuedPoems} />
           <SearchWritings section={"poems"} />
-          <WritingsList />
+          <WritingsList textsByCategory={poems} />
         </>
       ) : (
-        <div
-          style={{
-            height: "100vh",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          ¡Ups! Página no encontrada...
-        </div>
+        /* Error en el género */
+        <Navigate replace to="/" />
       )}
     </section>
   );

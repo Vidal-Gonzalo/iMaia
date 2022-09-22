@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { SearchElement } from "../../../../../utils/SearchElement.js";
+import { SearchElements } from "../../../../utils/SearchElements.js";
 import "./SearchWritings.css";
 
 export default function SearchWritings({ section }) {
@@ -43,9 +43,12 @@ export default function SearchWritings({ section }) {
     if (category === undefined) {
       navigate("/");
     } else {
-      const categoryId = SearchElement.getElementId(categories, category);
+      const categoryId = SearchElements.getElementId(categories, category);
       if (categoryId !== null) {
-        const thisCategoryTags = SearchElement.getElementTags(categoryId, tags);
+        const thisCategoryTags = SearchElements.getElementTags(
+          categoryId,
+          tags
+        );
         if (categoryTags !== null) {
           setCategoryTags(thisCategoryTags);
         } else {

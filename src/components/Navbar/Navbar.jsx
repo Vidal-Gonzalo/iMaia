@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
-import { categories } from "../views/Writings/WritingsList/SearchWritings/Categories";
+import { categories } from "../views/Writings/SearchWritings/Categories";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -157,7 +157,8 @@ export default function PrimarySearchAppBar() {
               </MenuItem>
             </Link>
           ))
-        : poemsCategories.map((item, index) => (
+        : anchorEl?.innerText === "POEMAS" &&
+          poemsCategories.map((item, index) => (
             <Link to={`/poems/${item.title}`} key={index}>
               <MenuItem
                 onClick={handleMenuClose}

@@ -1,7 +1,7 @@
 import React from "react";
 import "./Banner.css";
-import writerHand from "../../assets/images/writerHand.png";
-import { makeTextBold } from "../../utils/makeTextBold";
+import writerHand from "../../../../assets/images/writerHand.png";
+import { makeTextBold } from "../../../../utils/makeTextBold";
 
 export default function Banner({ title, description }) {
   return (

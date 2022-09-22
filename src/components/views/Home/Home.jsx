@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import Banner from "../../Banner/Banner.jsx";
-import MostValuedWritings from "../../MostValuedWritings/MostValuedWritings.jsx";
+import Banner from "./Banner/Banner.jsx";
+import MostValuedWritings from "./MostValuedWritings/MostValuedWritings.jsx";
 import Reasons from "../../Reasons/Reasons.jsx";
 import Functionality from "./Functionality/Functionality.jsx";
 import Presentation from "./Presentation/Presentation";

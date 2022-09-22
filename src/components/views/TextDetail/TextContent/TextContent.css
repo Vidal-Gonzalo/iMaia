@@ -1,0 +1,98 @@
+.text {
+  font-family: var(--global-primary-font);
+}
+
+.text > .text-title {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
+
+.text > .text-title > h5 {
+  margin: 0;
+  font-size: 2.2em;
+}
+
+.text > .text-title > span {
+  font-size: 0.8em;
+  color: grey;
+}
+
+.text > .text-content {
+  margin-top: 1.5em;
+  width: 60%;
+  letter-spacing: 1px;
+  line-height: 1.7;
+}
+
+.text > .text-interactions {
+  margin-top: 1em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 60%;
+}
+
+.text > .text-interactions > .text-interactions-icons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0.5em 0em 0.5em 0;
+}
+
+.text
+  > .text-interactions
+  > .text-interactions-icons
+  > .text-interactions-fav-and-comment
+  > .interaction-icon {
+  margin-right: 0.5em;
+}
+
+.text
+  > .text-interactions
+  > .text-interactions-icons
+  > .text-interactions-fav-and-comment
+  > .fav-icon-active {
+  color: rgb(255, 0, 0);
+}
+
+.text
+  > .text-interactions
+  > .text-interactions-icons
+  > .text-interactions-fav-and-comment
+  > .interaction-icon,
+.text
+  > .text-interactions
+  > .text-interactions-icons
+  > .text-interactions-save
+  > .interaction-icon {
+  cursor: pointer;
+  font-size: 30px;
+}
+
+.text > .text-interactions > .text-interactions-icons > .fav-icon-active {
+  color: red;
+}
+
+.text > .text-interactions > .text-interactions-icons > span {
+  margin: 0 0.3em 0 0.3em;
+}
+
+.text > .text-comment {
+  display: flex;
+  margin-top: 1em;
+}
+
+.text > .text-comment > .comment-info {
+  margin: 0 0 0 0.5em;
+}
+
+.text > .text-comment > .comment-info > .comment-username {
+  font-weight: bold;
+  margin: 0;
+}
+
+.text > .text-comment > .comment-info > .comment {
+  margin: 0;
+}

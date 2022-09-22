@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Button from "../../../Button/Button.jsx";
-import { texts } from "./Texts.js";
 import { useParams } from "react-router-dom";
 import "./WritingsList.css";
 import WritingCard from "./WritingCard/WritingCard";
@@ -8,9 +7,8 @@ import { checkIfIncludes } from "../../../../utils/checkIfIncludes.js";
 
 const textPerRow = 8;
 
-export default function WritingsList() {
-  const { genre, category, tag } = useParams();
-  const [textsByCategory, setTextsByCategory] = useState([]);
+export default function WritingsList({ textsByCategory }) {
+  const { genre, tag } = useParams();
   const [textsByTag, setTextsByTag] = useState([]);
   const [next, setNext] = useState(textPerRow);
 
@@ -19,27 +17,19 @@ export default function WritingsList() {
   };
 
   useEffect(() => {
-    if (genre !== undefined) {
-      //Primer renderizado
-      const thisGenreTexts = texts?.filter((t) => t.genre === genre);
-      const thisCategoryTexts = thisGenreTexts.filter(
-        (t) => t.category === category
-      );
-      setTextsByCategory(thisCategoryTexts);
+    if (genre !== undefined && tag !== undefined) {
       //Añadido de tags
-      if (tag !== undefined) {
-        let tags = tag.split(",");
-        const newList = thisCategoryTexts?.filter((text) => {
-          return checkIfIncludes(text.tags, tags);
-        });
-        if (newList.length > 0) {
-          setTextsByTag(newList);
-        } else {
-          setTextsByTag([]);
-        }
+      let tags = tag.split(",");
+      const newList = textsByCategory?.filter((text) => {
+        return checkIfIncludes(text.tags, tags);
+      });
+      if (newList.length > 0) {
+        setTextsByTag(newList);
+      } else {
+        setTextsByTag([]);
       }
     }
-  }, [category, genre, tag]);
+  }, [textsByCategory, genre, tag]);
 
   if (tag !== undefined) {
     return (
@@ -78,7 +68,7 @@ export default function WritingsList() {
             <WritingCard writing={text} key={index} />
           ))}
         </div>
-        {next < texts?.length && (
+        {next < textsByCategory?.length && (
           <Button text={"Cargar más"} action={handleMoreText} />
         )}
       </div>

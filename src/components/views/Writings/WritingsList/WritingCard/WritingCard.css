@@ -6,6 +6,7 @@
   margin: 1em;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   padding: 1em;
+  transition: all 300 ms ease-in-out;
 }
 
 .text-card > .text-image > a > img {
@@ -25,12 +26,11 @@
 
 .text-card > .text-content > a {
   text-decoration: none;
-  width: 50%;
 }
 
 .text-card > .text-content > a > .text-title {
   color: #000;
-  font-size: 2.3em;
+  font-size: 1.9em;
   margin: 0;
 }
 
