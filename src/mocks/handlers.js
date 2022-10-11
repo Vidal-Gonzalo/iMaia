@@ -1,52 +1,114 @@
 import { rest } from "msw";
 import { users } from "../assets/data/Users";
-import { texts } from "../components/views/Writings/WritingsList/Texts";
+import { texts } from "../assets/data/Texts";
+import { comments } from "../assets/data/Comments";
 import { SearchElements } from "../utils/SearchElements";
 
 export const handlers = [
   rest.get(`/texts/:genre`, (req, res, ctx) => {
     const { genre } = req.params;
     const textsByGenre = SearchElements.filterElementsByGenre(texts, genre);
-    return res(
-      ctx.status(200),
-      ctx.json({
-        textsByGenre,
-      })
-    );
+    if (textsByGenre !== undefined) {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          textsByGenre,
+        })
+      );
+    } else {
+      return res(ctx.status(404));
+    }
   }),
   rest.get(`/text/:id`, (req, res, ctx) => {
     const { id } = req.params;
-    const textById = SearchElements.getElementById(texts, parseInt(id));
-
-    return res(
-      ctx.status(200),
-      ctx.json({
-        textById,
-      })
-    );
+    if (id !== "undefined") {
+      const textById = SearchElements.getElementById(texts, parseInt(id));
+      if (textById !== undefined) {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            textById,
+          })
+        );
+      } else {
+        return res(ctx.status(404));
+      }
+    } else {
+      return res(ctx.status(400));
+    }
   }),
   rest.get(`/users/:id`, (req, res, ctx) => {
     const { id } = req.params;
     const userById = SearchElements.getElementById(users, parseInt(id));
-    return res(
-      ctx.status(200),
-      ctx.json({
-        userById,
-      })
-    );
+    if (userById !== undefined) {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          userById,
+        })
+      );
+    } else {
+      return res(ctx.status(404));
+    }
+  }),
+  rest.get(`/comments/:textId`, (req, res, ctx) => {
+    const { textId } = req.params;
+    const parsedtextId = parseInt(textId);
+    const textById = SearchElements.getElementById(texts, parsedtextId);
+    const commentsOfThisText = textById.comments.map((comment) => {
+      return SearchElements.getElementById(comments, parseInt(comment));
+    });
+    if (commentsOfThisText !== undefined) {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          commentsOfThisText,
+        })
+      );
+    } else {
+      return res(ctx.status(404));
+    }
   }),
   rest.post(`/like/:textId/:userId`, (req, res, ctx) => {
     const { textId, userId } = req.params;
     const parsedUserId = parseInt(userId);
     const text = SearchElements.getElementById(texts, parseInt(textId));
-    if (text.likes.find((l) => l === parsedUserId)) {
-      text.likes = text.likes.filter((l) => l !== parsedUserId);
-    } else {
-      text.likes.push(parseInt(parsedUserId));
+    if (text !== undefined) {
+      if (text.likes.find((l) => l === parsedUserId)) {
+        text.likes = text.likes.filter((l) => l !== parsedUserId);
+      } else {
+        text.likes.push(parseInt(parsedUserId));
+      }
+      console.log("Desde handler: " + text.likes);
+      return res(ctx.status(200));
     }
-    console.log(text);
+  }),
+  rest.post(`/save/:textId/:userId`, (req, res, ctx) => {
+    const { textId, userId } = req.params;
+    const parsedTextId = parseInt(textId);
+    const user = SearchElements.getElementById(users, parseInt(userId));
+    if (user !== undefined) {
+      if (user.savedTexts.find((l) => l === parsedTextId)) {
+        user.savedTexts = user.savedTexts.filter((l) => l !== parsedTextId);
+      } else {
+        user.savedTexts.push(parseInt(parsedTextId));
+      }
+      return res(ctx.status(200));
+    } else {
+      return res(ctx.status(404));
+    }
+  }),
+  rest.post(`/comment/:textId`, (req, res, ctx) => {
+    const { textId } = req.params;
+    const parsedTextId = parseInt(textId);
+    const text = SearchElements.getElementById(texts, parsedTextId);
+    req.json().then((data) => {
+      comments.push(data);
+      text.comments.push(data.id);
+    });
     return res(ctx.status(200));
   }),
+
   // rest.post("/login", (req, res, ctx) => {
   //   // Persist user's authentication in the session
   //   sessionStorage.setItem("is-authenticated", "true");

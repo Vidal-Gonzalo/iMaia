@@ -1,7 +1,5 @@
-import { array } from "yup";
-
 export const SearchElements = {
-  getElementId: (array, title) => {
+  getElementIdByTitle: (array, title) => {
     const thisElement = array.find((e) => e.title === title);
     if (thisElement !== undefined) {
       return thisElement.id;
@@ -21,8 +19,8 @@ export const SearchElements = {
   getElementById: (array, id) => {
     return array.find((e) => e.id === id);
   },
-  getUserById: (id) => {
-    return array.find((e) => e.author_id === id);
+  filterElementsById: (array, id) => {
+    return array.filter((e) => e.id === id);
   },
   filterElementsByGenre: (array, genre) => {
     return array.filter((e) => e.genre === genre);

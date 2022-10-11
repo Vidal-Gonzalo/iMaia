@@ -1,0 +1,25 @@
+.text-comment {
+  font-family: var(--global-primary-font);
+  display: flex;
+  margin: 2em 0 2em 0;
+  border-radius: var(--global-border-radius);
+  width: 50%;
+}
+
+.text-comment > .comment-user-image > img {
+  border-radius: 100%;
+}
+
+.text-comment > .comment-info {
+  margin: 0 0 0 0.5em;
+  font-size: 0.9em;
+}
+
+.text-comment > .comment-info > .comment-username {
+  font-weight: bold;
+  margin: 0;
+}
+
+.text-comment > .comment-info > .comment {
+  margin: 0;
+}

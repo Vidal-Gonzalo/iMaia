@@ -5,10 +5,6 @@ import Home from "./components/views/Home/Home";
 import TextDetail from "./components/views/TextDetail/TextDetail";
 import Writings from "./components/views/Writings/Writings";
 
-/*
-CAMBIE EL ORDEN DE LAS CARPETAS --> ACORDATE QUE REASONS TAMBIÉN HAY QUE CAMBIAR
-*/
-
 function App() {
   return (
     <div className="App">

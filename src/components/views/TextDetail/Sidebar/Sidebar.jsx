@@ -1,21 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import avatar from "../../../../assets/images/avatar.jpg";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import "./Sidebar.css";
 import { Link } from "react-router-dom";
+import "./Sidebar.css";
 
-export default function Sidebar({ user }) {
+export default function Sidebar({ author }) {
+  const [followed, setFollowed] = useState(false);
+
+  const handleFollow = () => {
+    setFollowed(!followed);
+  };
+
   return (
     <div className="sidebar">
       <div className="author-info">
         <p>Escrito por</p>
         <img src={avatar} alt="" width={50} />
-        <Link className="author" to={`/user/${user?.username}`}>
-          {user?.username}
-        </Link>
-        <button className="btn btn-large">Seguir +</button>
+        {author ? (
+          <Link className="author" to={`/user/${author.username}`}>
+            {author?.username}
+          </Link>
+        ) : (
+          <p>...</p>
+        )}
+        {followed ? (
+          <button className="btn btn-follow" onClick={handleFollow}>
+            Seguido!
+          </button>
+        ) : (
+          <button className="btn btn-follow" onClick={handleFollow}>
+            <span>Seguir</span>
+          </button>
+        )}
       </div>
       <div className="text-sharing">
         <p>Comparte</p>

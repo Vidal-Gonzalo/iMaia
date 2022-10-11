@@ -1,0 +1,36 @@
+.form-comment {
+  margin-top: 2.5em;
+  display: flex;
+}
+
+.form-comment > .form-box {
+  width: 50%;
+  height: 30px;
+}
+
+.form-comment > .form-box > .user-icon > img {
+  border-radius: 100%;
+  margin-right: 0.5em;
+  height: 30px;
+}
+
+.form-comment > .form-box > .comment-body {
+  width: 100%;
+  margin-right: 1em;
+  color: var(--global-primary-color);
+}
+
+.form-comment > .comment-submit {
+  width: 7%;
+  background-color: var(--global-primary-color);
+  text-transform: capitalize;
+  font-size: 0.7em;
+}
+
+.comment-submit-icon {
+  font-size: 1.5em !important;
+}
+
+.form-comment > .comment-submit:hover {
+  background-color: var(--global-primary-color);
+}

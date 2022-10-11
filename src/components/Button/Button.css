@@ -34,3 +34,20 @@
   position: absolute;
   bottom: 5em;
 }
+
+.btn-writing-carousel {
+  height: 4em;
+  border-radius: 1em;
+}
+
+.btn-writing-carousel > span {
+  font-size: 1em;
+}
+
+.btn-follow {
+  border-radius: 1em;
+}
+
+.btn-follow > span {
+  font-size: 1.2em;
+}

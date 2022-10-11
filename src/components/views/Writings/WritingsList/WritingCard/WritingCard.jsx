@@ -45,7 +45,9 @@ export default function WritingCard({ writing }) {
           <Tooltip title={"Me gusta"}>
             <FavoriteIcon className="text-icons" />
           </Tooltip>
-          <span className="text-interactions-numbers">{writing.likes}</span>
+          <span className="text-interactions-numbers">
+            {writing.likes.length}
+          </span>
           <Tooltip title={"Vistas"}>
             <VisibilityIcon className="text-icons" />
           </Tooltip>

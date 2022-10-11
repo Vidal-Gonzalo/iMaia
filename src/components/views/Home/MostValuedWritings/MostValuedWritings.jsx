@@ -62,7 +62,7 @@ export default function MostValuedWritings({ title, writings }) {
                 </button>
                 <span
                   className="writing-author"
-                  onClick={() => navigate(`author/${text.author}`)}
+                  onClick={() => navigate(`user/${text.author}`)}
                 >
                   @{text.author}
                 </span>

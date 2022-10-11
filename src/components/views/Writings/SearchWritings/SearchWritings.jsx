@@ -43,7 +43,10 @@ export default function SearchWritings({ section }) {
     if (category === undefined) {
       navigate("/");
     } else {
-      const categoryId = SearchElements.getElementId(categories, category);
+      const categoryId = SearchElements.getElementIdByTitle(
+        categories,
+        category
+      );
       if (categoryId !== null) {
         const thisCategoryTags = SearchElements.getElementTags(
           categoryId,

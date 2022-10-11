@@ -62,10 +62,10 @@ export default function WritingsCarousel({ writings }) {
                 @{element.author}
               </p>
               <button
-                className="btn"
+                className="btn btn-writing-carousel"
                 onClick={() => navigate(`/text/${element.id}`)}
               >
-                Leer más
+                <span>Leer más</span>
               </button>
             </div>
           </div>

@@ -1,30 +1,39 @@
 import React, { useState, useRef, useEffect } from "react";
-import avatar from "../../../../assets/images/avatar.jpg";
+import { iMaiaApi } from "../../../../api/iMaiaApi";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import "./TextContent.css";
-import { iMaiaApi } from "../../../../api/iMaiaApi";
 
-export default function TextContent({ text }) {
-  const [liked, setLiked] = useState(false);
+export default function TextContent({ text, isLiked, setIsLiked, userLiked }) {
+  const [heartClicked, setHeartClicked] = useState(false);
   const [saved, setSaved] = useState(false);
   const textContent = useRef(null);
 
+  useEffect(() => {
+    if (userLiked) {
+      setHeartClicked(true);
+    }
+  }, [userLiked]);
+
   const handleClickOnLike = () => {
-    setLiked(!liked);
-    iMaiaApi.likeAPost(6, 6);
+    iMaiaApi.likeAPost(text.id, 1); //1 = userId
+    setIsLiked(!isLiked);
+    setHeartClicked(!heartClicked);
   };
 
   const handleClickOnSave = () => {
     setSaved(!saved);
+    iMaiaApi.saveAPost(text.id, text.id_author);
   };
 
   const convertToParagraphs = (str, ref) => {
-    str = str.replace(/(?:\r\n|\r|\n)/g, "<br/>");
-    ref.current.innerHTML = str;
+    if (str !== "" && ref !== null) {
+      str = str.replace(/(?:\r\n|\r|\n)/g, "<br/>");
+      ref.current.innerHTML = str;
+    }
   };
 
   return (
@@ -36,12 +45,11 @@ export default function TextContent({ text }) {
         <p ref={textContent}>
           {text && convertToParagraphs(text.text, textContent)}
         </p>
-        <hr style={{ marginTop: "1em" }} />
       </div>
       <div className="text-interactions">
         <div className="text-interactions-icons">
           <div className="text-interactions-fav-and-comment">
-            {liked ? (
+            {heartClicked ? (
               <FavoriteIcon
                 onClick={handleClickOnLike}
                 className="interaction-icon fav-icon-active"
@@ -70,20 +78,7 @@ export default function TextContent({ text }) {
         </div>
       </div>
       <div className="text-interactions-numbers">
-        {/* <span>{text?.likes.length} me gusta</span> */}
-        <span>5333 me gusta</span>
-      </div>
-      <div className="text-comment">
-        <div className="comment-user-image">
-          <img src={avatar} width={30} alt={avatar} />
-        </div>
-        <div className="comment-info">
-          <p className="comment-username">Robertito</p>
-          <span>Hace 11 horas</span>
-          <p className="comment">
-            Tremendo escrito, la parte de lorem ipsum me asesinó.
-          </p>
-        </div>
+        <span>{text?.likes.length} me gusta</span>
       </div>
     </div>
   );
