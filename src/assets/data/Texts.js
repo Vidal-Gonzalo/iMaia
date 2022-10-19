@@ -1,11 +1,11 @@
-import stairs from "../images/stairs.jpg";
-import woods from "../images/woods.jpg";
+// import stairs from "../images/stairs.jpg";
+// import woods from "../images/woods.jpg";
 import train from "../images/train.jpg";
 import people from "../images/people.jpg";
 import rose from "../images/rose.jpg";
-import girl from "../images/girl.jpg";
-import shadow from "../images/shadow.jpg";
-import poemTrain from "../images/poemTrain.jpg";
+// import girl from "../images/girl.jpg";
+// import shadow from "../images/shadow.jpg";
+// import poemTrain from "../images/poemTrain.jpg";
 
 export const texts = [
   {
@@ -16,7 +16,6 @@ export const texts = [
     genre: "writings",
     date: "11 may, 2020",
     picUrl: rose,
-    category: "sentimientos",
     likes: [4, 1],
     views: 1235,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -33,7 +32,6 @@ export const texts = [
     genre: "writings",
     picUrl: people,
     date: "11 may, 2020",
-    category: "sentimientos",
     likes: [4, 3],
     views: 2356,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -51,7 +49,6 @@ export const texts = [
     picUrl:
       "https://c.wallhere.com/photos/12/ea/1534x863_px_artwork_Leonid_Afremov_painting_Sailboats_sea-514537.jpg!d",
     date: "11 may, 2020",
-    category: "religión",
     likes: [4, 1],
     views: 3154,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -68,7 +65,6 @@ export const texts = [
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
     date: "11 may, 2020",
-    category: "política",
     likes: [4, 1],
     views: 3456,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -85,7 +81,7 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
     date: "11 may, 2020",
-    category: "verso-libre",
+
     likes: [4, 1],
     views: 6540,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -102,7 +98,6 @@ export const texts = [
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-6.jpg",
     date: "11 may, 2020",
-    category: "religión",
     likes: [4, 1],
     views: 1202,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -119,7 +114,6 @@ export const texts = [
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
     date: "11 may, 2020",
-    category: "sentimientos",
     likes: [4, 1],
     views: 9853,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -136,7 +130,6 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
     date: "11 may, 2020",
-    category: "sentimientos",
     likes: [4, 1],
     views: 2356,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -153,7 +146,6 @@ export const texts = [
     genre: "writings",
     picUrl: rose,
     date: "11 may, 2020",
-    category: "sentimientos",
     likes: [4, 1],
     views: 1463,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -170,7 +162,6 @@ export const texts = [
     genre: "writings",
     picUrl: train,
     date: "11 may, 2020",
-    category: "sentimientos",
     likes: [4, 1],
     views: 9856,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -187,7 +178,7 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
     date: "11 may, 2020",
-    category: "verso-libre",
+
     likes: [4, 1],
     views: 5632,
     overview:
@@ -204,7 +195,6 @@ export const texts = [
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-6.jpg",
     date: "11 may, 2020",
-    category: "sentimientos",
     likes: [4, 1],
     views: 8789,
     overview:
@@ -221,7 +211,7 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
     date: "11 may, 2020",
-    category: "verso-libre",
+
     likes: [4, 1],
     views: 9853,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -238,7 +228,7 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
     date: "11 may, 2020",
-    category: "verso-libre",
+
     likes: [4, 1],
     views: 2356,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -255,7 +245,7 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/writing-6.jpg",
     date: "11 may, 2020",
-    category: "verso-libre",
+
     likes: [4, 1],
     views: 1463,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -272,7 +262,7 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
     date: "11 may, 2020",
-    category: "verso-libre",
+
     likes: [4, 1],
     views: 9856,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -289,7 +279,7 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
     date: "11 may, 2020",
-    category: "verso-libre",
+
     likes: [4, 1],
     views: 5632,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -306,7 +296,7 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/writing-6.jpg",
     date: "11 may, 2020",
-    category: "verso-libre",
+
     likes: [4, 1],
     views: 8789,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -323,7 +313,6 @@ export const texts = [
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
     date: "11 may, 2020",
-    category: "política",
     likes: [4, 1],
     views: 3456,
     text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
@@ -340,7 +329,6 @@ export const texts = [
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
     date: "11 may, 2020",
-    category: "política",
     likes: [4, 1],
     views: 3456,
     overview:
@@ -356,7 +344,6 @@ export const texts = [
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
     date: "11 may, 2020",
-    category: "política",
     likes: [4, 1],
     views: 3456,
     overview:
@@ -372,7 +359,6 @@ export const texts = [
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
     date: "11 may, 2020",
-    category: "política",
     likes: [4, 1],
     views: 3456,
     overview:
@@ -388,7 +374,7 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
     date: "11 may, 2020",
-    category: "verso-libre",
+
     likes: [4, 1],
     views: 6540,
     overview:
@@ -404,7 +390,6 @@ export const texts = [
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-6.jpg",
     date: "11 may, 2020",
-    category: "religión",
     likes: [4, 1],
     views: 1202,
     overview:
@@ -420,7 +405,7 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
     date: "11 may, 2020",
-    category: "verso-libre",
+
     likes: [4, 1],
     views: 6540,
     overview:
@@ -436,7 +421,6 @@ export const texts = [
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-6.jpg",
     date: "11 may, 2020",
-    category: "religión",
     likes: [4, 1],
     views: 1202,
     overview:
@@ -452,7 +436,7 @@ export const texts = [
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
     date: "11 may, 2020",
-    category: "verso-libre",
+
     likes: [4, 1],
     views: 6540,
     overview:
@@ -468,7 +452,6 @@ export const texts = [
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-6.jpg",
     date: "11 may, 2020",
-    category: "religión",
     likes: [4, 1],
     views: 1202,
     overview:

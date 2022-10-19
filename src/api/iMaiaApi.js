@@ -14,6 +14,9 @@ export const iMaiaApi = {
   getUserById: async (id) => {
     return await axios.get(`/users/${id}`);
   },
+  getElementsByName: async (type, name) => {
+    return await axios.get(`/search/${type}/${name}`);
+  },
   likeAPost: async (textId, userId) => {
     return await axios.post(`/like/${textId}/${userId}`);
   },

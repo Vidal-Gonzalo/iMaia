@@ -1,12 +1,10 @@
 import React, { useState } from "react";
-import { styled, alpha } from "@mui/material/styles";
-import { categories } from "../views/Writings/SearchWritings/Categories";
+import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
@@ -16,52 +14,9 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import LoginIcon from "@mui/icons-material/Login";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import "./Navbar.css";
-import { useEffect } from "react";
-
-const Search = styled("div")(({ theme }) => ({
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  paddingRight: "0.3em",
-  borderRadius: "var(--global-border-radius)",
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  cursor: "pointer",
-  marginTop: "0.350em",
-  marginRight: "0.350em",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: "1em",
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-  fontFamily: "var(--global-primary-font)",
-  fontSize: "1em",
-}));
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   backgroundColor: "#000",
@@ -89,92 +44,30 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const [writingsCategories, setWritingsCategories] = useState([]);
-  const [poemsCategories, setPoemsCategories] = useState([]);
-  const [anchorEl, setAnchorEl] = useState(null);
+  // const [anchorEl, setAnchorEl] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const [searchedItem, setSearchedItem] = useState("");
   const [isLoggedIn] = useState(false);
-  const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  useEffect(() => {
-    setWritingsCategories(categories.filter((c) => c.genre === "writings"));
-    setPoemsCategories(categories.filter((c) => c.genre === "poems"));
-  }, []);
-
   const handleProfileMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+    // setAnchorEl(event.currentTarget);
   };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
 
-  const handleMenuClose = () => {
-    setAnchorEl(null);
+  // const handleMenuClose = () => {
+  //   setAnchorEl(null);
 
-    handleMobileMenuClose();
-  };
+  //   handleMobileMenuClose();
+  // };
 
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(searchedItem);
-  };
-
-  const handleChange = (event) => {
-    setSearchedItem(event.target.value);
-  };
-
   const menuId = "primary-search-account-menu";
-  const renderThisMenu = (
-    <Menu
-      id="basic-menu"
-      anchorEl={anchorEl}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-      style={{
-        marginTop: "10px",
-      }}
-    >
-      {anchorEl?.innerText === "ESCRITOS"
-        ? writingsCategories.map((item, index) => (
-            <Link to={`/writings/${item.title}`} key={index}>
-              <MenuItem
-                onClick={handleMenuClose}
-                style={{
-                  fontFamily: "var(--global-primary-font)",
-                  fontSize: "0.9em",
-                  padding: "0.5em 0em 0.5em 0.9em ",
-                  fontWeight: "bold",
-                }}
-              >
-                {item.title}
-              </MenuItem>
-            </Link>
-          ))
-        : anchorEl?.innerText === "POEMAS" &&
-          poemsCategories.map((item, index) => (
-            <Link to={`/poems/${item.title}`} key={index}>
-              <MenuItem
-                onClick={handleMenuClose}
-                style={{
-                  fontFamily: "var(--global-primary-font)",
-                  fontSize: "0.9em",
-                  padding: "0.5em 0em 0.5em 0.9em ",
-                  fontWeight: "bold",
-                }}
-              >
-                {item.title}
-              </MenuItem>
-            </Link>
-          ))}
-    </Menu>
-  );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -230,22 +123,18 @@ export default function PrimarySearchAppBar() {
                 iMaia
               </StyledTypography>
             </Link>
-            <StyledTypography
-              variant="h6"
-              component="div"
-              onClick={handleProfileMenuOpen}
-            >
-              <ArrowDropDownIcon />
-              Escritos
-            </StyledTypography>
-            <StyledTypography
-              variant="h6"
-              component="div"
-              onClick={handleProfileMenuOpen}
-            >
-              <ArrowDropDownIcon />
-              Poemas
-            </StyledTypography>
+
+            <Link style={{ textDecoration: "none" }} to="/writings">
+              <StyledTypography variant="h6" component="div">
+                Escritos
+              </StyledTypography>
+            </Link>
+            <Link style={{ textDecoration: "none" }} to="/poems">
+              <StyledTypography variant="h6" component="div">
+                Poemas
+              </StyledTypography>
+            </Link>
+
             {/* <StyledTypography
               variant="h6"
               component="div"
@@ -253,7 +142,7 @@ export default function PrimarySearchAppBar() {
             >
               Desafíos
             </StyledTypography> */}
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
               <Search>
                 <StyledInputBase
                   type="text"
@@ -266,11 +155,19 @@ export default function PrimarySearchAppBar() {
                   <SearchIcon onClick={handleSubmit} />
                 </SearchIconWrapper>
               </Search>
-            </form>
+            </form> */}
           </StyledBox>
           <Box sx={{ flexGrow: 1 }} />
 
           <StyledBox sx={{ display: { xs: "none", md: "flex" } }}>
+            <Link to={`/search/writings`}>
+              <IconButton edge="end" color="inherit">
+                <SearchIcon
+                  style={{ marginRight: "0.3em", fontSize: "1.1em" }}
+                />
+              </IconButton>{" "}
+            </Link>
+
             {isLoggedIn ? (
               <>
                 <Link style={{ textDecoration: "none" }} to="/write">
@@ -320,7 +217,6 @@ export default function PrimarySearchAppBar() {
         </Toolbar>
       </StyledAppBar>
       {renderMobileMenu}
-      {renderThisMenu}
     </Box>
   );
 }

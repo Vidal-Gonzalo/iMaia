@@ -11,7 +11,7 @@ import { iMaiaApi } from "../../../api/iMaiaApi";
 //el usuario entra al componente.
 
 export default function Writings() {
-  const { genre, category } = useParams();
+  const { genre } = useParams();
   const [writings, setWritings] = useState([]);
   const [poems, setPoems] = useState([]);
   const [mostValuedWritings, setMostValuedWritings] = useState([]);
@@ -20,25 +20,22 @@ export default function Writings() {
   useEffect(() => {
     document.title =
       genre === "writings"
-        ? `Escritos de ${category} - iMaia`
+        ? `Escritos - iMaia`
         : genre === "poems"
-        ? `Poemas de ${category} - iMaia`
+        ? `Poemas - iMaia`
         : "iMaia";
 
-    const loadTextsData = async (genre, category) => {
+    const loadTextsData = async (genre) => {
       const response = await iMaiaApi.getTextsByGenre(genre);
-      const textsByCategory = SearchElements.filterElementsByCategory(
-        response.data.textsByGenre,
-        category
-      );
+
       if (genre === "writings") {
-        setWritings(textsByCategory);
+        setWritings(response.data.textsByGenre);
       } else {
-        setPoems(textsByCategory);
+        setPoems(response.data.textsByGenre);
       }
     };
-    loadTextsData(genre, category);
-  }, [genre, category]);
+    loadTextsData(genre);
+  }, [genre]);
 
   useEffect(() => {
     const mostLikedElements = (genre, writings, poems) => {
@@ -58,13 +55,13 @@ export default function Writings() {
         <>
           <WritingsCarousel writings={mostValuedWritings} />
           <SearchWritings section={"writings"} />
-          <WritingsList textsByCategory={writings} />
+          <WritingsList texts={writings} />
         </>
       ) : genre === "poems" && poems ? (
         <>
           <WritingsCarousel writings={mostValuedPoems} />
           <SearchWritings section={"poems"} />
-          <WritingsList textsByCategory={poems} />
+          <WritingsList texts={poems} />
         </>
       ) : (
         /* Error en el género */

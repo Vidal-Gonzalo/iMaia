@@ -7,11 +7,11 @@ import { checkIfIncludes } from "../../../../utils/checkIfIncludes.js";
 
 const textPerRow = 8;
 
-export default function WritingsList({ textsByCategory }) {
+export default function WritingsList({ texts }) {
   const { genre, tag } = useParams();
   const [textsByTag, setTextsByTag] = useState([]);
   const [next, setNext] = useState(textPerRow);
-
+  console.log("Genre: " + genre + " Tag: " + tag);
   const handleMoreText = () => {
     setNext(next + textPerRow);
   };
@@ -20,16 +20,17 @@ export default function WritingsList({ textsByCategory }) {
     if (genre !== undefined && tag !== undefined) {
       //Añadido de tags
       let tags = tag.split(",");
-      const newList = textsByCategory?.filter((text) => {
+      const newList = texts?.filter((text) => {
         return checkIfIncludes(text.tags, tags);
       });
       if (newList.length > 0) {
         setTextsByTag(newList);
+        console.log(newList);
       } else {
         setTextsByTag([]);
       }
     }
-  }, [textsByCategory, genre, tag]);
+  }, [texts, genre, tag]);
 
   if (tag !== undefined) {
     return (
@@ -38,7 +39,9 @@ export default function WritingsList({ textsByCategory }) {
           {textsByTag?.length > 0 ? (
             textsByTag
               .slice(0, next)
-              ?.map((text, index) => <WritingCard writing={text} key={index} />)
+              ?.map((text, index) => (
+                <WritingCard element={text} key={index} type={"writings"} />
+              ))
           ) : (
             <div
               className="no-texts"
@@ -64,11 +67,11 @@ export default function WritingsList({ textsByCategory }) {
     return (
       <div className="writings-list-container">
         <div className="writings-list">
-          {textsByCategory?.slice(0, next)?.map((text, index) => (
-            <WritingCard writing={text} key={index} />
+          {texts?.slice(0, next)?.map((text, index) => (
+            <WritingCard element={text} key={index} type={"writings"} />
           ))}
         </div>
-        {next < textsByCategory?.length && (
+        {next < texts?.length && (
           <Button text={"Cargar más"} action={handleMoreText} />
         )}
       </div>

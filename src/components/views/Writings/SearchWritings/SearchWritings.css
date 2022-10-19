@@ -62,12 +62,3 @@
   cursor: auto;
   color: grey;
 }
-
-.search-input {
-  font-family: var(--global-primary-font);
-  background-color: #f4f2f2;
-  color: #000;
-  border: none;
-  padding: 0.7rem 1rem;
-  border-radius: var(--global-border-radius);
-}

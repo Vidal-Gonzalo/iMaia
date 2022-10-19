@@ -1,0 +1,80 @@
+.user-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 45%;
+  min-width: 45%;
+  margin: 1em;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 1em;
+  transition: all 300 ms ease-in-out;
+}
+
+.user-card > .user-image > a > img {
+  width: 180px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+.user-card > .user-content {
+  font-family: var(--global-primary-font);
+  font-size: 0.7em;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 1em;
+  margin-left: 0.5em;
+  position: relative;
+}
+
+.user-card > .user-content > a {
+  text-decoration: none;
+}
+
+.user-card > .user-content > a > .user-title {
+  color: #000;
+  font-size: 1.9em;
+  margin-bottom: 2%;
+}
+
+.user-card > .user-content > a > .user-title:hover {
+  text-decoration: underline;
+}
+
+.user-card > .user-content > .user-interactions {
+  display: flex;
+  color: grey;
+}
+
+.user-card > .user-content > .user-interactions > .user-icons {
+  font-size: 1.5em;
+  color: grey;
+  margin-right: 0.2em;
+}
+
+.user-card > .user-content > .user-interactions > .user-interactions-numbers {
+  margin-right: 1em;
+}
+
+.user-card > .user-content > .user-author > a {
+  color: #000;
+  font-weight: bold;
+}
+
+.user-card > .user-content > .user-fragment {
+  font-size: 1.2em;
+}
+
+.user-card > .user-content > .user-action > .follow-btn {
+  border-radius: 1em;
+  max-width: 30%;
+  min-width: 30%;
+  text-transform: capitalize;
+  background-color: var(--global-primary-color);
+  color: var(--global-secondary-color);
+}
+
+.user-card > .user-content > .user-action > .active {
+  background-color: var(--global-secondary-color);
+  color: var(--global-primary-color);
+}

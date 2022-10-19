@@ -4,7 +4,7 @@
   text-decoration: none;
   background-color: var(--global-primary-color);
   color: var(--global-secondary-color);
-  border-radius: var(--global-border-radius);
+  border-radius: 1em;
   border: none;
   cursor: pointer;
   transition: all 500ms;

@@ -7,8 +7,8 @@ export const SearchElements = {
       return null;
     }
   },
-  getElementTags: (id, tags) => {
-    const thisTags = tags.find((t) => t.categoryId === id);
+  getElementTags: (genre, tags) => {
+    const thisTags = tags.find((t) => t.genre === genre);
     if (thisTags !== undefined) return thisTags.tag;
     else return null;
   },
@@ -27,5 +27,23 @@ export const SearchElements = {
   },
   filterElementsByCategory: (array, category) => {
     return array.filter((e) => e.category === category);
+  },
+  containsTitle: (array, title) => {
+    let elements = [];
+    for (let element of array) {
+      if (element.title.toLowerCase().includes(title.toLowerCase())) {
+        elements.push(element);
+      }
+    }
+    return elements;
+  },
+  containsUsername: (array, username) => {
+    let elements = [];
+    for (let element of array) {
+      if (element.username.toLowerCase().includes(username.toLowerCase())) {
+        elements.push(element);
+      }
+    }
+    return elements;
   },
 };

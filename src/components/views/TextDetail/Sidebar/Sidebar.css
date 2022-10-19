@@ -23,11 +23,22 @@
   margin: 1em 0 1em 0;
 }
 
+.sidebar > .author-info > .follow-btn {
+  text-transform: capitalize;
+  background-color: var(--global-primary-color);
+  color: var(--global-secondary-color);
+  border-radius: 1em;
+}
+.sidebar > .author-info > .active {
+  background-color: var(--global-secondary-color);
+  color: var(--global-primary-color);
+}
+
 .sidebar > .text-sharing {
   margin-top: 3em;
 }
 
-.icon {
+.sidebar > .text-sharing > .icon {
   background-color: grey;
   color: #fff;
   border-radius: 100%;

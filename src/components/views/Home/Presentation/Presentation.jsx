@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import intro from "../../../../assets/images/intro.png";
+import intro from "../../../../assets/images/image.png";
+//import owl from "../../../../assets/images/intro-owl.png";
 import Button from "../../../Button/Button";
 import "./Presentation.css";
 
@@ -28,6 +29,8 @@ export default function Presentation({ section, title, subtitle }) {
           </Link>
         </div>
       </div>
+
+      {/* <img src={owl} alt="" width="700" /> */}
     </section>
   );
 }

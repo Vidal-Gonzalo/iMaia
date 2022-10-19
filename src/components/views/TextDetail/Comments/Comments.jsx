@@ -6,7 +6,7 @@ import "./Comments.css";
 
 const commentsAtStart = 6;
 
-export default function Comments({ textId, userId, formRef }) {
+export default function Comments({ textId, userId }) {
   const [next, setNext] = useState(commentsAtStart);
   const [textComments, setTextComments] = useState([]);
   const [loggedIn, setLoggedIn] = useState(true); // TODO: Redux
@@ -17,7 +17,7 @@ export default function Comments({ textId, userId, formRef }) {
   };
 
   const isCommentSent = () => {
-    setSentComment(true);
+    setSentComment(!sentComment); //Fix
   };
 
   useEffect(() => {

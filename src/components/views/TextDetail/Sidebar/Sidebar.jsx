@@ -3,6 +3,9 @@ import avatar from "../../../../assets/images/avatar.jpg";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
@@ -25,15 +28,14 @@ export default function Sidebar({ author }) {
         ) : (
           <p>...</p>
         )}
-        {followed ? (
-          <button className="btn btn-follow" onClick={handleFollow}>
-            Seguido!
-          </button>
-        ) : (
-          <button className="btn btn-follow" onClick={handleFollow}>
-            <span>Seguir</span>
-          </button>
-        )}
+        <Button
+          className={followed ? "follow-btn active" : "follow-btn"}
+          variant="outlined"
+          startIcon={followed ? <CheckCircleIcon /> : <PersonAddIcon />}
+          onClick={handleFollow}
+        >
+          {followed ? "Seguido!" : "Seguir"}
+        </Button>
       </div>
       <div className="text-sharing">
         <p>Comparte</p>

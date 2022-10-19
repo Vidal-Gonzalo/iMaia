@@ -69,6 +69,27 @@ export const handlers = [
       return res(ctx.status(404));
     }
   }),
+  rest.get(`/search/:type/:element`, (req, res, ctx) => {
+    const { type, element } = req.params;
+    if (type === "writings" || type === "poems") {
+      const textsByGenre = SearchElements.filterElementsByGenre(texts, type);
+      if (textsByGenre !== undefined) {
+        const textsByTitle = SearchElements.containsTitle(
+          textsByGenre,
+          element
+        );
+        if (textsByTitle !== undefined) {
+          return res(ctx.status(200), ctx.json({ elements: textsByTitle }));
+        }
+      }
+    } else {
+      const usersByUsername = SearchElements.containsUsername(users, element);
+      if (usersByUsername !== undefined) {
+        return res(ctx.status(200), ctx.json({ elements: usersByUsername }));
+      }
+    }
+    return res(ctx.status(501));
+  }),
   rest.post(`/like/:textId/:userId`, (req, res, ctx) => {
     const { textId, userId } = req.params;
     const parsedUserId = parseInt(userId);

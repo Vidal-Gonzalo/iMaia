@@ -1,7 +1,6 @@
 import React from "react";
 import { tags } from "./Tags.js";
-import { categories } from "./Categories";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -10,8 +9,7 @@ import "./SearchWritings.css";
 
 export default function SearchWritings({ section }) {
   const navigate = useNavigate();
-  const { category } = useParams();
-  const [categoryTags, setCategoryTags] = useState([]);
+  const [genreTags, setGenreTags] = useState([]);
   const [isActive, setIsActive] = useState([]);
 
   const handleClick = (element) => {
@@ -33,43 +31,27 @@ export default function SearchWritings({ section }) {
   useEffect(() => {
     if (isActive.length > 0) {
       const string = isActive.join("%2C");
-      navigate(`/${section}/${category}/${string}`);
+      navigate(`/${section}/${string}`);
     } else {
-      navigate(`/${section}/${category}`);
+      navigate(`/${section}`);
     }
-  }, [category, isActive, navigate, section]);
+  }, [isActive, navigate, section]);
 
   useEffect(() => {
-    if (category === undefined) {
-      navigate("/");
+    const thisGenreTags = SearchElements.getElementTags(section, tags);
+    if (thisGenreTags !== null) {
+      setGenreTags(thisGenreTags);
     } else {
-      const categoryId = SearchElements.getElementIdByTitle(
-        categories,
-        category
-      );
-      if (categoryId !== null) {
-        const thisCategoryTags = SearchElements.getElementTags(
-          categoryId,
-          tags
-        );
-        if (categoryTags !== null) {
-          setCategoryTags(thisCategoryTags);
-        } else {
-          navigate("/"); //Error 404
-          setIsActive([]);
-        }
-      } else {
-        navigate("/"); //Error 404
-        setIsActive([]);
-      }
+      navigate("/"); //Error 404
+      setIsActive([]);
     }
-  }, [category, categoryTags, navigate]);
+  }, [section, genreTags, navigate]);
 
   return (
     <div className="search-writings">
       <div className="search-writings-text">
-        <h6>
-          {section === "writings" ? "Escritos" : "Poemas"} de {category}
+        <h6 style={{ textTransform: "capitalize" }}>
+          {section === "writings" ? "Escritos" : "Poemas"}
         </h6>
         <p>
           ¿Te gustaría que haya más etiquetas?{" "}
@@ -80,7 +62,7 @@ export default function SearchWritings({ section }) {
       </div>
 
       <div className="search-tags">
-        {categoryTags?.map((element, index) =>
+        {genreTags?.map((element, index) =>
           checkIfIsActive(element, isActive) ? (
             <button
               className="search-button-tag active"

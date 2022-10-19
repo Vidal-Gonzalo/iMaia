@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { iMaiaApi } from "../../../../api/iMaiaApi";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import "./TextContent.css";
@@ -60,9 +59,6 @@ export default function TextContent({ text, isLiked, setIsLiked, userLiked }) {
                 className="interaction-icon"
               />
             )}
-            <ChatBubbleOutlineIcon className="interaction-icon" />
-          </div>
-          <div className="text-interactions-save">
             {saved ? (
               <BookmarkIcon
                 onClick={handleClickOnSave}
@@ -75,6 +71,7 @@ export default function TextContent({ text, isLiked, setIsLiked, userLiked }) {
               />
             )}
           </div>
+          <div className="text-interactions-save"></div>
         </div>
       </div>
       <div className="text-interactions-numbers">

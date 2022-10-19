@@ -6,7 +6,8 @@ import "./MostValuedWritings.css";
 import { useNavigate } from "react-router-dom";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
-import { valuedWritings } from "./MostValuedWritings";
+import { texts } from "../../../../assets/data/Texts.js";
+import { utilities } from "../../../../utils/utilities";
 
 export default function MostValuedWritings({ title, writings }) {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ export default function MostValuedWritings({ title, writings }) {
           className="mySwiper"
           onSwiper={setSwiper}
         >
-          {valuedWritings?.map((text, index) => (
+          {texts?.map((text, index) => (
             <SwiperSlide
               key={index}
               style={{
@@ -53,7 +54,9 @@ export default function MostValuedWritings({ title, writings }) {
             >
               <div className="writing-content">
                 <h3 className="writing-title">{text.title}</h3>
-                <p className="writing-fragment">{text.fragment}</p>
+                <p className="writing-fragment">
+                  {utilities.limitString(text.overview, 100).string}
+                </p>
                 <button
                   className="btn btn-large btn-carousel"
                   onClick={() => navigate(`/text/${text.id}`)}
