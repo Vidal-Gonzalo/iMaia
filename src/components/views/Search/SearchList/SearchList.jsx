@@ -1,5 +1,5 @@
 import React from "react";
-import WritingCard from "../../Writings/WritingsList/WritingCard/WritingCard";
+import WritingCard from "../../../WritingCard/WritingCard";
 import UserCard from "../../../UserCard/UserCard";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Box } from "@mui/material";

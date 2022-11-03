@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import { executeScroll } from "../../../../utils/scrollTo";
+import { utilities } from "../../../../utils/utilities.js";
 
 export default function TextImage({ text }) {
   const textImage = useRef(null);
 
   useEffect(() => {
-    executeScroll(textImage);
+    utilities.scrollTo(textImage);
   }, [textImage]);
   return (
     <div

@@ -18,36 +18,28 @@ export default function Writings() {
   const [mostValuedPoems, setMostValuedPoems] = useState([]);
 
   useEffect(() => {
-    document.title =
-      genre === "writings"
-        ? `Escritos - iMaia`
-        : genre === "poems"
-        ? `Poemas - iMaia`
-        : "iMaia";
-
     const loadTextsData = async (genre) => {
       const response = await iMaiaApi.getTextsByGenre(genre);
-
-      if (genre === "writings") {
-        setWritings(response.data.textsByGenre);
-      } else {
-        setPoems(response.data.textsByGenre);
+      let texts = response.data.textsByGenre;
+      if (texts.length > 0) {
+        if (genre === "writings") {
+          setWritings(texts);
+          setMostValuedWritings(SearchElements.getMostLikedElements(texts));
+        } else {
+          setPoems(texts);
+          setMostValuedPoems(SearchElements.getMostLikedElements(texts));
+        }
       }
     };
-    loadTextsData(genre);
+    document.title = `${
+      genre === "writings" ? "Escritos -" : "Poemas -"
+    } iMaia`;
+    try {
+      loadTextsData(genre);
+    } catch (e) {
+      console.error(e);
+    }
   }, [genre]);
-
-  useEffect(() => {
-    const mostLikedElements = (genre, writings, poems) => {
-      if (genre === "writings" && writings.length > 0) {
-        setMostValuedWritings(SearchElements.getMostLikedElements(writings));
-      }
-      if (genre === "poems" && poems.length > 0) {
-        setMostValuedPoems(SearchElements.getMostLikedElements(poems));
-      }
-    };
-    mostLikedElements(genre, writings, poems);
-  }, [genre, writings, poems]);
 
   return (
     <section id="writings-section">

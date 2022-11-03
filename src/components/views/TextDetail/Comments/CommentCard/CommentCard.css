@@ -6,7 +6,7 @@
   width: 50%;
 }
 
-.text-comment > .comment-user-image > img {
+.text-comment > a > .comment-user-image > img {
   border-radius: 100%;
 }
 
@@ -15,7 +15,7 @@
   font-size: 0.9em;
 }
 
-.text-comment > .comment-info > .comment-username {
+.text-comment > .comment-info > .comment-username > p {
   font-weight: bold;
   margin: 0;
 }

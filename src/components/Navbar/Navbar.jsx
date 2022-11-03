@@ -14,16 +14,18 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import LoginIcon from "@mui/icons-material/Login";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
 import "./Navbar.css";
+import { useEffect } from "react";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
-  backgroundColor: "#000",
   position: "fixed",
   zIndex: 10,
   fontSize: "0.9em",
   boxShadow: "none",
+  animation: "ease-in",
+  transition: "all 500ms",
 }));
 
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -45,9 +47,19 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
 
 export default function PrimarySearchAppBar() {
   // const [anchorEl, setAnchorEl] = useState(null);
+  const location = useLocation();
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
   const [isLoggedIn] = useState(false);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+  const [navbar, setNavbar] = useState(false);
+
+  const changeBackground = (location) => {
+    if (window.scrollY >= 66 || location.pathname?.includes("search")) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  };
 
   const handleProfileMenuOpen = (event) => {
     // setAnchorEl(event.currentTarget);
@@ -70,6 +82,13 @@ export default function PrimarySearchAppBar() {
   const menuId = "primary-search-account-menu";
 
   const mobileMenuId = "primary-search-account-menu-mobile";
+
+  useEffect(() => {
+    changeBackground(location);
+
+    window.addEventListener("scroll", changeBackground);
+  }, [navbar, location]);
+
   const renderMobileMenu = (
     <Menu
       id="basic-menus"
@@ -115,7 +134,18 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <StyledAppBar position="static">
+      <StyledAppBar
+        style={
+          navbar
+            ? {
+                backgroundColor: "#000",
+                animation: "ease-in",
+                transition: "500ms",
+              }
+            : { backgroundColor: "transparent" }
+        }
+        position="static"
+      >
         <Toolbar>
           <StyledBox sx={{ display: { xs: "none", md: "flex" } }}>
             <Link style={{ textDecoration: "none" }} to="/">
@@ -142,29 +172,17 @@ export default function PrimarySearchAppBar() {
             >
               Desafíos
             </StyledTypography> */}
-            {/* <form onSubmit={handleSubmit}>
-              <Search>
-                <StyledInputBase
-                  type="text"
-                  value={searchedItem}
-                  onChange={handleChange}
-                  placeholder="Buscar..."
-                  inputProps={{ "aria-label": "search" }}
-                />
-                <SearchIconWrapper>
-                  <SearchIcon onClick={handleSubmit} />
-                </SearchIconWrapper>
-              </Search>
-            </form> */}
           </StyledBox>
           <Box sx={{ flexGrow: 1 }} />
 
           <StyledBox sx={{ display: { xs: "none", md: "flex" } }}>
             <Link to={`/search/writings`}>
-              <IconButton edge="end" color="inherit">
-                <SearchIcon
-                  style={{ marginRight: "0.3em", fontSize: "1.1em" }}
-                />
+              <IconButton
+                style={{ marginRight: "0.3em" }}
+                edge="end"
+                color="inherit"
+              >
+                <SearchIcon style={{ fontSize: "1.2em" }} />
               </IconButton>{" "}
             </Link>
 

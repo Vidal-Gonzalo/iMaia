@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import SearchInput from "./SearchInput/SearchInput";
 import SearchList from "./SearchList/SearchList";
-import "./Search.css";
 import { iMaiaApi } from "../../../api/iMaiaApi";
+import "./Search.css";
 
 export default function Search() {
   const [isFetching, setIsFetching] = useState("idle");
   const [texts, setTexts] = useState([]);
   const [users, setUsers] = useState([]);
   const [noResults, setNoResults] = useState(false);
-  const { filter, element } = useParams();
+  const { filter } = useParams();
+  const [searchedItem, setSearchedItem] = useSearchParams();
+  const element = searchedItem.get("search");
 
   useEffect(() => {
+    //Hacer hook
     const loadElementsData = async (type, name) => {
       setIsFetching("fetching");
       const response = await iMaiaApi.getElementsByName(type, name);
@@ -30,17 +33,21 @@ export default function Search() {
         }, 3000);
       }
     };
-    if (element !== undefined && element.length > 1) {
+    if (element !== null && element.length > 1) {
       loadElementsData(filter, element);
     } else {
       setTexts([]);
       setUsers([]);
     }
-  }, [element, filter, noResults]);
+  }, [filter, noResults, searchedItem, element]);
 
   return (
     <section className="search-section">
-      <SearchInput filter={filter} />
+      <SearchInput
+        filter={filter}
+        searchedItem={searchedItem}
+        setSearchedItem={setSearchedItem}
+      />
       {!noResults ? (
         <SearchList
           filter={filter}
@@ -49,7 +56,7 @@ export default function Search() {
           isFetching={isFetching}
         />
       ) : (
-        <p>{element !== undefined && `No hay resultados para ${element}`}</p>
+        <p>{element !== null && `No hay resultados para ${element}`}</p>
       )}
     </section>
   );

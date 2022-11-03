@@ -37,6 +37,38 @@ export const handlers = [
       return res(ctx.status(400));
     }
   }),
+  rest.get(`/text/profile/:username`, (req, res, ctx) => {
+    const { username } = req.params;
+    if (username === "undefined") {
+      return res(ctx.status(400));
+    }
+    const user = SearchElements.getUserByUsername(users, username);
+    if (user === undefined) {
+      return res(ctx.status(402));
+    }
+    const userTexts = user.texts.map((id) => {
+      return SearchElements.getElementById(texts, id);
+    });
+
+    if (userTexts === undefined) {
+      return res(ctx.status(400));
+    }
+    return res(ctx.status(200), ctx.json(userTexts));
+  }),
+  rest.get(`/user/:username`, (req, res, ctx) => {
+    const { username } = req.params;
+    const userByUsername = SearchElements.getUserByUsername(users, username);
+    if (userByUsername !== undefined) {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          user: userByUsername,
+        })
+      );
+    } else {
+      return res(ctx.status(404));
+    }
+  }),
   rest.get(`/users/:id`, (req, res, ctx) => {
     const { id } = req.params;
     const userById = SearchElements.getElementById(users, parseInt(id));
@@ -51,6 +83,27 @@ export const handlers = [
       return res(ctx.status(404));
     }
   }),
+  rest.post(
+    `/user/follow/:userIdWhoFollows/:userIdFollowed`,
+    (req, res, ctx) => {
+      const { userIdWhoFollows, userIdFollowed } = req.params;
+      const userIdWhoFollowsParsed = parseInt(userIdWhoFollows);
+      const userFollowed = SearchElements.getElementById(
+        users,
+        parseInt(userIdFollowed)
+      );
+      if (userFollowed !== undefined) {
+        if (userFollowed.followers.find((l) => l === userIdWhoFollowsParsed)) {
+          userFollowed.followers = userFollowed.followers.filter(
+            (l) => l !== userIdWhoFollowsParsed
+          );
+        } else {
+          userFollowed.followers.push(parseInt(userIdWhoFollowsParsed));
+        }
+        return res(ctx.status(200));
+      }
+    }
+  ),
   rest.get(`/comments/:textId`, (req, res, ctx) => {
     const { textId } = req.params;
     const parsedtextId = parseInt(textId);
@@ -100,7 +153,6 @@ export const handlers = [
       } else {
         text.likes.push(parseInt(parsedUserId));
       }
-      console.log("Desde handler: " + text.likes);
       return res(ctx.status(200));
     }
   }),
@@ -125,7 +177,7 @@ export const handlers = [
     const text = SearchElements.getElementById(texts, parsedTextId);
     req.json().then((data) => {
       comments.push(data);
-      text.comments.push(data.id);
+      text.comments.unshift(data.id);
     });
     return res(ctx.status(200));
   }),

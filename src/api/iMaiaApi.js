@@ -1,5 +1,4 @@
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 import { comments } from "../assets/data/Comments";
 
 export const iMaiaApi = {
@@ -10,6 +9,14 @@ export const iMaiaApi = {
     if (id !== undefined) {
       return await axios.get(`/text/${id}`);
     }
+  },
+  getTextsByUsername: async (username) => {
+    if (username !== undefined) {
+      return await axios.get(`/text/profile/${username}`);
+    }
+  },
+  getUserByUsername: async (username) => {
+    return await axios.get(`/user/${username}`);
   },
   getUserById: async (id) => {
     return await axios.get(`/users/${id}`);
@@ -32,5 +39,10 @@ export const iMaiaApi = {
       userId,
       comment,
     });
+  },
+  followUser: async (userIdWhoFollows, userIdFollowed) => {
+    return await axios.post(
+      `/user/follow/${userIdWhoFollows}/${userIdFollowed}`
+    );
   },
 };

@@ -1,0 +1,21 @@
+/*Cambiar estilos correctamente*/
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+  font-family: var(--global-primary-font) !important;
+  text-transform: none !important;
+  font-size: 1em !important;
+}
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: var(--global-primary-color) !important;
+}
+
+.css-10d9dml-MuiTabs-indicator {
+  background-color: var(--global-primary-color) !important;
+}
+
+.user-tabpanel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 50%;
+  background-color: red;
+}

@@ -1,15 +1,19 @@
 import { TextField } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./SearchInput.css";
 
-export default function SearchInput({ filter }) {
-  const [searchedItem, setSearchedItem] = useState("");
-  const navigate = useNavigate();
+export default function SearchInput({ filter, searchedItem, setSearchedItem }) {
+  const [inputValue, setInputValue] = useState("");
+  // const [searchedItem, setSearchedItem] = useState("");
 
   const handleChange = (e) => {
-    setSearchedItem(e.target.value);
+    setInputValue(e.target.value);
+    if (inputValue.length === 1) {
+      searchedItem.delete("search");
+      setSearchedItem(searchedItem);
+    }
   };
 
   const checkFilter = (type) => {
@@ -28,7 +32,7 @@ export default function SearchInput({ filter }) {
 
   useEffect(() => {
     document.title = `${
-      searchedItem !== "" ? `${searchedItem} - ` : ""
+      inputValue !== "" ? `${inputValue} - ` : ""
     }Búsqueda de ${
       filter === "writings"
         ? "escritos"
@@ -36,8 +40,10 @@ export default function SearchInput({ filter }) {
         ? "poemas"
         : filter === "users" && "usuarios"
     } | iMaia`;
-    navigate(`/search/${filter}/${searchedItem}`);
-  }, [searchedItem, filter, navigate]);
+    if (inputValue.length > 0) {
+      setSearchedItem({ search: inputValue }, { replace: true });
+    }
+  }, [inputValue, filter, searchedItem, setSearchedItem]);
 
   return (
     <Box className="search-input-container">
@@ -47,7 +53,7 @@ export default function SearchInput({ filter }) {
           variant="standard"
           label="Buscar..."
           autoComplete="off"
-          value={searchedItem}
+          value={inputValue}
           onChange={handleChange}
           sx={{
             "& label.Mui-focused": {

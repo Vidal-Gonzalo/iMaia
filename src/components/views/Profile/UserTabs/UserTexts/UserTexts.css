@@ -1,0 +1,17 @@
+.user-writings-container {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--global-primary-font);
+}
+
+.user-writings-container > h5 {
+  font-size: 2em;
+  margin: 0 0 1em 0.5em;
+  color: var(--global-primary-color);
+}
+
+.user-writings-container > .user-writings-list {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.8em;
+}

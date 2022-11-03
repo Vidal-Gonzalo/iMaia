@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import "./WritingsCarousel.css";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
 import { useNavigate, useParams } from "react-router-dom";
-import { executeScroll } from "../../../../utils/scrollTo";
+import { utilities } from "../../../../utils/utilities";
 
 /*
 Revisar optimización: al actualizar la página desde la sección writings se ralentiza la velocidad de carga
@@ -21,7 +21,7 @@ export default function WritingsCarousel({ writings }) {
   const swiper = useRef(null);
 
   useEffect(() => {
-    executeScroll(swiper);
+    utilities.scrollTo(swiper);
     swiper.current.swiper.slideTo(0);
   }, [swiper, writings, category]);
 

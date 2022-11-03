@@ -17,11 +17,11 @@ export const comments = [
   {
     id: 4,
     userId: 1,
-    comment: "La verdad que la parte de Lorem ipsum me asesinó",
+    comment: "Revisa tu inbox!",
   },
   {
     id: 5,
     userId: 1,
-    comment: "La verdad que la parte de Lorem ipsum me asesinó",
+    comment: "Me encanta como escribís",
   },
 ];

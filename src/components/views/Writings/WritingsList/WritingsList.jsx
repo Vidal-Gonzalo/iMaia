@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import Button from "../../../Button/Button.jsx";
 import { useParams } from "react-router-dom";
 import "./WritingsList.css";
-import WritingCard from "./WritingCard/WritingCard";
-import { checkIfIncludes } from "../../../../utils/checkIfIncludes.js";
+import WritingCard from "../../../WritingCard/WritingCard";
+import { utilities } from "../../../../utils/utilities.js";
 
 const textPerRow = 8;
 
@@ -11,7 +11,6 @@ export default function WritingsList({ texts }) {
   const { genre, tag } = useParams();
   const [textsByTag, setTextsByTag] = useState([]);
   const [next, setNext] = useState(textPerRow);
-  console.log("Genre: " + genre + " Tag: " + tag);
   const handleMoreText = () => {
     setNext(next + textPerRow);
   };
@@ -21,11 +20,10 @@ export default function WritingsList({ texts }) {
       //Añadido de tags
       let tags = tag.split(",");
       const newList = texts?.filter((text) => {
-        return checkIfIncludes(text.tags, tags);
+        return utilities.checkIfIncludes(text.tags, tags);
       });
       if (newList.length > 0) {
         setTextsByTag(newList);
-        console.log(newList);
       } else {
         setTextsByTag([]);
       }

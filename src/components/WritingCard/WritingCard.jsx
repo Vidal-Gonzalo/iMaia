@@ -4,10 +4,10 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import Tooltip from "@mui/material/Tooltip";
 import { Link } from "react-router-dom";
-import { utilities } from "../../../../../utils/utilities";
+import { utilities } from "../../utils/utilities";
 import "./WritingCard.css";
 
-export default function WritingCard({ element, type, action }) {
+export default function WritingCard({ element }) {
   const tagsPerRow = 4;
   const titleMaxChars = 20;
   const overviewMaxChars = 180;

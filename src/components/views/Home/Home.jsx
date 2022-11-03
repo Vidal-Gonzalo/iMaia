@@ -4,13 +4,13 @@ import MostValuedWritings from "./MostValuedWritings/MostValuedWritings.jsx";
 import Reasons from "../../Reasons/Reasons.jsx";
 import Functionality from "./Functionality/Functionality.jsx";
 import Presentation from "./Presentation/Presentation";
-import { executeScroll } from "../../../utils/scrollTo";
+import { utilities } from "../../../utils/utilities.js";
 
 export default function Home() {
   const section = useRef(null);
   useEffect(() => {
     document.title = "iMaia - Cuenta tu verdad";
-    executeScroll(section);
+    utilities.scrollTo(section);
   }, []);
 
   return (

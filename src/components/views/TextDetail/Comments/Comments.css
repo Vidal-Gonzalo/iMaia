@@ -1,0 +1,4 @@
+.comments-container > .no-comments {
+  font-family: var(--global-primary-font);
+  font-size: 0.9em;
+}

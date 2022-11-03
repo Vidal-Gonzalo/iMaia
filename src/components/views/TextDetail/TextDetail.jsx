@@ -8,6 +8,8 @@ import TextContent from "./TextContent/TextContent";
 import Comments from "./Comments/Comments";
 import TextImage from "./TextImage/TextImage";
 
+const USER_ID = 1; //Cambiará cuando se implemente el login y redux
+
 export default function TextDetail() {
   const { id } = useParams();
   const [text, setText] = useState();
@@ -45,7 +47,7 @@ export default function TextDetail() {
 
       try {
         loadAuthorData(text.id_author).then(() => {
-          checkIfUserLiked(1);
+          checkIfUserLiked(USER_ID);
         });
       } catch (err) {
         console.log(err);

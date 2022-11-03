@@ -10,8 +10,8 @@ import rose from "../images/rose.jpg";
 export const texts = [
   {
     id: 1,
-    id_author: 1,
-    author: "rose",
+    id_author: 2,
+    author: "juen_lo",
     title: "Los abrazos",
     genre: "writings",
     date: "11 may, 2020",
@@ -26,8 +26,8 @@ export const texts = [
   },
   {
     id: 2,
-    id_author: 2,
-    author: "juen_lo",
+    id_author: 1,
+    author: "rose",
     title: "El mundo",
     genre: "writings",
     picUrl: people,
@@ -38,12 +38,12 @@ export const texts = [
     overview:
       "Un hombre del pueblo de Negua, en la costa de Colombia, pudo subir al alto cielo. A la vuelta, contó. Dijo que había contemplado, desde allá arriba, la vida humana. Y dijo que somos un mar de fueguitos",
     tags: ["amor", "pasión"],
-    comments: [],
+    comments: [1],
   },
   {
     id: 3,
-    id_author: 3,
-    author: "justmi",
+    id_author: 2,
+    author: "juen_lo",
     title: "Ocaso",
     genre: "writings",
     picUrl:
@@ -55,12 +55,12 @@ export const texts = [
     overview:
       "¿Cómo explican los sentimientos agradables? Afirmando que están determinados por la confianza de Dios, por la conciencia de haber hecho una buena acción (lo que llaman buena conciencia es un estado",
     tags: ["ética", "moral"],
-    comments: [],
+    comments: [2],
   },
   {
     id: 4,
-    id_author: 4,
-    author: "dipme",
+    id_author: 3,
+    author: "justmi",
     title: "Charles",
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
@@ -71,12 +71,12 @@ export const texts = [
     overview:
       "Ahora, cuando cae la tarde tan despacio, me sorprendo arrimado al espejo nocturno, al silencio tan denso de miradas: parezco una lejana voz que apenas se dice, que despide amarilla al día que se fuga. Un día más se va.",
     tags: ["ética", "moral"],
-    comments: [],
+    comments: [2],
   },
   {
     id: 5,
-    id_author: 5,
-    author: "redstone",
+    id_author: 2,
+    author: "juen_lo",
     title: "Vos",
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
@@ -92,8 +92,8 @@ export const texts = [
   },
   {
     id: 6,
-    id_author: 6,
-    author: "famuel",
+    id_author: 1,
+    author: "rose",
     title: "Fe",
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-6.jpg",
@@ -104,12 +104,12 @@ export const texts = [
     overview:
       "Sin fe, no tenemos esperanza, y sin esperanza no tenemos propiamente vida. No teniendo una idea del futuro, tampoco tenemos una idea de hoy, porque el hoy, para el hombre de acción, no es sino un prólogo del futuro",
     tags: ["cristianismo", "jesús"],
-    comments: [],
+    comments: [2, 3],
   },
   {
     id: 7,
-    id_author: 7,
-    author: "JenniferDel",
+    id_author: 4,
+    author: "dipme",
     title: "Charles",
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
@@ -120,12 +120,12 @@ export const texts = [
     overview:
       "Ahora, cuando cae la tarde tan despacio, me sorprendo arrimado al espejo nocturno, al silencio tan denso de miradas: parezco una lejana voz que apenas se dice, que despide amarilla al día que se fuga. Un día más se va.",
     tags: ["amor", "odio", "melancolía", "felicidad", "pasión"],
-    comments: [],
+    comments: [5, 1],
   },
   {
     id: 8,
-    id_author: 8,
-    author: "TedReste",
+    id_author: 1,
+    author: "rose",
     title: "Vos",
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
@@ -136,12 +136,12 @@ export const texts = [
     overview:
       "Tengo la sensación de que algo me falta, no sé bien si seas vos o más alcohol, así que por si no volves, iré a conseguir cerveza, y si vienes, por favor trae cerveza. Lo sé, yo también odio ese vicio. Por eso te pido que",
     tags: ["odio", "pasión"],
-    comments: [],
+    comments: [2],
   },
   {
     id: 9,
-    id_author: 9,
-    author: "JoeGoldberg",
+    id_author: 5,
+    author: "redstone",
     title: "Fe",
     genre: "writings",
     picUrl: rose,
@@ -156,8 +156,8 @@ export const texts = [
   },
   {
     id: 10,
-    id_author: 10,
-    author: "eSmI",
+    id_author: 1,
+    author: "rose",
     title: "Charles",
     genre: "writings",
     picUrl: train,
@@ -172,13 +172,12 @@ export const texts = [
   },
   {
     id: 11,
-    id_author: 11,
-    author: "esTers",
+    id_author: 6,
+    author: "famuel",
     title: "Nadie sino tú",
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
     date: "11 may, 2020",
-
     likes: [4, 1],
     views: 5632,
     overview:
@@ -189,8 +188,8 @@ export const texts = [
   },
   {
     id: 12,
-    id_author: 1,
-    author: "rose",
+    id_author: 7,
+    author: "JenniferDel",
     title: "Fe",
     genre: "writings",
     picUrl: "https://huellas01.web.app/css/img/writing-6.jpg",
@@ -205,8 +204,8 @@ export const texts = [
   },
   {
     id: 13,
-    id_author: 7,
-    author: "JenniferDel",
+    id_author: 8,
+    author: "TedReste",
     title: "Charles",
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
@@ -222,8 +221,8 @@ export const texts = [
   },
   {
     id: 14,
-    id_author: 8,
-    author: "TedReste",
+    id_author: 9,
+    author: "JoeGoldberg",
     title: "Nadie puede salvarte sino tú mismo",
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/poem-1.jpg",
@@ -239,8 +238,8 @@ export const texts = [
   },
   {
     id: 15,
-    id_author: 9,
-    author: "JoeGoldberg",
+    id_author: 10,
+    author: "eSmI",
     title: "Fe",
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/writing-6.jpg",
@@ -256,8 +255,8 @@ export const texts = [
   },
   {
     id: 16,
-    id_author: 10,
-    author: "eSmI",
+    id_author: 11,
+    author: "esTers",
     title: "Charles",
     genre: "poems",
     picUrl: "https://huellas01.web.app/css/img/writing-4.jpg",
@@ -331,6 +330,7 @@ export const texts = [
     date: "11 may, 2020",
     likes: [4, 1],
     views: 3456,
+    text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
     overview:
       "Ahora, cuando cae la tarde tan despacio, me sorprendo arrimado al espejo nocturno, al silencio tan denso de miradas: parezco una lejana voz que apenas se dice, que despide amarilla al día que se fuga. Un día más se va.",
     tags: ["ética", "moral"],
@@ -346,6 +346,7 @@ export const texts = [
     date: "11 may, 2020",
     likes: [4, 1],
     views: 3456,
+    text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
     overview:
       "Ahora, cuando cae la tarde tan despacio, me sorprendo arrimado al espejo nocturno, al silencio tan denso de miradas: parezco una lejana voz que apenas se dice, que despide amarilla al día que se fuga. Un día más se va.",
     tags: ["ética", "moral"],
@@ -361,6 +362,7 @@ export const texts = [
     date: "11 may, 2020",
     likes: [4, 1],
     views: 3456,
+    text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
     overview:
       "Ahora, cuando cae la tarde tan despacio, me sorprendo arrimado al espejo nocturno, al silencio tan denso de miradas: parezco una lejana voz que apenas se dice, que despide amarilla al día que se fuga. Un día más se va.",
     tags: ["ética", "moral"],
@@ -377,6 +379,7 @@ export const texts = [
 
     likes: [4, 1],
     views: 6540,
+    text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
     overview:
       "Tengo la sensación de que algo me falta, no sé bien si seas vos o más alcohol, así que por si no volves, iré a conseguir cerveza, y si vienes, por favor trae cerveza. Lo sé, yo también odio ese vicio. Por eso te pido que",
     tags: ["amor", "miedo"],
@@ -392,6 +395,7 @@ export const texts = [
     date: "11 may, 2020",
     likes: [4, 1],
     views: 1202,
+    text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
     overview:
       "Sin fe, no tenemos esperanza, y sin esperanza no tenemos propiamente vida. No teniendo una idea del futuro, tampoco tenemos una idea de hoy, porque el hoy, para el hombre de acción, no es sino un prólogo del futuro",
     tags: ["cristianismo", "jesús"],
@@ -408,6 +412,7 @@ export const texts = [
 
     likes: [4, 1],
     views: 6540,
+    text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
     overview:
       "Tengo la sensación de que algo me falta, no sé bien si seas vos o más alcohol, así que por si no volves, iré a conseguir cerveza, y si vienes, por favor trae cerveza. Lo sé, yo también odio ese vicio. Por eso te pido que",
     tags: ["amor", "miedo"],
@@ -423,6 +428,7 @@ export const texts = [
     date: "11 may, 2020",
     likes: [4, 1],
     views: 1202,
+    text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
     overview:
       "Sin fe, no tenemos esperanza, y sin esperanza no tenemos propiamente vida. No teniendo una idea del futuro, tampoco tenemos una idea de hoy, porque el hoy, para el hombre de acción, no es sino un prólogo del futuro",
     tags: ["cristianismo", "jesús"],
@@ -439,6 +445,7 @@ export const texts = [
 
     likes: [4, 1],
     views: 6540,
+    text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
     overview:
       "Tengo la sensación de que algo me falta, no sé bien si seas vos o más alcohol, así que por si no volves, iré a conseguir cerveza, y si vienes, por favor trae cerveza. Lo sé, yo también odio ese vicio. Por eso te pido que",
     tags: ["amor", "miedo"],
@@ -454,6 +461,7 @@ export const texts = [
     date: "11 may, 2020",
     likes: [4, 1],
     views: 1202,
+    text: "Nadie puede salvarte sino tú mismo. Te verás una y otra vez en situaciones casi imposibles. intentarán una y otra vez por medio de subterfugios, engaños o por la fuerza que renuncies, te des por vencido y/o mueras lentamente por dentro. Nadie puede salvarte sino tú mismoy será muy fácil desfallecer, pero muy fácil, pero no desfallezcas, no, no. limítate a mirarlos. escucharlos. <br /> <br />¿quieres ser así? ¿un ser sin cara, sin mente, sin corazón? ¿quieres experimentar la muerte antes de la muerte? nadie puede salvarte sino tú mismo y mereces salvarte. no es una guerra fácil de ganar pero si algo merece la pena ganar, es esto. piénsalo. piensa en salvarte a ti mismo. tu parte espiritual. la parte de tus entrañas. tu parte mágica y ebria. sálvala. <br /><br />no te unas a los muertos de espíritu. mantente con buen talante y garbo y al cabo, si fuera necesario, apuesta tu vida en plena refriega, al carajo las probabilidades, al carajo el precio. nadie puede salvarte sino tú mismo. ¡Hazlo! ¡sálvate! entonces sabrás exactamente de qué hablo.",
     overview:
       "Sin fe, no tenemos esperanza, y sin esperanza no tenemos propiamente vida. No teniendo una idea del futuro, tampoco tenemos una idea de hoy, porque el hoy, para el hombre de acción, no es sino un prólogo del futuro",
     tags: ["cristianismo", "jesús"],

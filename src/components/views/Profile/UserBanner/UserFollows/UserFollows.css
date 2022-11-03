@@ -1,0 +1,12 @@
+.user-follows {
+  display: flex;
+  font-family: var(--global-primary-font);
+}
+
+.user-follows > p {
+  margin: 0;
+}
+
+.user-follows > p:nth-child(2) {
+  margin-left: 1em;
+}

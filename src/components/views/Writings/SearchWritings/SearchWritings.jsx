@@ -11,9 +11,11 @@ export default function SearchWritings({ section }) {
   const navigate = useNavigate();
   const [genreTags, setGenreTags] = useState([]);
   const [isActive, setIsActive] = useState([]);
+  const [addedTag, setAddedTag] = useState(false);
 
   const handleClick = (element) => {
     //Para mostrar los escritos correspondientes
+    setAddedTag(true);
     if (isActive.some((item) => item === element)) {
       const newArray = isActive.filter((item) => item !== element);
       setIsActive(newArray);
@@ -29,13 +31,16 @@ export default function SearchWritings({ section }) {
   };
 
   useEffect(() => {
-    if (isActive.length > 0) {
-      const string = isActive.join("%2C");
-      navigate(`/${section}/${string}`);
-    } else {
-      navigate(`/${section}`);
+    if (addedTag) {
+      if (isActive.length > 0) {
+        const string = isActive.join("%2C");
+        navigate(`/${section}/${string}`, { replace: true });
+      } else {
+        navigate(`/${section}`, { replace: true });
+        setAddedTag(false);
+      }
     }
-  }, [isActive, navigate, section]);
+  }, [isActive, navigate, section, addedTag]);
 
   useEffect(() => {
     const thisGenreTags = SearchElements.getElementTags(section, tags);
