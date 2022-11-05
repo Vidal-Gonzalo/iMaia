@@ -40,6 +40,7 @@ export default function UserTabs({ user }) {
   const [value, setValue] = useState(0);
   const [writings, setWritings] = useState([]);
   const [poems, setPoems] = useState([]);
+  const [savedTexts, setSavedTexts] = useState([]);
 
   useEffect(() => {
     let isCancelled = false;
@@ -58,8 +59,17 @@ export default function UserTabs({ user }) {
       setWritings(writingsAux);
       setPoems(poemsAux);
     };
-    if (!isCancelled) {
+    const loadUserSavedTexts = async (user) => {
+      const response = await iMaiaApi.getUserSavedTexts(user.username);
+      const texts = response.data;
+      if (texts !== undefined) {
+        setSavedTexts(texts);
+      }
+    };
+
+    if (user !== undefined && !isCancelled) {
       loadUserTexts(user);
+      loadUserSavedTexts(user);
     }
     return () => {
       isCancelled = true;
@@ -106,7 +116,7 @@ export default function UserTabs({ user }) {
             <UserWritings texts={poems} type={"poemas"} />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            Item Three
+            <UserWritings texts={savedTexts} type={"textos guardados"} />
           </TabPanel>
         </Grid>
       </Grid>

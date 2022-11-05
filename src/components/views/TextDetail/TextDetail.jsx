@@ -16,6 +16,8 @@ export default function TextDetail() {
   const [author, setAuthor] = useState();
   const [isLiked, setIsLiked] = useState(false);
   const [userLiked, setUserLiked] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+  const [userSaved] = useState(false);
 
   useEffect(() => {
     const loadTextData = async (id) => {
@@ -24,7 +26,7 @@ export default function TextDetail() {
     };
 
     try {
-      if (id !== "undefined") {
+      if (id !== undefined) {
         loadTextData(id);
       }
     } catch (err) {
@@ -44,10 +46,14 @@ export default function TextDetail() {
           setUserLiked(true);
         }
       };
+      // const checkIfUserSavedText = (userId) => {
+      //   //Redux URGENTE: tomar el ID de la persona logueada.
+      // };
 
       try {
         loadAuthorData(text.id_author).then(() => {
           checkIfUserLiked(USER_ID);
+          // checkIfUserSavedText(USER_ID);
         });
       } catch (err) {
         console.log(err);
@@ -68,6 +74,9 @@ export default function TextDetail() {
             isLiked={isLiked}
             setIsLiked={setIsLiked}
             userLiked={userLiked}
+            isSaved={isSaved}
+            setIsSaved={setIsSaved}
+            userSaved={userSaved}
           />
           <Comments textId={text?.id} userId={text?.id_author} />{" "}
           {/*UserId es provisional hasta que usemos Redux y tomemos el ID del usuario loggueado en formcomment.*/}

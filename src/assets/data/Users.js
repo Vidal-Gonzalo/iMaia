@@ -11,12 +11,12 @@ export const users = [
     username: "rose",
     picUrl:
       "https://www.fundacionaquae.org/wp-content/uploads/2018/06/TalesdeMileto-e1566828389565.jpg.webp",
-    banner: oldBlackBanner,
+    banner: neonLightsBanner,
     phrase: "El valor de un hombre no es más grande que sus ambiciones.",
     biography:
       "Buenos Aires, Argentina. 21 años. Leo filosofía y me gustan las películas de terror",
     texts: [2, 6, 8, 10, 18],
-    savedTexts: [3],
+    savedTexts: [2, 3],
     followers: [1],
     following: [2],
   },
@@ -31,7 +31,7 @@ export const users = [
     biography:
       "Buenos Aires, Argentina. 21 años. Leo filosofía y me gustan las películas de terror",
     texts: [1, 3, 5],
-    savedTexts: [3],
+    savedTexts: [2, 3],
     followers: [1, 3, 2, 4],
     following: [2, 1],
   },
@@ -46,7 +46,7 @@ export const users = [
     biography:
       "Buenos Aires, Argentina. 21 años. Leo filosofía y me gustan las películas de terror",
     texts: [4],
-    savedTexts: [3],
+    savedTexts: [2, 3],
     followers: [1],
     following: [2],
   },
@@ -61,7 +61,7 @@ export const users = [
     biography:
       "Buenos Aires, Argentina. 21 años. Leo filosofía y me gustan las películas de terror",
     texts: [7, 19, 20, 21, 22],
-    savedTexts: [3],
+    savedTexts: [2, 3],
     followers: [2],
     following: [2],
   },
@@ -76,7 +76,7 @@ export const users = [
     biography:
       "Buenos Aires, Argentina. 21 años. Leo filosofía y me gustan las películas de terror",
     texts: [9, 23, 25, 27],
-    savedTexts: [3],
+    savedTexts: [2, 3],
     followers: [1],
     following: [2],
   },
@@ -92,7 +92,7 @@ export const users = [
     biography:
       "Buenos Aires, Argentina. 21 años. Leo filosofía y me gustan las películas de terror",
     texts: [11, 24, 26, 28],
-    savedTexts: [3],
+    savedTexts: [2, 3],
     followers: [1],
     following: [2],
   },
@@ -107,7 +107,7 @@ export const users = [
     biography:
       "Buenos Aires, Argentina. 21 años. Leo filosofía y me gustan las películas de terror",
     texts: [12],
-    savedTexts: [3],
+    savedTexts: [2, 3],
     followers: [1],
     following: [2],
   },
@@ -121,7 +121,7 @@ export const users = [
     biography:
       "Buenos Aires, Argentina. 21 años. Leo filosofía y me gustan las películas de terror",
     texts: [13, 14],
-    savedTexts: [3],
+    savedTexts: [2, 3],
     followers: [1],
     following: [2],
   },
@@ -136,7 +136,7 @@ export const users = [
     biography:
       "Buenos Aires, Argentina. 21 años. Leo filosofía y me gustan las películas de terror",
     texts: [14],
-    savedTexts: [3],
+    savedTexts: [2, 3],
     followers: [1],
     following: [2],
   },
@@ -151,7 +151,7 @@ export const users = [
     biography:
       "Buenos Aires, Argentina. 21 años. Leo filosofía y me gustan las películas de terror",
     texts: [15],
-    savedTexts: [3],
+    savedTexts: [2, 3],
     followers: [1],
     following: [2],
   },
@@ -166,7 +166,7 @@ export const users = [
     biography:
       "Buenos Aires, Argentina. 21 años. Leo filosofía y me gustan las películas de terror",
     texts: [16, 17],
-    savedTexts: [3],
+    savedTexts: [2, 3],
     followers: [1],
     following: [3],
   },

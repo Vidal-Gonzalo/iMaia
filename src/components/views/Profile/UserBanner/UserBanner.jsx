@@ -48,7 +48,7 @@ export default function UserBanner({
             startIcon={followButton ? <CheckCircleIcon /> : <PersonAddIcon />}
             onClick={handleClickOnFollow}
           >
-            {followButton ? "Seguido!" : "Seguir"}
+            {followButton ? "Seguido" : "Seguir"}
           </Button>
         </div>
         <div className="user-description">

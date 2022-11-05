@@ -15,11 +15,19 @@ export const iMaiaApi = {
       return await axios.get(`/text/profile/${username}`);
     }
   },
+  getUserSavedTexts: async (username) => {
+    if (username !== undefined) {
+      return await axios.get(`/text/profile/savedTexts/${username}`);
+    }
+  },
   getUserByUsername: async (username) => {
     return await axios.get(`/user/${username}`);
   },
   getUserById: async (id) => {
     return await axios.get(`/users/${id}`);
+  },
+  getSubscriptionsById: async (id, subscriptionType) => {
+    return await axios.get(`/users/${subscriptionType}/${id}`);
   },
   getElementsByName: async (type, name) => {
     return await axios.get(`/search/${type}/${name}`);

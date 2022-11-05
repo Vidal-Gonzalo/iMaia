@@ -1,0 +1,40 @@
+.modal-container > .modal-follows-title {
+  font-size: 1.3em;
+  margin: 0 0 1em 0;
+}
+
+.modal-container > .modal-follows-list {
+  max-height: 50vh;
+  overflow: scroll;
+  overflow-x: hidden;
+  scrollbar-color: rgba(0, 0, 0, 0.5) rgba(0, 0, 0, 0);
+  scrollbar-width: thin;
+}
+
+.modal-container > .modal-follows-list::-webkit-scrollbar {
+  -webkit-appearance: none;
+  appearance: initial;
+}
+
+.modal-container > .modal-follows-list::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+.modal-container > .modal-follows-list::-webkit-scrollbar-button:increment,
+.modal-container > .modal-follows-list::-webkit-scrollbar-button {
+  display: none;
+}
+
+.modal-container > .modal-follows-list::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.modal-container > .modal-follows-list::-webkit-scrollbar-thumb {
+  background-color: #b9b6b6;
+  border-radius: 20px;
+  border: 2px solid #f1f2f3;
+}
+
+.modal-container > .modal-follows-list::-webkit-scrollbar-track {
+  border-radius: 10px;
+}

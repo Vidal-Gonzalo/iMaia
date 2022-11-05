@@ -7,37 +7,43 @@ import { SearchElements } from "../utils/SearchElements";
 export const handlers = [
   rest.get(`/texts/:genre`, (req, res, ctx) => {
     const { genre } = req.params;
+
+    if (genre === "undefined") return res(ctx.status(400));
     const textsByGenre = SearchElements.filterElementsByGenre(texts, genre);
-    if (textsByGenre !== undefined) {
-      return res(
-        ctx.status(200),
-        ctx.json({
-          textsByGenre,
-        })
-      );
-    } else {
-      return res(ctx.status(404));
-    }
+    if (textsByGenre === undefined) return res(ctx.status(404));
+
+    return res(ctx.status(200), ctx.json({ textsByGenre }));
   }),
   rest.get(`/text/:id`, (req, res, ctx) => {
     const { id } = req.params;
-    if (id !== "undefined") {
-      const textById = SearchElements.getElementById(texts, parseInt(id));
-      if (textById !== undefined) {
-        return res(
-          ctx.status(200),
-          ctx.json({
-            textById,
-          })
-        );
-      } else {
-        return res(ctx.status(404));
-      }
-    } else {
-      return res(ctx.status(400));
-    }
+
+    if (id === "undefined") return res(ctx.status(400));
+
+    const textById = SearchElements.getElementById(texts, parseInt(id));
+
+    if (textById === undefined) return res(ctx.status(404));
+    return res(
+      ctx.status(200),
+      ctx.json({
+        textById,
+      })
+    );
   }),
   rest.get(`/text/profile/:username`, (req, res, ctx) => {
+    const { username } = req.params;
+    if (username === "undefined") return res(ctx.status(400));
+    const user = SearchElements.getUserByUsername(users, username);
+    if (user === undefined) return res(ctx.status(402));
+
+    const userTexts = user.texts.map((id) => {
+      return SearchElements.getElementById(texts, id);
+    });
+
+    if (userTexts === undefined) return res(ctx.status(204));
+
+    return res(ctx.status(200), ctx.json(userTexts));
+  }),
+  rest.get(`/text/profile/savedTexts/:username`, (req, res, ctx) => {
     const { username } = req.params;
     if (username === "undefined") {
       return res(ctx.status(400));
@@ -46,14 +52,13 @@ export const handlers = [
     if (user === undefined) {
       return res(ctx.status(402));
     }
-    const userTexts = user.texts.map((id) => {
+    const userSavedTexts = user.savedTexts.map((id) => {
       return SearchElements.getElementById(texts, id);
     });
-
-    if (userTexts === undefined) {
-      return res(ctx.status(400));
+    if (userSavedTexts === undefined) {
+      return res(ctx.status(204));
     }
-    return res(ctx.status(200), ctx.json(userTexts));
+    return res(ctx.status(200), ctx.json(userSavedTexts));
   }),
   rest.get(`/user/:username`, (req, res, ctx) => {
     const { username } = req.params;
@@ -81,6 +86,31 @@ export const handlers = [
       );
     } else {
       return res(ctx.status(404));
+    }
+  }),
+  rest.get(`/users/:subscriptionType/:id`, (req, res, ctx) => {
+    const { subscriptionType, id } = req.params;
+
+    if (id === undefined || subscriptionType === undefined) {
+      return res(ctx.status(400));
+    }
+    const user = SearchElements.getElementById(users, parseInt(id));
+    if (user === undefined) {
+      return res(ctx.status(404));
+    }
+
+    if (subscriptionType === "followers") {
+      const userFollowers = [];
+      for (const item of user.followers) {
+        userFollowers.push(SearchElements.getElementById(users, item));
+      }
+      return res(ctx.status(200), ctx.json({ userFollowers }));
+    } else if (subscriptionType === "followings") {
+      const userFollowings = [];
+      for (const item of user.following) {
+        userFollowings.push(SearchElements.getElementById(users, item));
+      }
+      return res(ctx.status(200), ctx.json({ userFollowings }));
     }
   }),
   rest.post(
@@ -166,6 +196,7 @@ export const handlers = [
       } else {
         user.savedTexts.push(parseInt(parsedTextId));
       }
+      console.log(user.savedTexts);
       return res(ctx.status(200));
     } else {
       return res(ctx.status(404));

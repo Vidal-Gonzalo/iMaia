@@ -56,7 +56,11 @@ export default function Profile() {
             setFollowed={setFollowed}
             userFollowed={userFollowed}
           />
-          <UserFollows followers={user.followers} following={user.following} />
+          <UserFollows
+            userId={user.id}
+            followers={user.followers}
+            following={user.following}
+          />
           <UserTabs user={user} />
         </>
       )}

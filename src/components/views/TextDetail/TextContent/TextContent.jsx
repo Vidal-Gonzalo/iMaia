@@ -6,16 +6,27 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import "./TextContent.css";
 
-export default function TextContent({ text, isLiked, setIsLiked, userLiked }) {
+export default function TextContent({
+  text,
+  isLiked,
+  setIsLiked,
+  userLiked,
+  isSaved,
+  setIsSaved,
+  userSaved,
+}) {
   const [heartClicked, setHeartClicked] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const [bookMarkClicked, setBookMarkClicked] = useState(false);
   const textContent = useRef(null);
 
   useEffect(() => {
     if (userLiked) {
       setHeartClicked(true);
     }
-  }, [userLiked]);
+    if (userSaved) {
+      setBookMarkClicked(true);
+    }
+  }, [userLiked, userSaved]);
 
   const handleClickOnLike = () => {
     iMaiaApi.likeAPost(text.id, 1); //1 = userId
@@ -24,8 +35,9 @@ export default function TextContent({ text, isLiked, setIsLiked, userLiked }) {
   };
 
   const handleClickOnSave = () => {
-    setSaved(!saved);
-    iMaiaApi.saveAPost(text.id, text.id_author);
+    iMaiaApi.saveAPost(text.id, 1);
+    setIsSaved(!isSaved);
+    setBookMarkClicked(!bookMarkClicked);
   };
 
   const convertToParagraphs = (str, ref) => {
@@ -59,7 +71,7 @@ export default function TextContent({ text, isLiked, setIsLiked, userLiked }) {
                 className="interaction-icon"
               />
             )}
-            {saved ? (
+            {bookMarkClicked ? (
               <BookmarkIcon
                 onClick={handleClickOnSave}
                 className="interaction-icon"

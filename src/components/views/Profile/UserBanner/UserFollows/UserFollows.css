@@ -1,12 +1,33 @@
-.user-follows {
+.more-info {
   display: flex;
+  justify-content: space-between;
   font-family: var(--global-primary-font);
+  border-bottom: 1px solid rgb(226, 225, 225);
+}
+.more-info > .followers {
+  width: 88%;
+  display: flex;
+  justify-content: center;
+}
+.more-info > .followers > p {
+  margin-right: 5%;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.user-follows > p {
-  margin: 0;
+.more-info > .followers > p:last-child {
+  font-weight: lighter;
+  cursor: auto;
 }
 
-.user-follows > p:nth-child(2) {
-  margin-left: 1em;
+.more-info > .options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+}
+.more-info > .followers > .options-btn {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
 }

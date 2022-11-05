@@ -1,0 +1,46 @@
+.modal-user-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0.7em 0.7em 0;
+  margin-bottom: 0.7em;
+}
+
+.modal-user-card > .user-image > a > img {
+  border-radius: 50%;
+  margin-right: 0.5em;
+}
+
+.modal-user-card > .user-info {
+  font-size: 0.7em;
+  margin-right: 0.7em;
+  font-family: var(--global-primary-font);
+}
+
+.modal-user-card > .user-info > a > h5 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.modal-user-card > .user-info > a > h5:hover {
+  text-decoration: underline;
+}
+
+.modal-user-card > .user-info > p {
+  margin: 0.5em 0 0.5em 0;
+  width: 90%;
+  font-size: 1.1em;
+}
+
+.modal-user-card > .user-action > .follow-btn {
+  border-radius: 1em;
+  max-width: 10em;
+  text-transform: capitalize;
+  background-color: var(--global-primary-color);
+  color: var(--global-secondary-color);
+}
+
+.modal-user-card > .user-action > .active {
+  background-color: var(--global-secondary-color);
+  color: var(--global-primary-color);
+}
