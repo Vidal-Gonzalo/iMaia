@@ -8,14 +8,8 @@ export default function ReasonsCard({
   title,
   description,
   isActive,
-  setisActive,
+  changeLampState,
 }) {
-  const changeLampState = (id) => {
-    if (!isActive.includes(id)) {
-      setisActive([id]);
-    }
-  };
-
   return (
     <div className="reasons-card">
       <div className="reasons-content">

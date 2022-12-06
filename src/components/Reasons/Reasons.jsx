@@ -11,6 +11,12 @@ export default function Reasons({ title }) {
   const [isActive, setisActive] = useState([1]);
   const [gif, setGif] = useState(reasonsGifs[0].gif);
 
+  const changeLampState = (id) => {
+    if (!isActive.includes(id)) {
+      setisActive([id]);
+    }
+  };
+
   useEffect(() => {
     if (isActive) {
       const newGif = reasonsGifs.filter((g) => g.id === isActive[0]);
@@ -34,21 +40,21 @@ export default function Reasons({ title }) {
               title={"Conecta con otros autores"}
               description={"Lorem ipsum dolor sit amet"}
               isActive={isActive}
-              setisActive={setisActive}
+              changeLampState={changeLampState}
             />
             <ReasonsCard
               id={2}
               title={"Encuentra variedad"}
               description={"Lorem ipsum dolor sit amet, consectetur adipiscing"}
               isActive={isActive}
-              setisActive={setisActive}
+              changeLampState={changeLampState}
             />
             <ReasonsCard
               id={3}
               title={"Autores"}
               description={"Lorem ipsum dolor sit amet, consectetur adipiscing"}
               isActive={isActive}
-              setisActive={setisActive}
+              changeLampState={changeLampState}
             />
           </div>
         </div>

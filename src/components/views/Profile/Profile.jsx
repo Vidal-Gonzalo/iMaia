@@ -15,6 +15,10 @@ export default function Profile() {
   const [userFollowed, setUserFollowed] = useState(false);
   const { username } = useParams();
 
+  const changeFollowedState = (followedState) => {
+    setFollowed(!followedState);
+  };
+
   useEffect(() => {
     const loadUserData = async (username) => {
       const response = await iMaiaApi.getUserByUsername(username);
@@ -36,11 +40,13 @@ export default function Profile() {
         let userFollowers = user.followers;
         if (userFollowers.find((e) => e === userId)) {
           setUserFollowed(true);
+        } else {
+          setUserFollowed(false);
         }
       };
       checkIfUserFollowed(USER_ID);
     }
-  }, [user]);
+  }, [user, userFollowed]);
   return (
     <section
       className="profile-section"
@@ -53,7 +59,7 @@ export default function Profile() {
           <UserBanner
             user={user}
             followed={followed}
-            setFollowed={setFollowed}
+            changeFollowedState={changeFollowedState}
             userFollowed={userFollowed}
           />
           <UserFollows

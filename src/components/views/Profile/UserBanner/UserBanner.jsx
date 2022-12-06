@@ -9,7 +9,7 @@ import { iMaiaApi } from "../../../../api/iMaiaApi";
 export default function UserBanner({
   user,
   followed,
-  setFollowed,
+  changeFollowedState,
   userFollowed,
 }) {
   //Si el usuario está viendo su propio perfil mostrar "Editar perfil" en el lugar de seguir
@@ -17,13 +17,15 @@ export default function UserBanner({
 
   const handleClickOnFollow = () => {
     iMaiaApi.followUser(1, user.id); //1 user id
-    setFollowed(!followed);
+    changeFollowedState(followed);
     setFollowButton(!followButton);
   };
 
   useEffect(() => {
     if (userFollowed) {
       setFollowButton(true);
+    } else {
+      setFollowButton(false);
     }
   }, [userFollowed]);
 

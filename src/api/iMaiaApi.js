@@ -53,4 +53,22 @@ export const iMaiaApi = {
       `/user/follow/${userIdWhoFollows}/${userIdFollowed}`
     );
   },
+  login: async (email, password) => {
+    let response = await axios.post(`/auth/login`, { email, password });
+    if (response.data.accessToken) {
+      const userSession = {
+        id: response.data.id,
+        username: response.data.username,
+        accessToken: response.data.accessToken,
+      };
+      localStorage.setItem("user", JSON.stringify(userSession));
+    }
+    return response.data;
+  },
+  logout: () => {
+    localStorage.removeItem("user");
+  },
+  register: (name, email, password) => {
+    return axios.post(`/auth/register`, { name, email, password });
+  },
 };

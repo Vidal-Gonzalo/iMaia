@@ -8,11 +8,9 @@ import "./TextContent.css";
 
 export default function TextContent({
   text,
-  isLiked,
-  setIsLiked,
+  changeIsLikedState,
   userLiked,
-  isSaved,
-  setIsSaved,
+  changeIsSavedState,
   userSaved,
 }) {
   const [heartClicked, setHeartClicked] = useState(false);
@@ -30,13 +28,13 @@ export default function TextContent({
 
   const handleClickOnLike = () => {
     iMaiaApi.likeAPost(text.id, 1); //1 = userId
-    setIsLiked(!isLiked);
+    changeIsLikedState();
     setHeartClicked(!heartClicked);
   };
 
   const handleClickOnSave = () => {
     iMaiaApi.saveAPost(text.id, 1);
-    setIsSaved(!isSaved);
+    changeIsSavedState();
     setBookMarkClicked(!bookMarkClicked);
   };
 

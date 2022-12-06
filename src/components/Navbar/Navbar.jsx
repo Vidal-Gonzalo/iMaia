@@ -16,8 +16,9 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import LoginIcon from "@mui/icons-material/Login";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@mui/material";
-import "./Navbar.css";
 import { useEffect } from "react";
+import "./Navbar.css";
+import { useSelector } from "react-redux";
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   position: "fixed",
@@ -49,16 +50,29 @@ export default function PrimarySearchAppBar() {
   // const [anchorEl, setAnchorEl] = useState(null);
   const location = useLocation();
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
-  const [isLoggedIn] = useState(false);
+
+  const { isLoggedIn } = useSelector((state) => state.auth);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-  const [navbar, setNavbar] = useState(false);
+  const [navbarBackground, setNavbarBackground] = useState(false);
+  const [displayBlock, setDisplayBlock] = useState(true);
+
+  console.log(isLoggedIn);
 
   const changeBackground = (location) => {
-    if (window.scrollY >= 66 || location.pathname?.includes("search")) {
-      setNavbar(true);
+    if (
+      window.scrollY >= 66 ||
+      location.pathname?.includes("search") ||
+      location.pathname?.includes("login")
+    ) {
+      setNavbarBackground(true);
     } else {
-      setNavbar(false);
+      setNavbarBackground(false);
     }
+  };
+
+  const changeDisplay = (location) => {
+    if (location.pathname?.includes("login")) setDisplayBlock(false);
+    else setDisplayBlock(true);
   };
 
   const handleProfileMenuOpen = (event) => {
@@ -85,9 +99,12 @@ export default function PrimarySearchAppBar() {
 
   useEffect(() => {
     changeBackground(location);
-
     window.addEventListener("scroll", changeBackground);
-  }, [navbar, location]);
+  }, [navbarBackground, location]);
+
+  useEffect(() => {
+    changeDisplay(location);
+  }, [location]);
 
   const renderMobileMenu = (
     <Menu
@@ -136,7 +153,7 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <StyledAppBar
         style={
-          navbar
+          navbarBackground
             ? {
                 backgroundColor: "#000",
                 animation: "ease-in",
@@ -153,73 +170,77 @@ export default function PrimarySearchAppBar() {
                 iMaia
               </StyledTypography>
             </Link>
-
-            <Link style={{ textDecoration: "none" }} to="/writings">
-              <StyledTypography variant="h6" component="div">
-                Escritos
-              </StyledTypography>
-            </Link>
-            <Link style={{ textDecoration: "none" }} to="/poems">
-              <StyledTypography variant="h6" component="div">
-                Poemas
-              </StyledTypography>
-            </Link>
-
-            {/* <StyledTypography
+          </StyledBox>
+          {displayBlock && (
+            <>
+              <Link style={{ textDecoration: "none" }} to="/writings">
+                <StyledTypography variant="h6" component="div">
+                  Escritos
+                </StyledTypography>
+              </Link>
+              <Link style={{ textDecoration: "none" }} to="/poems">
+                <StyledTypography variant="h6" component="div">
+                  Poemas
+                </StyledTypography>
+              </Link>
+              {/* <StyledTypography
               variant="h6"
               component="div"
               style={{ marginLeft: "2.6em", marginRight: "2.8em" }}
             >
               Desafíos
             </StyledTypography> */}
-          </StyledBox>
-          <Box sx={{ flexGrow: 1 }} />
-
-          <StyledBox sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link to={`/search/writings`}>
-              <IconButton
-                style={{ marginRight: "0.3em" }}
-                edge="end"
-                color="inherit"
-              >
-                <SearchIcon style={{ fontSize: "1.2em" }} />
-              </IconButton>{" "}
-            </Link>
-
-            {isLoggedIn ? (
-              <>
-                <Link style={{ textDecoration: "none" }} to="/write">
-                  <StyledTypography variant="h6" noWrap component="div">
-                    Escribir
-                  </StyledTypography>
+              <Box sx={{ flexGrow: 1 }} />
+              <StyledBox sx={{ display: { xs: "none", md: "flex" } }}>
+                <Link to={`/search/writings`}>
+                  <IconButton
+                    style={{ marginRight: "0.3em" }}
+                    edge="end"
+                    color="inherit"
+                  >
+                    <SearchIcon style={{ fontSize: "1.2em" }} />
+                  </IconButton>{" "}
                 </Link>
-                <IconButton
-                  size="large"
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  onClick={handleProfileMenuOpen}
-                  color="inherit"
-                >
-                  <AccountCircle fontSize="large" />
-                </IconButton>{" "}
-              </>
-            ) : (
-              <>
-                <Button
-                  style={{
-                    backgroundColor: "transparent",
-                    fontFamily: "var(--global-primary-font)",
-                  }}
-                  variant="contained"
-                  endIcon={<LoginIcon />}
-                >
-                  Iniciar sesión
-                </Button>
-              </>
-            )}
-          </StyledBox>
+
+                {isLoggedIn ? (
+                  <>
+                    <Link style={{ textDecoration: "none" }} to="/write">
+                      <StyledTypography variant="h6" noWrap component="div">
+                        Escribir
+                      </StyledTypography>
+                    </Link>
+                    <IconButton
+                      size="large"
+                      edge="end"
+                      aria-label="account of current user"
+                      aria-controls={menuId}
+                      aria-haspopup="true"
+                      onClick={handleProfileMenuOpen}
+                      color="inherit"
+                    >
+                      <AccountCircle fontSize="large" />
+                    </IconButton>{" "}
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login">
+                      <Button
+                        style={{
+                          backgroundColor: "transparent",
+                          fontFamily: "var(--global-primary-font)",
+                        }}
+                        variant="contained"
+                        endIcon={<LoginIcon />}
+                      >
+                        Iniciar sesión
+                      </Button>
+                    </Link>
+                  </>
+                )}
+              </StyledBox>
+            </>
+          )}
+
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"

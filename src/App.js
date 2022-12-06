@@ -5,6 +5,7 @@ import TextDetail from "./components/views/TextDetail/TextDetail";
 import Writings from "./components/views/Writings/Writings";
 import Search from "./components/views/Search/Search";
 import Profile from "./components/views/Profile/Profile";
+import Auth from "./components/views/Auth/Auth";
 import "./App.css";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path=":element" element={<Outlet />} />
         </Route>
         <Route path="/text/:id" element={<TextDetail />} />
+        <Route path="/login" element={<Auth />} />
       </Routes>
     </div>
   );

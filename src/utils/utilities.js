@@ -32,4 +32,13 @@ export const utilities = {
       </p>
     );
   },
+  authHeader: () => {
+    const token = JSON.parse(localStorage.getItem("token"));
+    if (token && token.accessToken) {
+      //Node.js express --> 'x-access-token':user.accessToken
+      return { Authorization: "Bearer " + token.accessToken };
+    } else {
+      return {};
+    }
+  },
 };

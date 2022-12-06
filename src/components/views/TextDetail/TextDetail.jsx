@@ -19,6 +19,14 @@ export default function TextDetail() {
   const [isSaved, setIsSaved] = useState(false);
   const [userSaved] = useState(false);
 
+  const changeIsLikedState = () => {
+    setIsLiked(!isLiked);
+  };
+
+  const changeIsSavedState = () => {
+    setIsSaved(!isSaved);
+  };
+
   useEffect(() => {
     const loadTextData = async (id) => {
       const response = await iMaiaApi.getTextById(id);
@@ -71,12 +79,10 @@ export default function TextDetail() {
         <Grid xs={9}>
           <TextContent
             text={text}
-            isLiked={isLiked}
-            setIsLiked={setIsLiked}
             userLiked={userLiked}
-            isSaved={isSaved}
-            setIsSaved={setIsSaved}
+            changeIsLikedState={changeIsLikedState}
             userSaved={userSaved}
+            changeIsSavedState={changeIsSavedState}
           />
           <Comments textId={text?.id} userId={text?.id_author} />{" "}
           {/*UserId es provisional hasta que usemos Redux y tomemos el ID del usuario loggueado en formcomment.*/}

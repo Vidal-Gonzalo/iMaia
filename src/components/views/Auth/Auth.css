@@ -1,0 +1,93 @@
+.auth-section {
+  height: 100vh;
+  display: flex;
+  font-family: var(--global-primary-font);
+}
+
+.auth-section > .form-container {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.auth-section > .auth-presentation {
+  height: 100%;
+  width: 50%;
+  color: var(--global-secondary-color);
+}
+
+.auth-section > .auth-presentation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.auth-section > .auth-presentation > h4 {
+  font-size: 2.5rem;
+  width: 80%;
+  text-align: center;
+}
+
+.auth-section > .auth-presentation > img {
+  width: 30rem;
+}
+
+.login-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 10%;
+}
+
+.login-form > .form-title > h3 {
+  margin: 1rem 0 0.5rem 0;
+  font-size: 2.5rem;
+}
+
+.login-form > .form-title > p {
+  margin: 0.5rem;
+}
+
+.login-form > .form-login-input {
+  margin: 1.5rem;
+}
+
+.login-form > .form-input {
+  margin: 1rem;
+}
+
+.login-form > .form-error > .error-message {
+  color: red;
+}
+
+.login-form > .form-input > .input,
+.login-form > .form-login-input > .input {
+  width: 60%;
+}
+
+.login-form > .form-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form > .form-actions > p {
+  margin-right: 1rem;
+  cursor: pointer;
+  color: #58c1f5;
+}
+
+.login-form > .form-actions > .submit-btn {
+  border-radius: 1rem;
+  max-width: 10em;
+  text-transform: none;
+  background-color: var(--global-primary-color);
+  color: var(--global-secondary-color);
+}

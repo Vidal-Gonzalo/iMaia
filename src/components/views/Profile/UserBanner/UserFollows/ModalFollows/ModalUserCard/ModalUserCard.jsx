@@ -47,12 +47,12 @@ export default function ModalUserCard({
       {user ? (
         <>
           <div className="user-image">
-            <Link to={`/user/${user.username}`} replace={true}>
+            <Link to={`/user/${user.username}`}>
               <img src={user.picUrl} alt="" width="50" />
             </Link>
           </div>
           <div className="user-info">
-            <Link to={`/user/${user.username}`} replace={true}>
+            <Link to={`/user/${user.username}`}>
               <h5>{user.username}</h5>
             </Link>
             <p>{user.biography}</p>

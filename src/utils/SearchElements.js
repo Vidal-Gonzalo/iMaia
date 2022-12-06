@@ -10,6 +10,9 @@ export const SearchElements = {
   getUserByUsername: (array, username) => {
     return array.find((e) => e.username === username);
   },
+  getUserByEmail: (array, email) => {
+    return array.find((e) => e.email === email);
+  },
   getElementTags: (genre, tags) => {
     const thisTags = tags.find((t) => t.genre === genre);
     if (thisTags !== undefined) return thisTags.tag;

@@ -5,7 +5,6 @@ import signup from "../../../../assets/images/signup.png";
 import read from "../../../../assets/images/read.png";
 import write from "../../../../assets/images/write.png";
 import rate from "../../../../assets/images/rate.png";
-import line from "../../../../assets/images/line.png";
 
 export default function Functionality({ title }) {
   return (
