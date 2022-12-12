@@ -1,29 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { iMaiaApi } from "../../../api/iMaiaApi";
 import UserBanner from "./UserBanner/UserBanner";
 import UserTabs from "./UserTabs/UserTabs";
-// import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import "./Profile.css";
 import UserFollows from "./UserBanner/UserFollows/UserFollows";
-
-const USER_ID = 1;
+import { userServices } from "../../../api/userServices";
+import { useSelector } from "react-redux";
+import "./Profile.css";
 
 export default function Profile() {
+  const { username } = useParams();
   const [user, setUser] = useState();
   const [followed, setFollowed] = useState(false);
   const [userFollowed, setUserFollowed] = useState(false);
-  const { username } = useParams();
 
-  const changeFollowedState = (followedState) => {
-    setFollowed(!followedState);
+  const loggedUser = useSelector((state) => state.auth.user);
+
+  const changeFollowedState = () => {
+    setFollowed(!followed);
   };
 
   useEffect(() => {
     const loadUserData = async (username) => {
-      const response = await iMaiaApi.getUserByUsername(username);
-      console.log(response.data);
-      setUser(response.data);
+      const response = await userServices.getUserByUsername(username);
+      setUser(response);
     };
     try {
       loadUserData(username);
@@ -43,9 +42,9 @@ export default function Profile() {
           setUserFollowed(false);
         }
       };
-      checkIfUserFollowed(USER_ID);
+      checkIfUserFollowed(loggedUser._id);
     }
-  }, [user, userFollowed]);
+  }, [user, userFollowed, loggedUser._id]);
   return (
     <section
       className="profile-section"
@@ -61,12 +60,13 @@ export default function Profile() {
             changeFollowedState={changeFollowedState}
             userFollowed={userFollowed}
           />
-          {/* <UserFollows
-            userId={user.id}
+          <UserFollows
+            userId={user._id}
             followers={user.followers}
             following={user.following}
+            changeFollowedState={changeFollowedState}
           />
-          <UserTabs user={user} /> */}
+          <UserTabs user={user} />
         </>
       )}
     </section>

@@ -13,7 +13,7 @@ router.get(`/:genre`, getTextsByGenre);
 
 router.get(`/id/:id`, getTextById);
 
-router.get(`/profile/username/:username`, protect, getUserTexts);
+router.get(`/profile/username/:id`, getUserTexts);
 
 router.get(`/profile/savedTexts/username/:username`, getUserSavedTexts);
 

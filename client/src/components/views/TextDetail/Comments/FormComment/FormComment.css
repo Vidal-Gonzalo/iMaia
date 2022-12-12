@@ -8,10 +8,9 @@
   height: 30px;
 }
 
-.form-comment > .form-box > .user-icon > img {
+.form-comment > .form-box > .user-icon {
   border-radius: 100%;
   margin-right: 0.5em;
-  height: 30px;
 }
 
 .form-comment > .form-box > .comment-body {

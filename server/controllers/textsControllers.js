@@ -2,14 +2,17 @@ const asyncHandler = require("express-async-handler");
 //Cuando tenga que crear una publicación revisar documentación. El model debe coincidir
 //con los elementos agregados desde el front-end.
 const Texts = require("../models/textsModel");
+const User = require("../models/userModel");
 
 //@desc Get texts by the given genre
 //@route GET /texts/:genre
 //@access Public
 const getTextsByGenre = asyncHandler(async (req, res) => {
+  if (!req.params.genre) {
+    res.status(404);
+    throw new Error("Género no encontrado");
+  }
   const texts = await Texts.find({ genre: req.params.genre });
-
-  if (texts === undefined) res.status(404);
 
   res.status(200).json(texts);
 });
@@ -18,36 +21,47 @@ const getTextsByGenre = asyncHandler(async (req, res) => {
 //@route GET /texts/:genre
 //@access Public
 const getTextById = asyncHandler(async (req, res) => {
-  const textById = await Texts.findById({ _id: req.params.id });
+  if (!req.params.id) {
+    res.status(404);
+    throw new Error("ID no ingresado");
+  }
 
-  if (textById === undefined) return res.status(404);
+  const textById = await Texts.findById({ _id: req.params.id });
 
   res.status(200).json(textById);
 });
 
 //@desc Get texts by the given user
-//@route GET /texts/username/:username
-//@access Temporarily private
+//@route GET /texts/profile/username/:username
+//@access Public
 const getUserTexts = asyncHandler(async (req, res) => {
-  const texts = await Texts.find({ id_author: req.user.id });
+  if (!req.params.id) {
+    res.status(404);
+    throw new Error("ID no ingresado");
+  }
+  const texts = await Texts.find({ id_author: req.params.id });
 
-  res.status(200).json({ texts });
+  res.status(200).json(texts);
 });
 
 const getUserSavedTexts = asyncHandler(async (req, res) => {
   const { username } = req.params;
-  if (username === "undefined") {
-    return res.status(404).json({ message: "" });
+  if (!username) {
+    res.status(404);
+    throw new Error("Usuario no ingresado");
   }
-  const user = "asd";
-  if (user === undefined) {
-    return res.status(404).json({ message: "" });
+  const user = await User.findOne({ username: username });
+  if (!user) {
+    res.status(404);
+    throw new Error("Usuario no encontrado");
   }
-  const userSavedTexts = "asd";
-  if (userSavedTexts === undefined) {
-    return res.status(404).json({ message: "" });
+  const userSavedTexts = [];
+  for (let i = 0; i < user.savedTexts.length; i++) {
+    userSavedTexts.push(
+      await Texts.findById({ _id: user.savedTexts[i].toString() })
+    );
   }
-  res.status(200).json({ userSavedTexts });
+  res.status(200).json(userSavedTexts);
 });
 
 const createPost = asyncHandler(async (req, res) => {

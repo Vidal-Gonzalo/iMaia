@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
-import { iMaiaApi } from "../../../../api/iMaiaApi";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
 import "./TextContent.css";
+import { interactionServices } from "../../../../api/interactionsServices";
 
 export default function TextContent({
   text,
@@ -26,16 +26,26 @@ export default function TextContent({
     }
   }, [userLiked, userSaved]);
 
-  const handleClickOnLike = () => {
-    iMaiaApi.likeAPost(text.id, 1); //1 = userId
-    changeIsLikedState();
-    setHeartClicked(!heartClicked);
+  const handleClickOnLike = async () => {
+    const response = await interactionServices.interactionWithPost(
+      text._id,
+      "like"
+    );
+    if (response) {
+      changeIsLikedState();
+      setHeartClicked(!heartClicked);
+    }
   };
 
-  const handleClickOnSave = () => {
-    iMaiaApi.saveAPost(text.id, 1);
-    changeIsSavedState();
-    setBookMarkClicked(!bookMarkClicked);
+  const handleClickOnSave = async () => {
+    const response = await interactionServices.interactionWithPost(
+      text._id,
+      "save"
+    );
+    if (response) {
+      changeIsSavedState();
+      setBookMarkClicked(!bookMarkClicked);
+    }
   };
 
   const convertToParagraphs = (str, ref) => {

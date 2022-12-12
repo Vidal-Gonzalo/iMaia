@@ -1,29 +1,23 @@
 import React, { useState } from "react";
-import { Box, Button, TextField } from "@mui/material";
+import { Avatar, Box, Button, TextField } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
-import userImage1 from "../../../../../assets/images/avatar.jpg";
-import { iMaiaApi } from "../../../../../api/iMaiaApi";
 import "./FormComment.css";
+import { interactionServices } from "../../../../../api/interactionsServices";
 
-export default function FormComment({ textId, userId, isCommentSent }) {
+export default function FormComment({ textId, user, isCommentSent }) {
   const [comment, setComment] = useState("");
   const handleChange = (e) => {
     setComment(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    iMaiaApi
-      .commentAPost(textId, userId, comment) //Usuario logueado
-      .then(() => {
-        console.log("Comentario creado!");
-        isCommentSent();
-        setComment("");
-        e.target[0].value = "";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const response = await interactionServices.commentAPost(textId, comment);
+    if (response) {
+      isCommentSent();
+      setComment("");
+      e.target[0].value = "";
+    }
   };
 
   return (
@@ -33,7 +27,7 @@ export default function FormComment({ textId, userId, isCommentSent }) {
         sx={{ display: "flex", alignItems: "flex-end" }}
       >
         <div className="user-icon">
-          <img src={userImage1} width={30} alt="" />
+          <Avatar src={user.picUrl} width={30} />
         </div>
         <TextField
           className="comment-body"

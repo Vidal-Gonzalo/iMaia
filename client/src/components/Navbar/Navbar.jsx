@@ -9,15 +9,15 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import LoginIcon from "@mui/icons-material/Login";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Avatar, Button, Divider } from "@mui/material";
 import { useEffect } from "react";
 import "./Navbar.css";
 import { useSelector, useDispatch } from "react-redux";
@@ -154,7 +154,7 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <AccountCircleIcon />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -200,9 +200,16 @@ export default function PrimarySearchAppBar() {
       transformOrigin={{ horizontal: "right", vertical: "top" }}
       anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
     >
-      <MenuItem onClick={handleMenuClose} sx={{ textAlign: "right" }}>
+      <Link to={`/user/${user?.username}`}>
+        <MenuItem onClick={handleMenuClose} sx={{ textAlign: "right" }}>
+          <AccountCircleIcon sx={{ marginRight: "0.5em" }} />
+          Mi perfil
+        </MenuItem>
+      </Link>
+      <Divider />
+      <MenuItem onClick={handleMenuClose}>
         <SettingsIcon sx={{ marginRight: "0.5em" }} />
-        Mi cuenta
+        Configuración
       </MenuItem>
       <MenuItem onClick={onLogout}>
         <LogoutIcon sx={{ marginRight: "0.5em" }} />
@@ -280,7 +287,7 @@ export default function PrimarySearchAppBar() {
                       onClick={handleProfileMenuOpen}
                       color="inherit"
                     >
-                      <AccountCircle fontSize="large" />
+                      <Avatar alt={user.username} src={user.picUrl} />
                     </IconButton>{" "}
                   </>
                 ) : (

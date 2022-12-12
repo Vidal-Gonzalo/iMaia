@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { iMaiaApi } from "../../../api/iMaiaApi";
 import Grid from "@mui/material/Unstable_Grid2";
 import "./TextDetail.css";
 import Sidebar from "./Sidebar/Sidebar";
 import TextContent from "./TextContent/TextContent";
 import Comments from "./Comments/Comments";
 import TextImage from "./TextImage/TextImage";
-
-const USER_ID = 1; //Cambiará cuando se implemente el login y redux
+import { textServices } from "../../../api/textServices";
+import { userServices } from "../../../api/userServices";
+import { useSelector } from "react-redux";
 
 export default function TextDetail() {
   const { id } = useParams();
@@ -17,7 +17,8 @@ export default function TextDetail() {
   const [isLiked, setIsLiked] = useState(false);
   const [userLiked, setUserLiked] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  const [userSaved] = useState(false);
+  const [userSaved, setUserSaved] = useState(false);
+  const user = useSelector((state) => state.auth.user);
 
   const changeIsLikedState = () => {
     setIsLiked(!isLiked);
@@ -29,8 +30,8 @@ export default function TextDetail() {
 
   useEffect(() => {
     const loadTextData = async (id) => {
-      const response = await iMaiaApi.getTextById(id);
-      setText(response.data);
+      const response = await textServices.getTextById(id);
+      if (response) setText(response);
     };
 
     try {
@@ -46,33 +47,38 @@ export default function TextDetail() {
     if (text !== undefined) {
       document.title = `${text?.title} - iMaia`;
       const loadAuthorData = async (id) => {
-        const response = await iMaiaApi.getUserById(id);
-        console.log(response);
-        setAuthor(response.data);
+        const response = await userServices.getUserById(id);
+        if (response) {
+          setAuthor(response);
+        }
       };
       const checkIfUserLiked = (userId) => {
         if (text.likes.find((e) => e === userId)) {
           setUserLiked(true);
         }
       };
-      // const checkIfUserSavedText = (userId) => {
-      //   //Redux URGENTE: tomar el ID de la persona logueada.
-      // };
+      const checkIfUserSavedText = async (textId) => {
+        const loggedUser = await userServices.getUserById(user._id);
+        if (loggedUser) {
+          if (loggedUser.savedTexts.find((e) => e === textId)) {
+            setUserSaved(true);
+          }
+        }
+      };
 
       try {
-        loadAuthorData(text.id_author).then(() => {
-          checkIfUserLiked(USER_ID);
-          // checkIfUserSavedText(USER_ID);
-        });
+        loadAuthorData(text.id_author);
+        checkIfUserLiked(user._id);
+        checkIfUserSavedText(text._id);
       } catch (err) {
         console.log(err);
       }
     }
-  }, [text]);
+  }, [text, user]);
 
   return (
     <section id="text-detail">
-      <TextImage text={text} />
+      {text && <TextImage text={text} />}
       <Grid container style={{ marginTop: "2em" }}>
         <Grid xs={3}>
           <Sidebar author={author} />
@@ -85,8 +91,7 @@ export default function TextDetail() {
             userSaved={userSaved}
             changeIsSavedState={changeIsSavedState}
           />
-          <Comments textId={text?.id} userId={text?.id_author} />{" "}
-          {/*UserId es provisional hasta que usemos Redux y tomemos el ID del usuario loggueado en formcomment.*/}
+          <Comments textId={text?._id} />
         </Grid>
       </Grid>
     </section>

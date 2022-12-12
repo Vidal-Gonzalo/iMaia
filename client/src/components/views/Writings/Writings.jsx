@@ -5,7 +5,7 @@ import WritingsCarousel from "./WritingsCarousel/WritingsCarousel.jsx";
 import SearchWritings from "./SearchWritings/SearchWritings";
 import WritingsList from "./WritingsList/WritingsList";
 import { SearchElements } from "../../../utils/SearchElements";
-import { iMaiaApi } from "../../../api/iMaiaApi";
+import { textServices } from "../../../api/textServices";
 
 //Hace falta usar un useMemo para no fetchear y hacer toda la lógica de vuelta cada vez que
 //el usuario entra al componente.
@@ -19,8 +19,8 @@ export default function Writings() {
 
   useEffect(() => {
     const loadTextsData = async (genre) => {
-      const response = await iMaiaApi.getTextsByGenre(genre);
-      let texts = response.data;
+      const response = await textServices.getTextsByGenre(genre);
+      let texts = response;
       if (texts.length > 0) {
         if (genre === "writings") {
           setWritings(texts);

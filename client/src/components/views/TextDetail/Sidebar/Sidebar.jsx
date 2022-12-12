@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -7,13 +7,33 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Box, Button, CircularProgress } from "@mui/material";
 import { Link } from "react-router-dom";
 import "./Sidebar.css";
+import { useSelector } from "react-redux";
+import { interactionServices } from "../../../../api/interactionsServices";
 
 export default function Sidebar({ author }) {
   const [followed, setFollowed] = useState(false);
+  const loggedUser = useSelector((state) => state.auth.user);
 
-  const handleFollow = () => {
-    setFollowed(!followed);
+  const handleFollow = async () => {
+    const response = await interactionServices.followUser(author._id);
+    if (response) {
+      setFollowed(!followed);
+    }
   };
+
+  useEffect(() => {
+    if (author !== undefined) {
+      const checkIfLoggedUserFollowed = (loggedUserId) => {
+        let userFollowers = author.followers;
+        if (userFollowers.find((e) => e === loggedUserId)) {
+          setFollowed(true);
+        } else {
+          setFollowed(false);
+        }
+      };
+      checkIfLoggedUserFollowed(loggedUser._id);
+    }
+  }, [author, loggedUser._id]);
 
   return (
     <div className="sidebar">

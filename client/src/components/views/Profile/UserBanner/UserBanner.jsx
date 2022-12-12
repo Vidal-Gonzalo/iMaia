@@ -4,7 +4,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import "./UserBanner.css";
 import { useEffect } from "react";
-import { iMaiaApi } from "../../../../api/iMaiaApi";
+import { interactionServices } from "../../../../api/interactionsServices";
 
 export default function UserBanner({
   user,
@@ -15,10 +15,12 @@ export default function UserBanner({
   //Si el usuario está viendo su propio perfil mostrar "Editar perfil" en el lugar de seguir
   const [followButton, setFollowButton] = useState(false);
 
-  const handleClickOnFollow = () => {
-    iMaiaApi.followUser(1, user.id); //1 user id
-    changeFollowedState(followed);
-    setFollowButton(!followButton);
+  const handleClickOnFollow = async () => {
+    const response = await interactionServices.followUser(user._id);
+    if (response) {
+      changeFollowedState(followed);
+      setFollowButton(!followButton);
+    }
   };
 
   useEffect(() => {
@@ -33,7 +35,7 @@ export default function UserBanner({
     <div
       className="user-banner"
       style={{
-        backgroundImage: `url(${user.banner})`,
+        // backgroundImage: `url(${user.banner})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

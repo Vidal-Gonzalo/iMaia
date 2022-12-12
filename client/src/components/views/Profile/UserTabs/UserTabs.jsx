@@ -5,8 +5,8 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { Grid } from "@mui/material";
 import "./UserTabs.css";
-import { iMaiaApi } from "../../../../api/iMaiaApi";
 import UserWritings from "./UserTexts/UserTexts";
+import { textServices } from "../../../../api/textServices";
 
 function TabPanel(props) {
   const { children, value, index } = props;
@@ -45,8 +45,8 @@ export default function UserTabs({ user }) {
   useEffect(() => {
     let isCancelled = false;
     const loadUserTexts = async (user) => {
-      const response = await iMaiaApi.getTextsByUsername(user.username);
-      const texts = response.data;
+      const response = await textServices.getTextsById(user._id);
+      const texts = response;
       let writingsAux = [];
       let poemsAux = [];
       for (const text of texts) {
@@ -60,8 +60,8 @@ export default function UserTabs({ user }) {
       setPoems(poemsAux);
     };
     const loadUserSavedTexts = async (user) => {
-      const response = await iMaiaApi.getUserSavedTexts(user.username);
-      const texts = response.data;
+      const response = await textServices.getUserSavedTexts(user.username);
+      const texts = response;
       if (texts !== undefined) {
         setSavedTexts(texts);
       }

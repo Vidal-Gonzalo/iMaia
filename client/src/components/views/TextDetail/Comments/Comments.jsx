@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import CommentCard from "./CommentCard/CommentCard";
 import FormComment from "./FormComment/FormComment";
-import { iMaiaApi } from "../../../../api/iMaiaApi";
 import "./Comments.css";
 import Button from "../../../Button/Button";
+import { interactionServices } from "../../../../api/interactionsServices";
+import { useSelector } from "react-redux";
 
 const commentsAtStart = 6;
 
-export default function Comments({ textId, userId }) {
+export default function Comments({ textId }) {
   const [next, setNext] = useState(commentsAtStart);
   const [textComments, setTextComments] = useState([]);
-  const [loggedIn] = useState(true); // TODO: Redux
   const [sentComment, setSentComment] = useState(false);
+  const user = useSelector((state) => state.auth.user);
 
   const handleMoreText = () => {
     setNext(next + commentsAtStart);
@@ -24,8 +25,10 @@ export default function Comments({ textId, userId }) {
   useEffect(() => {
     let isCancelled = false;
     const loadComments = async (textId) => {
-      const response = await iMaiaApi.getComments(textId);
-      setTextComments(response.data.commentsOfThisText);
+      const response = await interactionServices.getComments(textId);
+      if (response) {
+        setTextComments(response);
+      }
     };
     try {
       if (textId !== undefined && !isCancelled) {
@@ -42,10 +45,10 @@ export default function Comments({ textId, userId }) {
 
   return (
     <div className="comments-container">
-      {loggedIn ? (
+      {user ? (
         <FormComment
           textId={textId}
-          userId={userId}
+          user={user}
           isCommentSent={isCommentSent}
         />
       ) : null}

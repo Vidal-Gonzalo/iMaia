@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { iMaiaApi } from "../../api/iMaiaApi";
+import { authServices } from "../../api/authServices";
 
 //Get user from localStorage
 const user = JSON.parse(localStorage.getItem("user"));
@@ -17,7 +17,11 @@ export const register = createAsyncThunk(
   "auth/register",
   async (user, thunkAPI) => {
     try {
-      return await iMaiaApi.register(user.username, user.email, user.password);
+      return await authServices.register(
+        user.username,
+        user.email,
+        user.password
+      );
     } catch (error) {
       const message =
         (error.response &&
@@ -33,7 +37,7 @@ export const register = createAsyncThunk(
 //Login
 export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
-    return await iMaiaApi.login(user.email, user.password);
+    return await authServices.login(user.email, user.password);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -44,7 +48,7 @@ export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
 });
 
 export const logout = createAsyncThunk("auth/logout", async () => {
-  await iMaiaApi.logout();
+  await authServices.logout();
 });
 
 export const authSlice = createSlice({

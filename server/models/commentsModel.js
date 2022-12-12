@@ -1,26 +1,19 @@
 const mongoose = require("mongoose");
 
-const textsSchema = mongoose.Schema(
+const commentsSchema = mongoose.Schema(
   {
-    _id: {
+    textId: {
       type: mongoose.Schema.Types.ObjectId,
       require: true,
+      ref: "Texts",
     },
-    id_author: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       require: true,
       ref: "User",
     },
-    text: {
+    comment: {
       type: String,
-      require: true,
-    },
-    genre: {
-      type: String,
-      require: true,
-    },
-    likes: {
-      type: Array,
       require: true,
     },
   },
@@ -29,4 +22,4 @@ const textsSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Texts", textsSchema);
+module.exports = mongoose.model("Comments", commentsSchema);

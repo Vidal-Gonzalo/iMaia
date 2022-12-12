@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { iMaiaApi } from "../../../../../api/iMaiaApi";
+import { userServices } from "../../../../../api/userServices";
 import ModalFollows from "./ModalFollows/ModalFollows";
 import "./UserFollows.css";
 
-export default function UserFollows({ userId, followers, following }) {
-  const [userFollowers, setUserFollowers] = useState([]);
-  const [userFollowings, setUserFollowings] = useState([]);
+export default function UserFollows({
+  userId,
+  followers,
+  following,
+  changeFollowedState,
+}) {
+  const [followersData, setFollowersData] = useState([]);
+  const [followingsData, setFollowingsData] = useState([]);
   const [type, setType] = useState("");
   const [open, setOpen] = useState(false);
 
@@ -24,18 +29,20 @@ export default function UserFollows({ userId, followers, following }) {
   }, [userId]);
 
   useEffect(() => {
-    if (open) {
-      const loadSubscriptionsData = async (userId, type) => {
-        if (userId === undefined || type === undefined) {
-          return;
-        }
-        const response = await iMaiaApi.getSubscriptionsById(userId, type);
+    const loadSubscriptionsData = async (userId, type) => {
+      if (userId === undefined || type === undefined) {
+        return;
+      }
+      const response = await userServices.getSubscriptionsById(userId, type);
+      if (response) {
         if (type === "followers") {
-          setUserFollowers(response.data.userFollowers);
+          setFollowersData(response);
         } else if (type === "followings") {
-          setUserFollowings(response.data.userFollowings);
+          setFollowingsData(response);
         }
-      };
+      }
+    };
+    if (open) {
       try {
         loadSubscriptionsData(userId, type);
       } catch (e) {
@@ -60,8 +67,9 @@ export default function UserFollows({ userId, followers, following }) {
           handleClose={handleClose}
           open={open}
           type={type}
-          userFollowers={userFollowers}
-          userFollowings={userFollowings}
+          followersData={followersData}
+          followingsData={followingsData}
+          changeFollowedState={changeFollowedState}
         />
       </div>
     </>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import SearchInput from "./SearchInput/SearchInput";
 import SearchList from "./SearchList/SearchList";
-import { iMaiaApi } from "../../../api/iMaiaApi";
+import { searchServices } from "../../../api/searchServices";
 import "./Search.css";
 
 export default function Search() {
@@ -18,7 +18,7 @@ export default function Search() {
     //Hacer hook
     const loadElementsData = async (type, name) => {
       setIsFetching("fetching");
-      const response = await iMaiaApi.getElementsByName(type, name);
+      const response = await searchServices.getElementsByName(type, name);
       if (response.data.elements.length === 0) {
         setNoResults(true);
       } else {

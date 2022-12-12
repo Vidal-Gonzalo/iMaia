@@ -7,10 +7,6 @@
   text-transform: uppercase;
 }
 
-.MuiMenu-list a {
-  text-transform: capitalize;
-}
-
 .MuiMenuItem-root {
   padding: 0;
   width: 15em;
@@ -30,6 +26,18 @@
   background-color: #000;
   animation: ease-in;
   transition: all 600ms;
+}
+
+.navbar-profile-pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-profile-pic > img {
+  width: 1.4em;
+  border-radius: 50%;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 .red {

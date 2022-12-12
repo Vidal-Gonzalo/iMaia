@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -22,13 +22,10 @@ export default function ModalFollows({
   handleClose,
   open,
   type,
-  userFollowers,
-  userFollowings,
+  followersData,
+  followingsData,
+  changeFollowedState,
 }) {
-  const [followedFromModal, setFollowedFromModal] = useState(false);
-
-  useEffect(() => {}, [followedFromModal, open]);
-
   return (
     <div>
       <Modal
@@ -46,25 +43,23 @@ export default function ModalFollows({
           <Box className="modal-container" sx={style}>
             <h4 className="modal-follows-title">
               {type === "followers"
-                ? `${userFollowers.length} seguidores `
-                : `${userFollowings.length} seguidos `}
+                ? `${followersData.length} seguidores `
+                : `${followingsData.length} seguidos `}
             </h4>
             <div className="modal-follows-list">
               {type === "followers"
-                ? userFollowers.map((follower, index) => (
+                ? followersData.map((follower, index) => (
                     <ModalUserCard
                       key={index}
                       user={follower}
-                      followedFromModal={followedFromModal}
-                      setFollowedFromModal={setFollowedFromModal}
+                      changeFollowedState={changeFollowedState}
                     />
                   ))
-                : userFollowings.map((following, index) => (
+                : followingsData.map((following, index) => (
                     <ModalUserCard
                       key={index}
                       user={following}
-                      followedFromModal={followedFromModal}
-                      setFollowedFromModal={setFollowedFromModal}
+                      changeFollowedState={changeFollowedState}
                     />
                   ))}
             </div>
