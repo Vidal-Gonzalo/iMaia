@@ -15,22 +15,21 @@ export default function Search() {
   const element = searchedItem.get("search");
 
   useEffect(() => {
-    //Hacer hook
     const loadElementsData = async (type, name) => {
       setIsFetching("fetching");
       const response = await searchServices.getElementsByName(type, name);
-      if (response.data.elements.length === 0) {
+      if (response.length === 0) {
         setNoResults(true);
       } else {
         setNoResults(false);
         if (type === "writings" || type === "poems") {
-          setTexts(response.data.elements);
+          setTexts(response);
         } else if (type === "users") {
-          setUsers(response.data.elements);
+          setUsers(response);
         }
         setTimeout(() => {
           setIsFetching("fetched");
-        }, 3000);
+        }, 1000);
       }
     };
     if (element !== null && element.length > 1) {

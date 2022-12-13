@@ -25,6 +25,7 @@ app.use(function (req, res, next) {
 app.use("/texts", require("./routes/texts"));
 app.use("/users", require("./routes/users"));
 app.use("/interactions", require("./routes/interactions"));
+app.use("/search", require("./routes/search"));
 
 app.use(errorHandler);
 

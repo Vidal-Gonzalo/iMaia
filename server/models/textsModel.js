@@ -11,6 +11,10 @@ const textsSchema = mongoose.Schema(
       require: true,
       ref: "User",
     },
+    title: {
+      type: String,
+      require: true,
+    },
     text: {
       type: String,
       require: true,

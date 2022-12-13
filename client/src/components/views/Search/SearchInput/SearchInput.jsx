@@ -6,7 +6,6 @@ import "./SearchInput.css";
 
 export default function SearchInput({ filter, searchedItem, setSearchedItem }) {
   const [inputValue, setInputValue] = useState("");
-  // const [searchedItem, setSearchedItem] = useState("");
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
