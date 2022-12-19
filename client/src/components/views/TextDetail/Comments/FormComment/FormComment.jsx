@@ -4,7 +4,7 @@ import SendIcon from "@mui/icons-material/Send";
 import "./FormComment.css";
 import { interactionServices } from "../../../../../api/interactionsServices";
 
-export default function FormComment({ textId, user, isCommentSent }) {
+export default function FormComment({ textId, user, changeComments }) {
   const [comment, setComment] = useState("");
   const handleChange = (e) => {
     setComment(e.target.value);
@@ -14,7 +14,7 @@ export default function FormComment({ textId, user, isCommentSent }) {
     e.preventDefault();
     const response = await interactionServices.commentAPost(textId, comment);
     if (response) {
-      isCommentSent();
+      changeComments();
       setComment("");
       e.target[0].value = "";
     }

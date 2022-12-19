@@ -9,12 +9,6 @@ import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
 import { useNavigate, useParams } from "react-router-dom";
 import { utilities } from "../../../../utils/utilities";
 
-/*
-Revisar optimización: al actualizar la página desde la sección writings se ralentiza la velocidad de carga
-del Home.
-
-*/
-
 export default function WritingsCarousel({ writings }) {
   const { category } = useParams();
   let navigate = useNavigate();

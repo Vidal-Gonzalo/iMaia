@@ -1,4 +1,4 @@
-export const SearchElements = {
+export const searchElements = {
   getElementIdByTitle: (array, title) => {
     const thisElement = array.find((e) => e.title === title);
     if (thisElement !== undefined) {

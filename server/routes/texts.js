@@ -1,13 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const {
+  getTexts,
   getTextsByGenre,
   getTextById,
   getUserTexts,
   getUserSavedTexts,
   createPost,
+  viewText,
 } = require("../controllers/textsControllers.js");
-const { protect } = require("../middlewares/authMiddleware");
+
+router.get(`/`, getTexts);
 
 router.get(`/:genre`, getTextsByGenre);
 
@@ -18,5 +21,7 @@ router.get(`/profile/username/:id`, getUserTexts);
 router.get(`/profile/savedTexts/username/:username`, getUserSavedTexts);
 
 router.post("/", createPost);
+
+router.put("/view/:id", viewText);
 
 module.exports = router;

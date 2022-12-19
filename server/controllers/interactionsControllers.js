@@ -181,9 +181,26 @@ const followUser = asyncHandler(async (req, res) => {
   res.status(200).json(response);
 });
 
+//@desc Delete a comment
+//@route DELETE /interactions/comment/:id
+//@access Private
+const deleteComment = asyncHandler(async (req, res) => {
+  const comment = await Comment.findById(req.params.id);
+
+  if (!comment) {
+    res.status(400);
+    throw new Error("Comentario no encontrado");
+  }
+
+  await comment.remove();
+
+  res.status(200).json({ id: req.params.id });
+});
+
 module.exports = {
   getComments,
   createInteraction,
   commentAPost,
   followUser,
+  deleteComment,
 };

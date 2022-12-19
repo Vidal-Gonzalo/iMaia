@@ -1,8 +1,14 @@
 const asyncHandler = require("express-async-handler");
-//Cuando tenga que crear una publicación revisar documentación. El model debe coincidir
-//con los elementos agregados desde el front-end.
 const Texts = require("../models/textsModel");
 const User = require("../models/userModel");
+
+//@desc Get all texts
+//@route GET /texts
+//@access Public
+const getTexts = asyncHandler(async (req, res) => {
+  const texts = await Texts.find();
+  res.status(200).json(texts);
+});
 
 //@desc Get texts by the given genre
 //@route GET /texts/:genre
@@ -82,10 +88,26 @@ const createPost = asyncHandler(async (req, res) => {
   res.status(200).json({ text });
 });
 
+const viewText = asyncHandler(async (req, res) => {
+  if (!req.params.id) {
+    res.status(400);
+    throw new Error("Por favor ingrese un ID");
+  }
+
+  const response = await Texts.updateOne(
+    { _id: req.params.id },
+    { $inc: { views: 1 } }
+  );
+
+  res.status(200).json({ response });
+});
+
 module.exports = {
+  getTexts,
   getTextsByGenre,
   getTextById,
   getUserTexts,
   getUserSavedTexts,
   createPost,
+  viewText,
 };

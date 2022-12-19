@@ -7,10 +7,12 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import "./ModalUserCard.css";
 import { interactionServices } from "../../../../../../../api/interactionsServices";
+import { utilities } from "../../../../../../../utils/utilities";
 
 export default function ModalUserCard({ user, changeFollowedState }) {
   const [followButton, setFollowButton] = useState(false);
   const [userFollowedFromModal, setUserFollowedFromModal] = useState(false);
+  const [isUserLogged, setIsUserLogged] = useState(false);
   const loggedUser = useSelector((state) => state.auth.user);
 
   const handleClickOnFollow = async () => {
@@ -20,6 +22,14 @@ export default function ModalUserCard({ user, changeFollowedState }) {
       setFollowButton(!followButton);
     }
   };
+
+  useEffect(() => {
+    if (utilities.CheckIfIsUserLogged(user._id)) {
+      setIsUserLogged(true);
+    } else {
+      setIsUserLogged(false);
+    }
+  }, [user._id]);
 
   useEffect(() => {
     if (user !== undefined) {
@@ -56,14 +66,18 @@ export default function ModalUserCard({ user, changeFollowedState }) {
             <p>{user.biography}</p>
           </div>
           <div className="user-action">
-            <Button
-              className={followButton ? "follow-btn active" : "follow-btn"}
-              variant="outlined"
-              startIcon={followButton ? <CheckCircleIcon /> : <PersonAddIcon />}
-              onClick={handleClickOnFollow}
-            >
-              {followButton ? "Seguido" : "Seguir"}
-            </Button>
+            {!isUserLogged ? (
+              <Button
+                className={followButton ? "follow-btn active" : "follow-btn"}
+                variant="outlined"
+                startIcon={
+                  followButton ? <CheckCircleIcon /> : <PersonAddIcon />
+                }
+                onClick={handleClickOnFollow}
+              >
+                {followButton ? "Seguido" : "Seguir"}
+              </Button>
+            ) : null}
           </div>
         </>
       ) : (

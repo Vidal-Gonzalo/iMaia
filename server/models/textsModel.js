@@ -15,6 +15,10 @@ const textsSchema = mongoose.Schema(
       type: String,
       require: true,
     },
+    views: {
+      type: Number,
+      require: true,
+    },
     text: {
       type: String,
       require: true,

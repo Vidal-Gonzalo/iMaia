@@ -1,6 +1,5 @@
 .modal-user-card {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 0 0.7em 0.7em 0;
   margin-bottom: 0.7em;
@@ -15,6 +14,7 @@
   font-size: 0.7em;
   margin-right: 0.7em;
   font-family: var(--global-primary-font);
+  min-width: 20vw;
 }
 
 .modal-user-card > .user-info > a > h5 {

@@ -77,7 +77,7 @@ const loginUser = asyncHandler(async (req, res) => {
 //@access Public
 const getUserData = asyncHandler(async (req, res) => {
   if (!req.params.id) res.status(400);
-  const user = await User.findById({ _id: req.params.id });
+  const user = await User.findById({ _id: req.params.id }, { password: 0 });
   if (user === undefined) {
     res.status(404);
     throw new Error("Usuario no encontrado");
@@ -89,7 +89,10 @@ const getUserData = asyncHandler(async (req, res) => {
 //@route GET /users/user/:username
 //@access Public
 const getUserDataByUsername = asyncHandler(async (req, res) => {
-  const user = await User.findOne({ username: req.params.username });
+  const user = await User.findOne(
+    { username: req.params.username },
+    { password: 0 }
+  );
   if (user === undefined) {
     res.status(404);
     throw new Error("Usuario no encontrado");

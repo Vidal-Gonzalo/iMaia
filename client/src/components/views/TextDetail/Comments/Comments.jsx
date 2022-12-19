@@ -11,15 +11,15 @@ const commentsAtStart = 6;
 export default function Comments({ textId }) {
   const [next, setNext] = useState(commentsAtStart);
   const [textComments, setTextComments] = useState([]);
-  const [sentComment, setSentComment] = useState(false);
+  const [commentsChanged, setCommentsChanged] = useState(false);
   const user = useSelector((state) => state.auth.user);
 
   const handleMoreText = () => {
     setNext(next + commentsAtStart);
   };
 
-  const isCommentSent = () => {
-    setSentComment(!sentComment); //Fix
+  const changeComments = () => {
+    setCommentsChanged(!commentsChanged); //Fix
   };
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export default function Comments({ textId }) {
     return () => {
       isCancelled = true;
     };
-  }, [textId, sentComment]);
+  }, [textId, commentsChanged]);
 
   return (
     <div className="comments-container">
@@ -49,14 +49,18 @@ export default function Comments({ textId }) {
         <FormComment
           textId={textId}
           user={user}
-          isCommentSent={isCommentSent}
+          changeComments={changeComments}
         />
       ) : null}
       {textComments.length > 0 ? (
         textComments
           .slice(0, next)
           .map((comment, index) => (
-            <CommentCard key={index} comment={comment} />
+            <CommentCard
+              key={index}
+              comment={comment}
+              changeComments={changeComments}
+            />
           ))
       ) : (
         <p className="no-comments">¡Haz el primer comentario!</p>

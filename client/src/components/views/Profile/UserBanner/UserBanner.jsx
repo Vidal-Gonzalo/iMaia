@@ -1,10 +1,10 @@
+import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
-import React, { useState } from "react";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import "./UserBanner.css";
-import { useEffect } from "react";
 import { interactionServices } from "../../../../api/interactionsServices";
+import { utilities } from "../../../../utils/utilities";
+import "./UserBanner.css";
 
 export default function UserBanner({
   user,
@@ -12,7 +12,7 @@ export default function UserBanner({
   changeFollowedState,
   userFollowed,
 }) {
-  //Si el usuario está viendo su propio perfil mostrar "Editar perfil" en el lugar de seguir
+  const [isUser, setIsUser] = useState(false);
   const [followButton, setFollowButton] = useState(false);
 
   const handleClickOnFollow = async () => {
@@ -22,6 +22,14 @@ export default function UserBanner({
       setFollowButton(!followButton);
     }
   };
+
+  useEffect(() => {
+    if (utilities.CheckIfIsUserLogged(user._id)) {
+      setIsUser(true);
+    } else {
+      setIsUser(false);
+    }
+  }, [user._id]);
 
   useEffect(() => {
     if (userFollowed) {
@@ -46,14 +54,16 @@ export default function UserBanner({
       <div className="user-information">
         <div className="user-title">
           <h3>{user.username}</h3>
-          <Button
-            className={followButton ? "follow-btn active" : "follow-btn"}
-            variant="outlined"
-            startIcon={followButton ? <CheckCircleIcon /> : <PersonAddIcon />}
-            onClick={handleClickOnFollow}
-          >
-            {followButton ? "Seguido" : "Seguir"}
-          </Button>
+          {!isUser ? (
+            <Button
+              className={followButton ? "follow-btn active" : "follow-btn"}
+              variant="outlined"
+              startIcon={followButton ? <CheckCircleIcon /> : <PersonAddIcon />}
+              onClick={handleClickOnFollow}
+            >
+              {followButton ? "Seguido" : "Seguir"}
+            </Button>
+          ) : null}
         </div>
         <div className="user-description">
           <h5>{user.biography}</h5>

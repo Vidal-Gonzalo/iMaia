@@ -41,4 +41,8 @@ export const utilities = {
       return {};
     }
   },
+  CheckIfIsUserLogged: (userId) => {
+    let user = JSON.parse(localStorage.getItem("user"));
+    return user._id === userId;
+  },
 };

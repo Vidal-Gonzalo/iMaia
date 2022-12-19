@@ -3,7 +3,7 @@
   display: flex;
   margin: 2em 0 2em 0;
   border-radius: var(--global-border-radius);
-  width: 50%;
+  width: 55%;
 }
 
 .text-comment > a > .comment-user-image > img {
@@ -11,15 +11,21 @@
 }
 
 .text-comment > .comment-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text-comment > .comment-info > .comment-info-data {
   margin: 0 0 0 0.5em;
   font-size: 0.9em;
 }
 
-.text-comment > .comment-info > .comment-username > p {
+.text-comment > .comment-info > .comment-info-data > .comment-username > p {
   font-weight: bold;
   margin: 0;
 }
 
-.text-comment > .comment-info > .comment {
+.text-comment > .comment-info > .comment-info-data > .comment {
   margin: 0;
 }

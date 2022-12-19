@@ -4,11 +4,8 @@ import "./Writings.css";
 import WritingsCarousel from "./WritingsCarousel/WritingsCarousel.jsx";
 import SearchWritings from "./SearchWritings/SearchWritings";
 import WritingsList from "./WritingsList/WritingsList";
-import { SearchElements } from "../../../utils/SearchElements";
+import { searchElements } from "../../../utils/searchElements";
 import { textServices } from "../../../api/textServices";
-
-//Hace falta usar un useMemo para no fetchear y hacer toda la lógica de vuelta cada vez que
-//el usuario entra al componente.
 
 export default function Writings() {
   const { genre } = useParams();
@@ -24,10 +21,10 @@ export default function Writings() {
       if (texts.length > 0) {
         if (genre === "writings") {
           setWritings(texts);
-          setMostValuedWritings(SearchElements.getMostLikedElements(texts));
+          setMostValuedWritings(searchElements.getMostLikedElements(texts));
         } else {
           setPoems(texts);
-          setMostValuedPoems(SearchElements.getMostLikedElements(texts));
+          setMostValuedPoems(searchElements.getMostLikedElements(texts));
         }
       }
     };

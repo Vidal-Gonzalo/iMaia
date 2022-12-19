@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { SearchElements } from "../../../../utils/SearchElements.js";
+import { searchElements } from "../../../../utils/searchElements.js";
 import "./SearchWritings.css";
 
 export default function SearchWritings({ section }) {
@@ -43,7 +43,7 @@ export default function SearchWritings({ section }) {
   }, [isActive, navigate, section, addedTag]);
 
   useEffect(() => {
-    const thisGenreTags = SearchElements.getElementTags(section, tags);
+    const thisGenreTags = searchElements.getElementTags(section, tags);
     if (thisGenreTags !== null) {
       setGenreTags(thisGenreTags);
     } else {

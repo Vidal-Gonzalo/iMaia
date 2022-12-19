@@ -70,4 +70,19 @@ export const interactionServices = {
       console.error(e);
     }
   },
+  deleteComment: async (commentId) => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      let config = { headers: { Authorization: `Bearer ${user.token}` } };
+      if (user) {
+        const response = await axios.delete(
+          `http://localhost:${REACT_APP_BACKEND_PORT}/interactions/comment/${commentId}`,
+          config
+        );
+        return response.data;
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  },
 };
