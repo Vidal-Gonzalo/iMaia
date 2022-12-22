@@ -1,4 +1,5 @@
-.comments-container > .no-comments {
+.comments-container > .no-comments,
+.comments-container > .login-to-comment {
   font-family: var(--global-primary-font);
   font-size: 0.9em;
 }

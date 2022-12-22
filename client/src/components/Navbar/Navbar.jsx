@@ -9,6 +9,7 @@ import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import CreateIcon from "@mui/icons-material/Create";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
@@ -67,7 +68,8 @@ export default function PrimarySearchAppBar() {
     if (
       window.scrollY >= 66 ||
       location.pathname?.includes("search") ||
-      location.pathname?.includes("login")
+      location.pathname?.includes("login") ||
+      location.pathname?.includes("settings")
     ) {
       setNavbarBackground(true);
     } else {
@@ -76,7 +78,11 @@ export default function PrimarySearchAppBar() {
   };
 
   const changeDisplay = (location) => {
-    if (location.pathname?.includes("login")) setDisplayBlock(false);
+    if (
+      location.pathname?.includes("login") ||
+      location.pathname?.includes("settings")
+    )
+      setDisplayBlock(false);
     else setDisplayBlock(true);
   };
 
@@ -207,10 +213,12 @@ export default function PrimarySearchAppBar() {
         </MenuItem>
       </Link>
       <Divider />
-      <MenuItem onClick={handleMenuClose}>
-        <SettingsIcon sx={{ marginRight: "0.5em" }} />
-        Configuración
-      </MenuItem>
+      <Link to={"/settings"}>
+        <MenuItem onClick={handleMenuClose}>
+          <SettingsIcon sx={{ marginRight: "0.5em" }} />
+          Configuración
+        </MenuItem>
+      </Link>
       <MenuItem onClick={onLogout}>
         <LogoutIcon sx={{ marginRight: "0.5em" }} />
         Cerrar sesión
@@ -274,9 +282,17 @@ export default function PrimarySearchAppBar() {
                 {user ? (
                   <>
                     <Link style={{ textDecoration: "none" }} to="/write">
-                      <StyledTypography variant="h6" noWrap component="div">
+                      <Button
+                        variant="contained"
+                        style={{
+                          backgroundColor: "var(--global-primary-color)",
+                          fontFamily: "var(--global-primary-font)",
+                          margin: "0 1rem 0 1rem",
+                        }}
+                        startIcon={<CreateIcon />}
+                      >
                         Escribir
-                      </StyledTypography>
+                      </Button>
                     </Link>
                     <IconButton
                       size="large"

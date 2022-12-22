@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import "./ModalUserCard.css";
 import { interactionServices } from "../../../../../../../api/interactionsServices";
-import { utilities } from "../../../../../../../utils/utilities";
 
 export default function ModalUserCard({ user, changeFollowedState }) {
   const [followButton, setFollowButton] = useState(false);
@@ -24,15 +23,15 @@ export default function ModalUserCard({ user, changeFollowedState }) {
   };
 
   useEffect(() => {
-    if (utilities.CheckIfIsUserLogged(user._id)) {
+    if (loggedUser && user._id === loggedUser._id) {
       setIsUserLogged(true);
     } else {
       setIsUserLogged(false);
     }
-  }, [user._id]);
+  }, [user, loggedUser]);
 
   useEffect(() => {
-    if (user !== undefined) {
+    if (user !== undefined && loggedUser) {
       const checkIfLoggedUserFollowed = (loggedUserId) => {
         let userFollowers = user.followers;
         if (userFollowers.find((e) => e === loggedUserId)) {
@@ -48,7 +47,7 @@ export default function ModalUserCard({ user, changeFollowedState }) {
     } else {
       setFollowButton(false);
     }
-  }, [userFollowedFromModal, user, loggedUser._id]);
+  }, [userFollowedFromModal, user, loggedUser]);
 
   return (
     <div className="modal-user-card">

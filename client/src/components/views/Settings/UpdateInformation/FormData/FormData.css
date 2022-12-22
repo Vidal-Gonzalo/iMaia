@@ -1,0 +1,42 @@
+.form-data-container {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--global-primary-font);
+}
+
+.form-data-container > .form-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 60vh;
+}
+
+.form-data-container > .form-data > .form-action {
+  width: 100%;
+}
+
+.form-data-container > .form-data > .form-action > .form-update-data {
+  background-color: var(--global-primary-color);
+  font-family: var(--global-primary-font);
+}
+
+.form-data-container > .form-data > .form-title {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.form-data-container > .form-data > .form-title > h5 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-data-input {
+  margin: 0 1rem 2rem 0;
+}
+
+.form-data-input > .text-area {
+  margin: 0 2rem 0 0;
+  width: 100%;
+}

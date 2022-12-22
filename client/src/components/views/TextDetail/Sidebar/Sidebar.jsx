@@ -6,11 +6,10 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { Box, Button, CircularProgress } from "@mui/material";
 import { Link } from "react-router-dom";
-import "./Sidebar.css";
 import { useSelector } from "react-redux";
 import { interactionServices } from "../../../../api/interactionsServices";
-import { utilities } from "../../../../utils/utilities";
 import { userServices } from "../../../../api/userServices";
+import "./Sidebar.css";
 
 export default function Sidebar({ authorId }) {
   const [author, setAuthor] = useState();
@@ -47,14 +46,16 @@ export default function Sidebar({ authorId }) {
           setFollowed(false);
         }
       };
-      checkIfLoggedUserFollowed(loggedUser._id);
-      if (utilities.CheckIfIsUserLogged(author._id)) {
-        setIsLoggedUser(true);
-      } else {
-        setIsLoggedUser(false);
+      if (loggedUser) {
+        checkIfLoggedUserFollowed(loggedUser._id);
+        if (author._id === loggedUser._id) {
+          setIsLoggedUser(true);
+        } else {
+          setIsLoggedUser(false);
+        }
       }
     }
-  }, [author, loggedUser._id]);
+  }, [author, loggedUser]);
 
   return (
     <div className="sidebar">
@@ -62,7 +63,11 @@ export default function Sidebar({ authorId }) {
         <>
           <div className="author-info">
             <p>Escrito por</p>
-            <img src={author.picUrl} alt="" width={50} />
+            <Link to={`/user/${author.username}`}>
+              {" "}
+              <img src={author.picUrl} alt="" width={50} />
+            </Link>
+
             <Link
               className="author"
               style={

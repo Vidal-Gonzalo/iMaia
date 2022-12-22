@@ -12,7 +12,6 @@ export default function Profile() {
   const [user, setUser] = useState();
   const [followed, setFollowed] = useState(false);
   const [userFollowed, setUserFollowed] = useState(false);
-
   const loggedUser = useSelector((state) => state.auth.user);
 
   const changeFollowedState = () => {
@@ -29,11 +28,10 @@ export default function Profile() {
     } catch (e) {
       console.log(e);
     }
-  }, [username, followed]);
+  }, [username, followed, loggedUser]);
 
   useEffect(() => {
     if (user !== undefined) {
-      document.title = `${user.username} - iMaia`;
       const checkIfUserFollowed = (userId) => {
         let userFollowers = user.followers;
         if (userFollowers.find((e) => e === userId)) {
@@ -42,9 +40,14 @@ export default function Profile() {
           setUserFollowed(false);
         }
       };
-      checkIfUserFollowed(loggedUser._id);
+      if (loggedUser) {
+        checkIfUserFollowed(loggedUser._id);
+      }
+      let capitalizedUsername =
+        user.username[0].toUpperCase() + user.username.substring(1);
+      document.title = `${capitalizedUsername} - iMaia`;
     }
-  }, [user, userFollowed, loggedUser._id]);
+  }, [user, userFollowed, loggedUser]);
   return (
     <section
       className="profile-section"
@@ -52,7 +55,7 @@ export default function Profile() {
         height: "100vh",
       }}
     >
-      {user && (
+      {user ? (
         <>
           <UserBanner
             user={user}
@@ -68,6 +71,24 @@ export default function Profile() {
           />
           <UserTabs user={user} />
         </>
+      ) : (
+        loggedUser && (
+          <>
+            <UserBanner
+              user={loggedUser}
+              followed={followed}
+              changeFollowedState={changeFollowedState}
+              userFollowed={userFollowed}
+            />
+            <UserFollows
+              userId={loggedUser._id}
+              followers={loggedUser.followers}
+              following={loggedUser.following}
+              changeFollowedState={changeFollowedState}
+            />
+            <UserTabs user={loggedUser} />
+          </>
+        )
       )}
     </section>
   );

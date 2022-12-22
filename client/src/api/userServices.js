@@ -23,4 +23,39 @@ export const userServices = {
     );
     return response.data;
   },
+  updateData: async (email, username, biography, phrase) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    let config = { headers: { Authorization: `Bearer ${user.token}` } };
+    if (user) {
+      const response = await axios.put(
+        `http://localhost:${REACT_APP_BACKEND_PORT}/users`,
+        {
+          email,
+          username,
+          biography,
+          phrase,
+        },
+        config
+      );
+      if (response.data) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      }
+      return response.data;
+    }
+  },
+  updatePassword: async (password, newPassword) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    let config = { headers: { Authorization: `Bearer ${user.token}` } };
+    if (user) {
+      const response = await axios.put(
+        `http://localhost:${REACT_APP_BACKEND_PORT}/users/password`,
+        {
+          password,
+          newPassword,
+        },
+        config
+      );
+      return response.data;
+    }
+  },
 };

@@ -26,7 +26,7 @@ export default function Comments({ textId }) {
     let isCancelled = false;
     const loadComments = async (textId) => {
       const response = await interactionServices.getComments(textId);
-      if (response) {
+      if (response || response === "") {
         setTextComments(response);
       }
     };
@@ -37,10 +37,6 @@ export default function Comments({ textId }) {
     } catch (err) {
       console.log(err);
     }
-
-    return () => {
-      isCancelled = true;
-    };
   }, [textId, commentsChanged]);
 
   return (
@@ -52,7 +48,7 @@ export default function Comments({ textId }) {
           changeComments={changeComments}
         />
       ) : null}
-      {textComments.length > 0 ? (
+      {user && textComments.length > 0 ? (
         textComments
           .slice(0, next)
           .map((comment, index) => (
@@ -62,8 +58,10 @@ export default function Comments({ textId }) {
               changeComments={changeComments}
             />
           ))
-      ) : (
+      ) : user ? (
         <p className="no-comments">¡Haz el primer comentario!</p>
+      ) : (
+        <p className="login-to-comment">Inicia sesión para comentar</p> //TODO: footer with invitation to login
       )}
       {next < textComments?.length && (
         <Button text={"Cargar más"} action={handleMoreText} />

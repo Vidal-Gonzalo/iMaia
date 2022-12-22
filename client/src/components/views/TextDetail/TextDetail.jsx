@@ -33,17 +33,10 @@ export default function TextDetail() {
       const response = await textServices.getTextById(id);
       if (response) setText(response);
     };
-    const viewText = async (textId) => {
-      const response = await textServices.viewText(textId);
-      if (response) {
-        console.log(response);
-      }
-    };
 
     try {
       if (id !== undefined && !isCancelled) {
         loadTextData(id);
-        viewText(id);
       }
     } catch (err) {
       console.log(err);
@@ -57,6 +50,12 @@ export default function TextDetail() {
     if (text !== undefined) {
       document.title = `${text?.title} - iMaia`;
 
+      const viewText = async (textId) => {
+        const response = await textServices.viewText(textId);
+        if (response) {
+          console.log(response);
+        }
+      };
       const checkIfUserLiked = (userId) => {
         if (text.likes.find((e) => e === userId)) {
           setUserLiked(true);
@@ -72,13 +71,16 @@ export default function TextDetail() {
       };
 
       try {
-        checkIfUserLiked(user._id);
-        checkIfUserSavedText(text._id);
+        if (user) {
+          checkIfUserLiked(user._id);
+          checkIfUserSavedText(text._id);
+          viewText(text._id);
+        }
       } catch (err) {
         console.log(err);
       }
     }
-  }, [text, user._id]);
+  }, [text, user]);
 
   return (
     <section id="text-detail">

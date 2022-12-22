@@ -6,11 +6,12 @@ import { ListItemIcon, Menu, MenuItem } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { toast } from "react-toastify";
 import { interactionServices } from "../../../../../api/interactionsServices";
+import { useSelector } from "react-redux";
 import "./CommentCard.css";
 
 export default function CommentCard({ comment, changeComments }) {
   const [user, setUser] = useState();
-  const loggedUser = JSON.parse(localStorage.getItem("user"));
+  const loggedUser = useSelector((state) => state.auth.user);
   const [isLoggedUser, setIsLoggedUser] = useState(null);
   const [anchorEl, setAnchorEl] = useState(false);
   const open = Boolean(anchorEl);
@@ -65,17 +66,10 @@ export default function CommentCard({ comment, changeComments }) {
         setUser(user);
       }
     };
-    const checkIfIsLoggedUser = () => {
-      if (comment.userId === loggedUser._id) {
-        setIsLoggedUser(true);
-      } else {
-        setIsLoggedUser(false);
-      }
-    };
+
     try {
       if (!isCancelled) {
         getUser(comment.userId);
-        checkIfIsLoggedUser();
       }
     } catch (e) {
       console.error(e);
@@ -83,7 +77,18 @@ export default function CommentCard({ comment, changeComments }) {
     return () => {
       isCancelled = true;
     };
-  }, [comment, loggedUser._id]);
+  }, [comment]);
+
+  useEffect(() => {
+    const checkIfIsLoggedUser = (loggedUser) => {
+      if (comment.userId === loggedUser._id) {
+        setIsLoggedUser(true);
+      } else {
+        setIsLoggedUser(false);
+      }
+    };
+    if (loggedUser) checkIfIsLoggedUser(loggedUser);
+  }, [comment, loggedUser]);
 
   return (
     <>

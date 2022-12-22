@@ -1,0 +1,65 @@
+.user-sidebar {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: var(--global-primary-font);
+}
+
+.user-sidebar > .user-content {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 1rem;
+  width: 70%;
+  height: 65%;
+  padding: 4rem 0 4rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-sidebar > .user-content > .user-picture > img {
+  width: 10rem;
+  border-radius: 100%;
+}
+
+.user-sidebar > .user-content > .user-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-sidebar > .user-content > .user-info > h3 {
+  margin: 0.5rem 0 0.5rem 0;
+  text-transform: capitalize;
+  font-size: 1.5rem;
+}
+
+.user-sidebar > .user-content > .user-info > h4 {
+  margin: 0.5rem 0 0.5rem 0;
+  font-weight: light;
+}
+
+.user-sidebar > .user-content > .user-admin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-sidebar > .user-content > .user-admin > p {
+  margin-left: 1rem;
+}
+
+.user-sidebar > .user-content > .logout {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.user-sidebar > .user-content > .logout > .btn-logout {
+  background-color: var(--global-primary-color);
+  font-family: var(--global-primary-font);
+}

@@ -4,6 +4,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { interactionServices } from "../../../../api/interactionsServices";
 import { utilities } from "../../../../utils/utilities";
+import banner from "../../../../assets/images/abstractWaveBanner.jpg"; //Temporary
 import "./UserBanner.css";
 
 export default function UserBanner({
@@ -24,7 +25,7 @@ export default function UserBanner({
   };
 
   useEffect(() => {
-    if (utilities.CheckIfIsUserLogged(user._id)) {
+    if (utilities.checkIfIsUserLogged(user._id)) {
       setIsUser(true);
     } else {
       setIsUser(false);
@@ -43,7 +44,7 @@ export default function UserBanner({
     <div
       className="user-banner"
       style={{
-        // backgroundImage: `url(${user.banner})`,
+        backgroundImage: `url(${banner})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

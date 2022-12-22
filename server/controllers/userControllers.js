@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const { findByIdAndUpdate } = require("../models/userModel");
 
 //@desc Register new user
 //@route Post /users
@@ -64,6 +65,12 @@ const loginUser = asyncHandler(async (req, res) => {
       picUrl: user.picUrl,
       username: user.username,
       email: user.email,
+      biography: user.biography,
+      phrase: user.phrase,
+      followers: user.followers,
+      following: user.following,
+      texts: user.texts,
+      savedTexts: user.savedTexts,
       token: generateToken(user._id),
     });
   } else {
@@ -130,6 +137,70 @@ const getUserSubscriptions = asyncHandler(async (req, res) => {
   res.status(200).json(userSubscriptions);
 });
 
+//@desc Update user information
+//@route PUT /users
+//@access Private
+const updateData = asyncHandler(async (req, res) => {
+  const { email, username, biography, phrase } = req.body;
+  const { _id } = req.user;
+  const user = await User.findByIdAndUpdate(
+    { _id },
+    { email, username, biography, phrase },
+    {
+      projection: { password: 0, createdAt: 0, updatedAt: 0 },
+      returnDocument: "after",
+    }
+  );
+  if (!user) {
+    res.status(400);
+    throw new Error("No se ha podido modificar el documento");
+  }
+
+  res.status(200).json({
+    _id: user._id,
+    picUrl: user.picUrl,
+    username: user.username,
+    email: user.email,
+    biography: user.biography,
+    phrase: user.phrase,
+    followers: user.followers,
+    following: user.following,
+    texts: user.texts,
+    savedTexts: user.savedTexts,
+    token: generateToken(user._id),
+  });
+});
+
+//@desc Update user password
+//@route PUT /users/password
+//@access Private
+const updatePassword = asyncHandler(async (req, res) => {
+  const { password, newPassword } = req.body;
+  const { _id } = req.user;
+
+  const user = await User.findById(_id);
+  if (!user) {
+    res.status(400);
+    throw new Error("El ID de usuario no existe.");
+  }
+
+  if (!(await bcrypt.compare(password, user.password))) {
+    res.status(400);
+    throw new Error("Contraseña incorrecta");
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+  const response = await User.updateOne(
+    { _id: user._id },
+    {
+      password: hashedPassword,
+    }
+  );
+  res.status(200).json(response);
+});
+
 //Generate JWT token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -143,4 +214,6 @@ module.exports = {
   getUserData,
   getUserDataByUsername,
   getUserSubscriptions,
+  updateData,
+  updatePassword,
 };

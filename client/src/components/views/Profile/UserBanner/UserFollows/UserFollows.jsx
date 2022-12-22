@@ -34,6 +34,7 @@ export default function UserFollows({
         return;
       }
       const response = await userServices.getSubscriptionsById(userId, type);
+      console.log(response);
       if (response) {
         if (type === "followers") {
           setFollowersData(response);
