@@ -18,7 +18,7 @@ export default function UpdateInformation() {
       toast.success("Datos modificados correctamente", { theme: "colored" });
     }
     dispatch(reset());
-  }, [isError, isSuccess, message]);
+  }, [isError, isSuccess, message, dispatch]);
 
   return (
     <div className="update-information">

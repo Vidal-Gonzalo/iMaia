@@ -47,39 +47,38 @@ export default function TextDetail() {
   }, [id, isLiked]);
 
   useEffect(() => {
+    let isCancelled = false;
+
+    const viewText = async (textId) => {
+      const response = await textServices.viewText(textId);
+      if (response) {
+        console.log(response);
+      }
+    };
+    const checkIfUserLiked = (userId) => {
+      if (text.likes.find((e) => e === userId)) {
+        setUserLiked(true);
+      }
+    };
+    const checkIfUserSavedText = async (textId) => {
+      const loggedUser = await userServices.getUserById(user._id);
+      if (loggedUser) {
+        if (loggedUser.savedTexts.find((e) => e === textId)) {
+          setUserSaved(true);
+        }
+      }
+    };
     if (text !== undefined) {
       document.title = `${text?.title} - iMaia`;
-
-      const viewText = async (textId) => {
-        const response = await textServices.viewText(textId);
-        if (response) {
-          console.log(response);
-        }
-      };
-      const checkIfUserLiked = (userId) => {
-        if (text.likes.find((e) => e === userId)) {
-          setUserLiked(true);
-        }
-      };
-      const checkIfUserSavedText = async (textId) => {
-        const loggedUser = await userServices.getUserById(user._id);
-        if (loggedUser) {
-          if (loggedUser.savedTexts.find((e) => e === textId)) {
-            setUserSaved(true);
-          }
-        }
-      };
-
-      try {
-        if (user) {
-          checkIfUserLiked(user._id);
-          checkIfUserSavedText(text._id);
-          viewText(text._id);
-        }
-      } catch (err) {
-        console.log(err);
+      if (user && text !== "undefined" && !isCancelled) {
+        checkIfUserLiked(user._id);
+        checkIfUserSavedText(text._id);
+        viewText(text._id);
       }
     }
+    return () => {
+      isCancelled = true;
+    };
   }, [text, user]);
 
   return (

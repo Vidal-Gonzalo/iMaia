@@ -69,7 +69,8 @@ export default function PrimarySearchAppBar() {
       window.scrollY >= 66 ||
       location.pathname?.includes("search") ||
       location.pathname?.includes("login") ||
-      location.pathname?.includes("settings")
+      location.pathname?.includes("settings") ||
+      location.pathname?.includes("home")
     ) {
       setNavbarBackground(true);
     } else {
@@ -242,11 +243,19 @@ export default function PrimarySearchAppBar() {
       >
         <Toolbar>
           <StyledBox sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link style={{ textDecoration: "none" }} to="/">
-              <StyledTypography variant="h6" noWrap component="div">
-                iMaia
-              </StyledTypography>
-            </Link>
+            {user ? (
+              <Link style={{ textDecoration: "none" }} to="/home">
+                <StyledTypography variant="h6" noWrap component="div">
+                  iMaia
+                </StyledTypography>
+              </Link>
+            ) : (
+              <Link style={{ textDecoration: "none" }} to="/">
+                <StyledTypography variant="h6" noWrap component="div">
+                  iMaia
+                </StyledTypography>
+              </Link>
+            )}
           </StyledBox>
           {displayBlock && (
             <>

@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
-const { findByIdAndUpdate } = require("../models/userModel");
 
 //@desc Register new user
 //@route Post /users
@@ -71,6 +70,7 @@ const loginUser = asyncHandler(async (req, res) => {
       following: user.following,
       texts: user.texts,
       savedTexts: user.savedTexts,
+      createdAt: user.createdAt.toLocaleDateString(),
       token: generateToken(user._id),
     });
   } else {
@@ -89,7 +89,19 @@ const getUserData = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Usuario no encontrado");
   }
-  res.status(200).json(user);
+  res.status(200).json({
+    _id: user.id,
+    picUrl: user.picUrl,
+    username: user.username,
+    email: user.email,
+    biography: user.biography,
+    phrase: user.phrase,
+    followers: user.followers,
+    following: user.following,
+    texts: user.texts,
+    savedTexts: user.savedTexts,
+    createdAt: user.createdAt.toLocaleDateString(),
+  });
 });
 
 //@desc Get user data by username
@@ -104,7 +116,19 @@ const getUserDataByUsername = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Usuario no encontrado");
   }
-  res.status(200).json(user);
+  res.status(200).json({
+    _id: user.id,
+    picUrl: user.picUrl,
+    username: user.username,
+    email: user.email,
+    biography: user.biography,
+    phrase: user.phrase,
+    followers: user.followers,
+    following: user.following,
+    texts: user.texts,
+    savedTexts: user.savedTexts,
+    createdAt: user.createdAt.toLocaleDateString(),
+  });
 });
 
 //@desc Get user suscriptions by user id
@@ -119,20 +143,10 @@ const getUserSubscriptions = asyncHandler(async (req, res) => {
   }
   let userSubscriptions = [];
   if (subscriptionType === "followers") {
-    for (let i = 0; i < user.followers.length; i++) {
-      userSubscriptions.push(
-        await User.findById({
-          _id: user.followers[i].toString(),
-        })
-      );
-    }
+    userSubscriptions = await User.find({ _id: { $in: user.followers } });
   }
   if (subscriptionType === "followings") {
-    for (let i = 0; i < user.following.length; i++) {
-      userSubscriptions.push(
-        await User.findById({ _id: user.following[i].toString() })
-      );
-    }
+    userSubscriptions = await User.find({ _id: { $in: user.following } });
   }
   res.status(200).json(userSubscriptions);
 });
@@ -147,7 +161,7 @@ const updateData = asyncHandler(async (req, res) => {
     { _id },
     { email, username, biography, phrase },
     {
-      projection: { password: 0, createdAt: 0, updatedAt: 0 },
+      projection: { password: 0, updatedAt: 0 },
       returnDocument: "after",
     }
   );
@@ -167,6 +181,7 @@ const updateData = asyncHandler(async (req, res) => {
     following: user.following,
     texts: user.texts,
     savedTexts: user.savedTexts,
+    createdAt: user.createdAt.toLocaleDateString(),
     token: generateToken(user._id),
   });
 });

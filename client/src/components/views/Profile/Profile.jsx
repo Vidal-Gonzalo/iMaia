@@ -65,6 +65,7 @@ export default function Profile() {
           />
           <UserFollows
             userId={user._id}
+            createdAt={user.createdAt}
             followers={user.followers}
             following={user.following}
             changeFollowedState={changeFollowedState}

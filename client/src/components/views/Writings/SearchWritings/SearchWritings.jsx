@@ -1,6 +1,6 @@
 import React from "react";
-import { tags } from "./Tags.js";
-import { useNavigate } from "react-router-dom";
+import { tags } from "../../../../assets/data/Tags.js";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -9,6 +9,7 @@ import "./SearchWritings.css";
 
 export default function SearchWritings({ section }) {
   const navigate = useNavigate();
+  const { tag } = useParams();
   const [genreTags, setGenreTags] = useState([]);
   const [isActive, setIsActive] = useState([]);
   const [addedTag, setAddedTag] = useState(false);
@@ -20,6 +21,7 @@ export default function SearchWritings({ section }) {
       const newArray = isActive.filter((item) => item !== element);
       setIsActive(newArray);
     } else {
+      console.log(isActive);
       setIsActive([...isActive, element]);
     }
   };
@@ -29,6 +31,15 @@ export default function SearchWritings({ section }) {
     if (arr.includes(element)) includes = true;
     return includes;
   };
+
+  useEffect(() => {
+    //Add active elements from another component
+    if (!addedTag && tag !== undefined) {
+      if (isActive.length === 0) {
+        setIsActive([tag]);
+      }
+    }
+  }, [addedTag, isActive, tag]);
 
   useEffect(() => {
     if (addedTag) {
@@ -51,6 +62,13 @@ export default function SearchWritings({ section }) {
       setIsActive([]);
     }
   }, [section, genreTags, navigate]);
+
+  useEffect(() => {
+    // Delete all active elements when section is changed
+    setIsActive([]);
+  }, [section]);
+
+  console.log(isActive);
 
   return (
     <div className="search-writings">

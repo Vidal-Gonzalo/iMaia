@@ -34,6 +34,18 @@ export const searchElements = {
   filterElementsByCategory: (array, category) => {
     return array.filter((e) => e.category === category);
   },
+  filterElementsByTag: (array, tag) => {
+    let elements = [];
+    array = searchElements.getRandomElements(array, 50);
+    for (let i = 0; i < array.length; i++) {
+      for (let j = 0; j < array[i].tags.length; j++) {
+        if (array[i].tags[j] === tag) {
+          elements.push(array[i]);
+        }
+      }
+    }
+    return elements;
+  },
   containsTitle: (array, title) => {
     let elements = [];
     for (let element of array) {
@@ -51,5 +63,10 @@ export const searchElements = {
       }
     }
     return elements;
+  },
+  getRandomElements: (elements, numberOfElements) => {
+    return [...elements]
+      .sort(() => (Math.random() > 0.5 ? 1 : -1))
+      .slice(0, numberOfElements);
   },
 };

@@ -24,7 +24,7 @@ const getTextsByGenre = asyncHandler(async (req, res) => {
 });
 
 //@desc Get texts by the given ID
-//@route GET /texts/:genre
+//@route GET /texts/id/:id
 //@access Public
 const getTextById = asyncHandler(async (req, res) => {
   if (!req.params.id) {

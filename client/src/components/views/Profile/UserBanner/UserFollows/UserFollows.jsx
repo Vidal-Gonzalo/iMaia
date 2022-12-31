@@ -7,6 +7,7 @@ export default function UserFollows({
   userId,
   followers,
   following,
+  createdAt,
   changeFollowedState,
 }) {
   const [followersData, setFollowersData] = useState([]);
@@ -34,7 +35,6 @@ export default function UserFollows({
         return;
       }
       const response = await userServices.getSubscriptionsById(userId, type);
-      console.log(response);
       if (response) {
         if (type === "followers") {
           setFollowersData(response);
@@ -57,12 +57,12 @@ export default function UserFollows({
       <div className="more-info">
         <div className="followers">
           <p onClick={() => following.length > 0 && handleOpen("followings")}>
-            {following.length} Seguidos
+            {following?.length} Seguidos
           </p>
           <p onClick={() => followers.length > 0 && handleOpen("followers")}>
-            {followers.length} Seguidores
+            {followers?.length} Seguidores
           </p>
-          <p>Miembro desde Oct 15 2022</p>
+          <p>Miembro desde {createdAt}</p>
         </div>
         <ModalFollows
           handleClose={handleClose}
