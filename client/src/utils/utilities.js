@@ -16,6 +16,11 @@ export const utilities = {
     }
     return includes;
   },
+  calculateMoreTags: (writing, tagsPerRow) => {
+    const tags = writing.tags.length;
+    if (tags > tagsPerRow) return `+${tags - tagsPerRow} más`;
+    else return null;
+  },
   scrollTo: (ref) => {
     ref?.current?.scrollIntoView();
   },

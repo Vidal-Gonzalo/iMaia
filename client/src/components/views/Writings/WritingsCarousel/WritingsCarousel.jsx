@@ -5,9 +5,11 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "./WritingsCarousel.css";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { Autoplay, EffectFade, Navigation, Pagination } from "swiper";
 import { useNavigate, useParams } from "react-router-dom";
 import { utilities } from "../../../../utils/utilities";
+import { Button } from "@mui/material";
 
 export default function WritingsCarousel({ writings }) {
   const { category } = useParams();
@@ -53,14 +55,22 @@ export default function WritingsCarousel({ writings }) {
                 className="writing-author"
                 onClick={() => navigate(`/user/${element.author}`)}
               >
-                @{element.author}
+                &#8212;{element.author}
               </p>
-              <button
-                className="btn btn-writing-carousel"
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: "var(--global-primary-color)",
+                  fontFamily: "var(--global-primary-font)",
+                  width: "12rem",
+                  height: "3rem",
+                  margin: "0 1rem 0 1rem",
+                }}
                 onClick={() => navigate(`/text/${element._id}`)}
+                startIcon={<MenuBookIcon />}
               >
-                <span>Leer más</span>
-              </button>
+                Leer más
+              </Button>
             </div>
           </div>
         </SwiperSlide>

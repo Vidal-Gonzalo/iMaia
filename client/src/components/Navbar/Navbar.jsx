@@ -69,8 +69,7 @@ export default function PrimarySearchAppBar() {
       window.scrollY >= 66 ||
       location.pathname?.includes("search") ||
       location.pathname?.includes("login") ||
-      location.pathname?.includes("settings") ||
-      location.pathname?.includes("home")
+      location.pathname?.includes("settings")
     ) {
       setNavbarBackground(true);
     } else {

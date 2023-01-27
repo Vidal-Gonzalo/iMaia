@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
@@ -12,14 +13,15 @@ export default function WritingCard({ element }) {
   const titleMaxChars = 20;
   const overviewMaxChars = 180;
 
-  const calculateMoreTags = (writing) => {
-    const tags = writing.tags.length;
-    if (tags > tagsPerRow) return `+${tags - tagsPerRow} más`;
-    else return null;
-  };
-
   return (
-    <div className="text-card">
+    <motion.div
+      layout
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="text-card"
+    >
       <div className="text-image">
         <Link to={`/text/${element._id}`}>
           <img src={element.picUrl} alt={element.title} />
@@ -63,10 +65,10 @@ export default function WritingCard({ element }) {
                 </button>
               ))
             : null}
-          <span>{calculateMoreTags(element)}</span>
+          <span>{utilities.calculateMoreTags(element)}</span>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

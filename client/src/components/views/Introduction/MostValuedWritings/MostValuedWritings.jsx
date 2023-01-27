@@ -27,7 +27,7 @@ export default function MostValuedWritings({ title, writings }) {
 
   return (
     <div className="valued-writings-carousel">
-      <h5 className="swiper-title">{title}</h5>
+      <h5 className="swiper-title">{title && title}</h5>
       <div className="swiper-container">
         <div className="swiper-button" ref={prevRef}>
           <ArrowCircleLeftIcon fontSize={"large"} />
@@ -52,7 +52,9 @@ export default function MostValuedWritings({ title, writings }) {
               }}
             >
               <div className="writing-content">
-                <h3 className="writing-title">{text.title}</h3>
+                <h3 className="writing-title">
+                  {utilities.limitString(text.title, 25).string}
+                </h3>
                 <p className="writing-fragment">
                   {utilities.limitString(text.overview, 100).string}
                 </p>
@@ -64,7 +66,7 @@ export default function MostValuedWritings({ title, writings }) {
                 </button>
                 <span
                   className="writing-author"
-                  onClick={() => navigate(`user/${text.author}`)}
+                  onClick={() => navigate(`/user/${text.author}`, true)}
                 >
                   @{text.author}
                 </span>

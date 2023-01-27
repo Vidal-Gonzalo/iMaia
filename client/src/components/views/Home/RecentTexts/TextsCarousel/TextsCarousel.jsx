@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
-import { utilities } from "../../../../../utils/utilities";
+import WritingCard from "../../../../WritingCard/WritingCard";
 import { searchElements } from "../../../../../utils/searchElements";
 import { Navigation } from "swiper";
 
@@ -40,45 +40,21 @@ export default function TextsCarousel({ genre, tag, texts }) {
             {genre} recientes de <Link to={`/${section}/${tag}`}>{tag}</Link>
           </h4>
         </div>
+
         <div className="swiper-container">
           <Swiper
-            slidesPerView={3}
-            spaceBetween={10}
+            slidesPerView={2}
+            spaceBetween={30}
             loopedSlides={texts.length}
             modules={[Navigation]}
             onSwiper={setSwiper}
             loop={true}
-            className="texts-carousel-swiper"
+            className="featured-texts-carousel-swiper"
           >
             {textsByTag.map((element) => (
-              <SwiperSlide
-                key={element._id}
-                style={{
-                  backgroundImage: `url(${element.picUrl})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div>
-                  <h3 className="writing-title">{element.title}</h3>
-                  <p className="writing-fragment">
-                    {utilities.limitString(element.overview, 90).string}
-                  </p>
-                  <div className="writing-info">
-                    {" "}
-                    <p
-                      style={{
-                        margin: 0,
-                        marginBottom: "2%",
-                      }}
-                      className="writing-author"
-                    >
-                      @{element.author}
-                    </p>
-                    <button className="btn btn-writing-carousel">
-                      <span>Leer más</span>
-                    </button>
-                  </div>
+              <SwiperSlide key={element._id}>
+                <div className="slides-container" style={{ width: "80vw" }}>
+                  <WritingCard element={element} />
                 </div>
               </SwiperSlide>
             ))}

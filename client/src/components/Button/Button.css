@@ -37,7 +37,7 @@
 
 .btn-writing-carousel {
   height: 4em;
-  border-radius: 1em;
+  border-radius: 0.5rem;
 }
 
 .btn-writing-carousel > span {

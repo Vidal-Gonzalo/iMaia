@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
-
 import "swiper/css";
 import "swiper/css/pagination";
-
-import { Pagination, Navigation } from "swiper";
+import { Navigation } from "swiper";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
 import { utilities } from "../../../../utils/utilities";
 
 export default function FeaturedTexts({ title, texts }) {
@@ -28,33 +28,29 @@ export default function FeaturedTexts({ title, texts }) {
       </div>
       <div className="swiper-container">
         <Swiper
-          slidesPerView={3}
-          spaceBetween={10}
+          slidesPerView={2}
+          spaceBetween={50}
           loopedSlides={texts.length}
           loop={true}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Pagination, Navigation]}
+          modules={[Navigation]}
           onSwiper={setSwiper}
-          className="texts-carousel-swiper"
+          className="featured-texts-carousel-swiper"
         >
           {texts?.map((element) => (
-            <SwiperSlide
-              key={element._id}
-              style={{
-                backgroundImage: `url(${element.picUrl})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            >
-              <div>
-                <h3 className="writing-title">{element.title}</h3>
+            <SwiperSlide key={element._id}>
+              <img src={element.picUrl} width="200" alt="Imagen" />
+              <div className="slide-content">
+                <div className="action">
+                  <h3 className="writing-title">
+                    {utilities.limitString(element.title, 20).string}
+                  </h3>
+                  <BookmarkIcon />
+                </div>
+
                 <p className="writing-fragment">
-                  {utilities.limitString(element.overview, 90).string}
+                  {utilities.limitString(element.overview, 140).string}
                 </p>
                 <div className="writing-info">
-                  {" "}
                   <p
                     style={{
                       margin: 0,
@@ -64,9 +60,6 @@ export default function FeaturedTexts({ title, texts }) {
                   >
                     @{element.author}
                   </p>
-                  <button className="btn btn-writing-carousel">
-                    <span>Leer más</span>
-                  </button>
                 </div>
               </div>
             </SwiperSlide>

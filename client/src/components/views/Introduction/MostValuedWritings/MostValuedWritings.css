@@ -14,7 +14,7 @@ En responsive se mostrará un solo slide
 }
 
 .valued-writings-carousel > .swiper-title {
-  font-family: var(--global-secondary-font);
+  font-family: var(--global-primary-font);
   font-size: var(--global-title-font-size);
   margin-bottom: 25px;
 }

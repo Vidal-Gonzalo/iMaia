@@ -68,8 +68,6 @@ export default function SearchWritings({ section }) {
     setIsActive([]);
   }, [section]);
 
-  console.log(isActive);
-
   return (
     <div className="search-writings">
       <div className="search-writings-text">

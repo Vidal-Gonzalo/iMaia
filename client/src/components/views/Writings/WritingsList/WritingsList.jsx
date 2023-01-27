@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import "./WritingsList.css";
 import WritingCard from "../../../WritingCard/WritingCard";
 import { utilities } from "../../../../utils/utilities.js";
+import { motion, AnimatePresence } from "framer-motion";
 
 const textPerRow = 8;
 
@@ -33,29 +34,31 @@ export default function WritingsList({ texts }) {
   if (tag !== undefined) {
     return (
       <div className="writings-list-container">
-        <div className="writings-list">
-          {textsByTag?.length > 0 ? (
-            textsByTag
-              .slice(0, next)
-              ?.map((text, index) => (
-                <WritingCard element={text} key={index} type={"writings"} />
-              ))
-          ) : (
-            <div
-              className="no-texts"
-              style={{
-                height: "50vh",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <p style={{ fontFamily: "var(--global-primary-font)" }}>
-                Todavia no hay escritos con esta etiqueta :(
-              </p>
-            </div>
-          )}
-        </div>
+        <motion.div layout className="writings-list">
+          <AnimatePresence>
+            {textsByTag?.length > 0 ? (
+              textsByTag
+                .slice(0, next)
+                ?.map((text, index) => (
+                  <WritingCard element={text} key={index} type={"writings"} />
+                ))
+            ) : (
+              <div
+                className="no-texts"
+                style={{
+                  height: "50vh",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <p style={{ fontFamily: "var(--global-primary-font)" }}>
+                  Todavia no hay escritos con esta etiqueta :(
+                </p>
+              </div>
+            )}
+          </AnimatePresence>
+        </motion.div>
         {next < textsByTag?.length && (
           <Button text={"Cargar más"} action={handleMoreText} />
         )}
