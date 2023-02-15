@@ -4,14 +4,23 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./SearchInput.css";
 
-export default function SearchInput({ filter, searchedItem, setSearchedItem }) {
+export default function SearchInput({
+  filter,
+  searchedItem,
+  setSearchedItem,
+  delayedSearch,
+}) {
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (e) => {
     setInputValue(e.target.value);
-    if (inputValue.length === 1) {
+    if (e.target.value.length <= 1) {
       searchedItem.delete("search");
       setSearchedItem(searchedItem);
+    } else {
+      searchedItem.set("search", e.target.value);
+      setSearchedItem(searchedItem);
+      delayedSearch(filter, e.target.value);
     }
   };
 

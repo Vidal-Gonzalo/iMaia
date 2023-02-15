@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import SearchInput from "./SearchInput/SearchInput";
 import SearchList from "./SearchList/SearchList";
+import { debounce } from "lodash";
 import { searchServices } from "../../../api/searchServices";
 import "./Search.css";
 
@@ -14,36 +15,39 @@ export default function Search() {
   const [searchedItem, setSearchedItem] = useSearchParams();
   const element = searchedItem.get("search");
 
+  // useEffect(() => {
+  const delayedSearch = useRef(
+    debounce((type, name) => {
+      searchServices
+        .getElementsByName(type, name)
+        .then((response) => {
+          if (response.length === 0) {
+            setNoResults(true);
+          } else {
+            setNoResults(false);
+            if (type === "writings" || type === "poems") {
+              setTexts(response);
+            } else if (type === "users") {
+              setUsers(response);
+            }
+          }
+        })
+        .finally(() => setIsFetching("fetched"));
+    }, 1000)
+  ).current;
+
   useEffect(() => {
-    const loadElementsData = async (type, name) => {
-      setIsFetching("fetching");
-      const response = await searchServices.getElementsByName(type, name);
-      if (response.length === 0) {
-        setNoResults(true);
-      } else {
-        setNoResults(false);
-        if (type === "writings" || type === "poems") {
-          setTexts(response);
-        } else if (type === "users") {
-          setUsers(response);
-        }
-        setTimeout(() => {
-          setIsFetching("fetched");
-        }, 1000);
-      }
-    };
-    if (element !== null && element.length > 1) {
-      loadElementsData(filter, element);
-    } else {
+    if (!searchedItem.has("search")) {
       setTexts([]);
       setUsers([]);
     }
-  }, [filter, noResults, searchedItem, element]);
+  }, [searchedItem]);
 
   return (
     <section className="search-section">
       <SearchInput
         filter={filter}
+        delayedSearch={delayedSearch}
         searchedItem={searchedItem}
         setSearchedItem={setSearchedItem}
       />

@@ -31,13 +31,14 @@
   text-decoration: none;
 }
 
-.text-card > .text-content > a > .text-title {
+.text-card > .text-content > .text-title {
   color: #000;
   font-size: 1.9em;
+  font-weight: bold;
   margin: 0;
 }
 
-.text-card > .text-content > a > .text-title:hover {
+.text-card > .text-content > .text-title:hover {
   text-decoration: underline;
 }
 

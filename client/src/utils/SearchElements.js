@@ -34,12 +34,12 @@ export const searchElements = {
   filterElementsByCategory: (array, category) => {
     return array.filter((e) => e.category === category);
   },
-  filterElementsByTag: (array, tag) => {
+  filterElementsByTag: (section, array, tag) => {
     let elements = [];
     array = searchElements.getRandomElements(array, 50);
     for (let i = 0; i < array.length; i++) {
       for (let j = 0; j < array[i].tags.length; j++) {
-        if (array[i].tags[j] === tag) {
+        if (array[i].tags[j] === tag && array[i].genre === section) {
           elements.push(array[i]);
         }
       }

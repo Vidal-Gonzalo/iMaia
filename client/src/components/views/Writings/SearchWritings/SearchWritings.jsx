@@ -21,7 +21,6 @@ export default function SearchWritings({ section }) {
       const newArray = isActive.filter((item) => item !== element);
       setIsActive(newArray);
     } else {
-      console.log(isActive);
       setIsActive([...isActive, element]);
     }
   };
@@ -36,7 +35,8 @@ export default function SearchWritings({ section }) {
     //Add active elements from another component
     if (!addedTag && tag !== undefined) {
       if (isActive.length === 0) {
-        setIsActive([tag]);
+        let tagElements = tag.split(",");
+        setIsActive(tagElements);
       }
     }
   }, [addedTag, isActive, tag]);

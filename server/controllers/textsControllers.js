@@ -38,14 +38,16 @@ const getTextById = asyncHandler(async (req, res) => {
 });
 
 //@desc Get texts by the given user
-//@route GET /texts/profile/username/:username
+//@route GET /texts/profile/username/:id
 //@access Public
 const getUserTexts = asyncHandler(async (req, res) => {
   if (!req.params.id) {
     res.status(404);
     throw new Error("ID no ingresado");
   }
-  const texts = await Texts.find({ id_author: req.params.id });
+  const texts = await Texts.find({ id_author: req.params.id }).sort({
+    createdAt: -1,
+  });
 
   res.status(200).json(texts);
 });

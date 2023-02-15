@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Link } from "react-router-dom";
+import WritingCard from "../../../../../WritingCard/WritingCard";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
-import WritingCard from "../../../../WritingCard/WritingCard";
-import { searchElements } from "../../../../../utils/searchElements";
 import { Navigation } from "swiper";
 
-export default function TextsCarousel({ genre, tag, texts }) {
+export default function TextsCarousel({ title, texts }) {
   const [swiper, setSwiper] = useState();
-  const [textsByTag, setTextsByTag] = useState([]);
-  let section = genre === "Escritos" ? "writings" : "poems";
   const nextRef = useRef();
+
   useEffect(() => {
     if (swiper) {
       if (!swiper.destroyed) {
@@ -21,25 +18,10 @@ export default function TextsCarousel({ genre, tag, texts }) {
     }
   }, [swiper]);
 
-  useEffect(() => {
-    const getMostLikedElementsByTag = () => {
-      let filteredElements = searchElements.filterElementsByTag(texts, tag);
-      setTextsByTag(filteredElements);
-    };
-
-    if (texts.length > 0) {
-      getMostLikedElementsByTag();
-    }
-  }, [tag, texts]);
-
-  if (textsByTag.length > 2) {
+  if (texts?.length >= 2) {
     return (
-      <div className="texts-carousel recent-texts">
-        <div className="texts-carousel-title">
-          <h4>
-            {genre} recientes de <Link to={`/${section}/${tag}`}>{tag}</Link>
-          </h4>
-        </div>
+      <div className="texts-carousel">
+        <h4 className="texts-carousel-title">{title}</h4>
 
         <div className="swiper-container">
           <Swiper
@@ -51,10 +33,13 @@ export default function TextsCarousel({ genre, tag, texts }) {
             loop={true}
             className="featured-texts-carousel-swiper"
           >
-            {textsByTag.map((element) => (
+            {texts.map((element) => (
               <SwiperSlide key={element._id}>
                 <div className="slides-container" style={{ width: "80vw" }}>
-                  <WritingCard element={element} />
+                  <WritingCard
+                    element={element}
+                    style={{ margin: "1em 0.3rem 1rem 0.3rem" }}
+                  />
                 </div>
               </SwiperSlide>
             ))}

@@ -3,16 +3,20 @@ import PeopleIcon from "@mui/icons-material/People";
 import { utilities } from "../../utils/utilities";
 import { Tooltip } from "@mui/material";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import "./UserCard.css";
 
 export default function UserCard({ element }) {
-  // const [follow, setFollow] = useState(false);
-  // const handleFollow = () => {
-  //   setFollow(!follow);
-  // };
   useEffect(() => {}, [element]);
   return (
-    <div className="user-card">
+    <motion.div
+      layout
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="user-card"
+    >
       <div className="user-image">
         <Link to={`/user/${element.username}`}>
           <img src={element.picUrl} alt={element.username} />
@@ -37,6 +41,6 @@ export default function UserCard({ element }) {
           <em>"{utilities.limitString(element.phrase, 180).string}"</em>
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
