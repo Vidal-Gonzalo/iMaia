@@ -39,7 +39,6 @@ export const textServices = {
       const response = await axios.get(
         `http://localhost:${REACT_APP_BACKEND_PORT}/texts/profile/username/${id}`
       );
-
       return response.data;
     } catch (e) {
       console.error(e);

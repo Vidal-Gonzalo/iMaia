@@ -84,7 +84,7 @@ export default function Sidebar({ authorId }) {
                 startIcon={followed ? <CheckCircleIcon /> : <PersonAddIcon />}
                 onClick={handleFollow}
               >
-                {followed ? "Seguido!" : "Seguir"}
+                {followed ? "Seguido" : "Seguir"}
               </Button>
             ) : null}
           </div>

@@ -3,23 +3,30 @@ import { textServices } from "../../../../../api/textServices";
 import { useSelector } from "react-redux";
 import { CircularProgress } from "@mui/material";
 import TextsCarousel from "../RecentTexts/TextsCarousel/TextsCarousel";
-import { Link } from "react-router-dom";
 import UnderlinedLink from "../../../../UnderlinedLink/UnderlinedLink";
 
 export default function FollowingTexts() {
   const userFollowingsIds = useSelector((state) => state.auth.user.following);
-  const [texts, setTexts] = useState();
+  const [texts, setTexts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const getTextsByUserId = async (id) => {
-      const response = await textServices.getTextsById(id);
-      return response;
+      try {
+        const response = await textServices.getTextsById(id);
+        return response;
+      } catch (e) {
+        setError(true);
+        console.error(e);
+      }
     };
 
     // Creamos una variable auxiliar para almacenar los usuarios seguidos
     let textsData = [];
 
     const fetchData = async () => {
+      setLoading(true);
       for (let i = 0; i < userFollowingsIds.length; i++) {
         const response = await getTextsByUserId(userFollowingsIds[i]);
         if (response) {
@@ -31,6 +38,7 @@ export default function FollowingTexts() {
       }
 
       // Actualizamos el estado solo con los nuevos usuarios
+      setLoading(false);
       setTexts(textsData);
     };
 
@@ -46,8 +54,11 @@ export default function FollowingTexts() {
         flexDirection: "column",
       }}
     >
-      {texts ? (
+      {loading && <CircularProgress />}
+
+      {texts.length > 0 &&
         texts.map((userTexts, index) => {
+          console.log(userTexts);
           const author = userTexts[0].author;
           const title = (
             <p>
@@ -56,10 +67,9 @@ export default function FollowingTexts() {
             </p>
           );
           return <TextsCarousel title={title} texts={userTexts} key={index} />;
-        })
-      ) : (
-        <CircularProgress />
-      )}
+        })}
+
+      {error && <p>Ha habido un error</p>}
     </div>
   );
 }

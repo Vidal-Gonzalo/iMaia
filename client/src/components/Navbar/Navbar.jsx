@@ -50,11 +50,10 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   alignItems: "center",
 }));
 
-export default function PrimarySearchAppBar() {
+export default function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-
   const [anchorEl, setAnchorEl] = useState(null);
   const isProfileMenuOpen = Boolean(anchorEl);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(null);
@@ -242,19 +241,11 @@ export default function PrimarySearchAppBar() {
       >
         <Toolbar>
           <StyledBox sx={{ display: { xs: "none", md: "flex" } }}>
-            {user ? (
-              <Link style={{ textDecoration: "none" }} to="/home">
-                <StyledTypography variant="h6" noWrap component="div">
-                  iMaia
-                </StyledTypography>
-              </Link>
-            ) : (
-              <Link style={{ textDecoration: "none" }} to="/">
-                <StyledTypography variant="h6" noWrap component="div">
-                  iMaia
-                </StyledTypography>
-              </Link>
-            )}
+            <Link style={{ textDecoration: "none" }} to={user ? "/home" : "/"}>
+              <StyledTypography variant="h6" noWrap component="div">
+                iMaia
+              </StyledTypography>
+            </Link>
           </StyledBox>
           {displayBlock && (
             <>

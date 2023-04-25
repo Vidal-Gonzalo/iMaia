@@ -83,7 +83,7 @@ export default function TextDetail() {
 
   return (
     <section id="text-detail">
-      {text && <TextImage text={text} />}
+      {text && <TextImage picUrl={text.picUrl} />}
       <Grid container style={{ marginTop: "2em" }}>
         <Grid xs={3}>{text && <Sidebar authorId={text.id_author} />}</Grid>
         <Grid xs={9}>

@@ -1,11 +1,10 @@
-#text-detail > .text-image-background {
+.text-image-background {
   display: flex;
   justify-content: center;
   align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 50vh;
-  z-index: 00;
 }
 
 .text-image-background:before {
@@ -24,5 +23,5 @@
   background-size: cover;
   background-position: center;
   width: 30%;
-  filter: blur(0px) !important;
+  filter: blur(0px);
 }

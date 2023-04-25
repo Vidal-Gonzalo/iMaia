@@ -46,7 +46,7 @@ export default function WritingsList({ texts }) {
               <div
                 className="no-texts"
                 style={{
-                  height: "50vh",
+                  height: "100%",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
